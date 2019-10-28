@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1572240247887.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3318095521",
+    "id" : "918A80E4",
+    "lastKnownWriteTime" : 1572240404,
+    "last_content_update" : 1572240404777,
+    "path" : "~/Documents/r-sessions/StrangeAttractors/06-fields_and_flows.Rmd",
+    "project_path" : "06-fields_and_flows.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "15,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

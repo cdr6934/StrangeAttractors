@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1572240408944.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2326383745",
+    "id" : "E5C0684B",
+    "lastKnownWriteTime" : 1572240553,
+    "last_content_update" : 1572240553318,
+    "path" : "~/Documents/r-sessions/StrangeAttractors/07-further_fascinating_functions.Rmd",
+    "project_path" : "07-further_fascinating_functions.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "16,17",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

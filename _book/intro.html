@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Order and Chaos | Strange Attractors</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Order and Chaos | Strange Attractors" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Order and Chaos | Strange Attractors" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Julien C. Sprott" />
+
+
+<meta name="date" content="2019-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Order and Chaos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why This Book Is For You</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Order and Chaos</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#predictability-and-uncertainty"><i class="fa fa-check"></i><b>2.1</b> Predictability and Uncertainty</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#bucks-and-bugs"><i class="fa fa-check"></i><b>2.2</b> Bucks and Bugs</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Strange Attractors</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">2</span> Order and Chaos</h1>
+<p>This chapter lays the groundwork for everything that follows in the book. Nearly all the essential ideas, mathematical techniques, and programming tools you need are developed here. Once you’ve mastered the material in this chapter, the rest of the book is smooth sailing.</p>
+<div id="predictability-and-uncertainty" class="section level2">
+<h2><span class="header-section-number">2.1</span> Predictability and Uncertainty</h2>
+<p>The essence of science is predictability. Halley’s comet will return to the vicinity of Earth in the year 2061. Not only can astronomers predict the very minute when the next solar eclipse will occur but also the best vantage point on Earth from which to view it. Scientific theories stand or fall according to whether their predictions agree with detailed, quantitative observation. Such successes are possible because most of the basic laws of nature are deterministic, which means they allow us to determine exactly what will happen next from a knowledge of present conditions.</p>
+<p>However, if nature is deterministic, there is no room for free will. Human behavior would be predetermined by the arrangements of the molecules that make up our brains. Every cloud that forms or flower that grows would be a direct and inevitable result of processes set into motion eons ago and over which there is no possibility for exercising control. Perfect predictability is dull and uninteresting. Such is the philosophical dilemma that often separates the arts from the sciences.</p>
+<p>One possible resolution was advanced in the early decades of the 20th century when it was discovered that the quantum mechanical laws that govern the behavior of atoms and their constituents are apparently probabilistic, which means they allow us to predict only the probability that something will happen. Quantum mechanics has been extremely successful in explaining the submicroscopic world, but it was never fully embraced by some scientists, including Albert Einstein, who until his dying day insisted that he did not believe that God plays dice with the Universe</p>
+<p>Since the 1970s science has been undergoing an intellectual revolution that may be as significant as the development of quantum mechanics. It is now widely understood that deterministic is not the same as predictable. An example is the weather. The weather is governed by the atmosphere, and the atmosphere obeys deterministic physical laws. However, long-term weather predictions have improved very little as a result of careful, detailed observations and the unleashing of vast computer resources.</p>
+<p>The reason for this unpredictability is that the weather exhibits extreme sensitivity to initial conditions. A tiny change in today’s weather (the initial conditions) causes a larger change in tomorrow’s weather and an even larger change in the next day’s weather. This sensitivity to initial conditions has been dubbed the butterfly effect, because it is hypothetically possible for a butterfly flapping its wings in Brazil to set off tornadoes in Texas. Since we can never know the initial conditions with perfect precision, long-term prediction is impossible, even when the physical laws are deterministic and exactly known. It has been shown that the <em>predictability horizon</em> in weather forecasting cannot be more than two or three weeks.</p>
+<p>Unpredictable behavior of deterministic systems has been called chaos, and it has captured the imagination of the scientist and nonscientist alike. The word “chaos” was introduced by Tien-Yien Li and James A. Yorke in a 1975 paper entitled “Period Three Implies Chaos.” The term “strange attractors,” from which this book takes its title, first appeared in print in a 1971 paper entitled “On the Nature of Turbulence,” by David Ruelle and Floris Takens. Some people prefer the term “chaotic attractor,” because what seemed strange when first discovered in 1963 is now largely understood.</p>
+<p>It’s not hard to imagine that if a system is complicated (with many springs and wheels and so forth) and hence governed by complicated mathematical equations, then its behavior might be complicated and unpredictable. What has come as a surprise to most scientists is that even very simple systems, described by simple equations, can have chaotic solutions. However, everything is not chaotic. After all, we can make accurate predictions of eclipses and many other things. An even more curious fact is that the same system can behave either predictably or chaotically, depending on small changes in a single term of the equations that describe the system. For this reason, chaos theory holds promise for explaining many natural processes. A stream of water, for example, exhibits smooth (<em>laminar</em>) flow when moving slowly and irregular (<em>turbulent</em>) flow when moving more rapidly. The transition between the two can be very abrupt. If two sticks are dropped side-byside into a stream with laminar flow, they stay close together, but if they are dropped into a turbulent stream, they quickly separate.</p>
+<p>Chaotic processes are not random; they follow rules, but even simple rules can produce extreme complexity. This blend of simplicity and unpredictability also occurs in music and art. A piece of music that consists of random notes or of an endless repetition of the same sequence of notes would be either disastrously discordant or unbearably boring. Likewise, a work of art produced by throwing paint at a canvas from a distance or by endlessly replicating a pattern, as in wallpaper, is unlikely to have aesthetic appeal. Nature is full of visual objects, such as clouds and trees and mountains, as well as sounds, like the cacophony of excited birds, that have both structure and variety. The mathematics of chaos provides the tools for creating and describing such objects and sounds.</p>
+<p>Chaos theory reconciles our intuitive sense of free will with the deterministic laws of nature. However, it has an even deeper philosophical ramification. Not only do we have freedom to control our actions, but also the sensitivity to initial conditions implies that even our smallest act can drastically alter the course of history, for better or for worse. Like the butterfly flapping its wings, the results of our behavior are amplified with each day that passes, eventually producing a completely different world than would have existed in our absence!</p>
+</div>
+<div id="bucks-and-bugs" class="section level2">
+<h2><span class="header-section-number">2.2</span> Bucks and Bugs</h2>
+<p>Enough philosophizing—it’s time to look at a specific example. This example requires some mathematics, but the equations are not difficult. The ideas and terminology are important for understanding what is to follow.</p>
+<p>Suppose you have some money in a bank account that provides interest,
+compounded yearly, and that you don’t make any deposits or withdrawals. Let’s
+let <span class="math inline">\(X\)</span> represent the amount of money in your account. When the time comes for the bank to credit your interest, its computer does so by multiplying <span class="math inline">\(X\)</span> by some number. With an interest rate of 10%, the number is 1.1, and your new balance is 1.1 X. If your balance in the nth year is <span class="math inline">\(X_n\)</span> (where n is 1 after the first year, 2 after the second, and so forth), your balance in the year <span class="math inline">\(n+1\)</span> is
+<span class="math display">\[
+X_{n+1}=RX_n
+\]</span>
+where <span class="math inline">\(R\)</span> is equal to 1.0 plus your interest rate. (<span class="math inline">\(R\)</span> is 1.1 in this example.)</p>
+<p>You probably know that such compounding leads to exponential growth. In
+terms of the initial amount <span class="math inline">\(X_0\)</span>, the amount in your account after n years is
+<span class="math display">\[
+X_n = X_0R^n
+\]</span></p>
+<p>After 50 years at 10% yearly interest, you will have $117.39 for every dollar you initially invested. The bank can afford to do this only because of inflation and because money is loaned at an even higher interest rate.</p>
+<p>Equation 1A is applicable to more than compound interest. It’s how many of us have our salaries determined. It also describes population growth. Imagine some species of bug that lives for a season, lays its eggs, and then dies (thus avoiding the confusion of overlapping generations). The next year the eggs hatch, and the number of bugs is some constant R times the number in the previous year. If R is less than 1, the bugs die out over a number of years; and if R is greater than 1, their number grows exponentially.</p>
+<p>You also know that exponential growth cannot go on forever, whether it be bucks in the bank, bugs in the back yard or people on the planet. Eventually something happens, such as the depletion of resources, to slow down or even reverse growth. Mass starvation, disease, crime, and war are some of the mechanisms that limit unbridled human population growth. Thus we need to modify Equation 1A in some way if it is to model growth patterns in nature more closely.</p>
+<p>Perhaps the simplest modification is to multiply the right-hand side of Equation 1A by a term such as (1 - X), whose value approaches 1 as X gets smaller (much less than 1) but is less than 1 as X increases. Since the population dies abruptly as X approaches 1, we must think of X = 1 as representing some large number of dollars or bugs (say a million or a billion); otherwise we would never get very far! So our modified equation, called the logistic equation, is</p>
+<p><span class="math display">\[
+X_{n+1}=RX_n(1-X_n)
+\]</span></p>
+<p>Now you’re going to get your first homework assignment. Take your pocket calculator and start with a small value of X, say 0.1. To reduce the amount of work you have to do, use a fairly large value of R, say 2, corresponding to a doubling every year. Run X through Equation 1C a few times and see what happens. This process is called iteration, and the successive values are called iterates. If you did it right, you should see that X grows rapidly for the first couple of steps, and then it levels off at a value of 0.5. The first few values should be approximately 0.1, 0.18, 0.2952, 0.4161, 0.4859, 0.4996, and 0.5. Compare your results with the unbounded growth of Equation 1A.</p>
+<p>You might have predicted the above result, if you had thought to set Xn+1 equal to Xn in Equation 1C and solved for Xn. This value is called a fixed-point solution of the equation, because if X ever has that value, it remains fixed there forever. Such a fixed-point solution is sometimes called a point attractor, because every initial value of X between 0 and 1 is attracted to the fixed point upon repeated iteration of Equation 1C. Try initial values of X = 0.2 and X = 0.8. A fixed point is also called a critical point, a singular point, or a singularity.</p>
+<p>If you’re curious, you might wonder what happens if you start with a value of X less than 0, such as -0.1, or greater than 1, such as 1.1. You should verify that the iterates are negative and that they get larger and larger, eventually approaching minus infinity. We say that the solution is unbounded and that it attracts to infinity. Thus the values of X = 0 and X = 1 are like a watershed. Between these values the solution is bounded, and outside these values it is unbounded.</p>
+<p>The region between X = 0 and X = 1 is called a basin of attraction because it resembles a bathroom basin in which drops of water find their way to the drain from wherever they start. X = 0 is also a fixed point, but it is unstable because values either slightly above or slightly below zero move away from zero. Such an unstable fixed point is sometimes called a repellor. Chaos can result when two or more repellors are present; the iterates then bounce back and forth like a baseball runner caught in a squeeze play.</p>
+<p>See what happens if you substitute X = 0 or X = 1 into the logistic equation. As a check on your calculations, or in case you didn’t do your homework, Table 1-1 shows the successive iterates of X for each of the cases we have discussed.</p>
+<p>An equation, such as the logistic equation, that predicts the next value of a quantity from the previous value is called an iterated map because it is like a road map in which each point on the earth is mapped to a corresponding point on a piece of paper. The logistic equation is a one-dimensional map because the various X values can be thought of as lying along a straight line that stretches from minus infinity to plus infinity. Each iteration of the map moves every point along the line to a new position on the line. For the example above with R = 2, all the points between X = 0 and X = 1 walk toward X = 0.5, where they stop and remain. Other points run faster and faster toward the end of the line that stretches to minus infinity.</p>
+<p>The logistic equation is an example of a quadratic iterated map, so called because if you multiply out the right-hand side of Equation 1C, it has not only a linear term RXn but also a quadratic (squared) term <span class="math inline">\(-RX_n^2\)</span>. Quadratic maps are noninvertable because you can find Xn+1 from Xn , but can’t go backward because there are two values of Xn that produce the same Xn+1, and there is no way of knowing from which it came. For example, Table 1-1 shows that X0 = 0.2 and X0 = 0.8 both produce X1 = 0.32. These are the two roots of the quadratic equation that you get if you try to solve for Xn in Equation 1C in terms of Xn+1.</p>
+<p>The graph of Xn+1 versus Xn is a curve called a parabola. Because a parabola is not a straight line, the map is said to be nonlinear. Chaos and strange attractors require nonlinearity. The interesting and surprising behavior of nonlinear iterated maps is the basis for much of this book.</p>
+<p>The first surprising result occurs if you iterate Equation 1C with R = 3.2 and an initial value of X in the range of 0 to 1. After a few iterations the solution will alternate between two values of approximately 0.5130 and 0.7995. This is called a period-2 limit cycle. Like the fixed point, the limit cycle is another type of simple attractor. It is sometimes called a periodic or cyclic attractor.</p>
+<p>It’s not hard to see how cyclic behavior might arise in nature. If the population of beetles grows too large, they deplete the plants on whom they depend for food. With too few plants, the beetles die out, allowing the number of plants to recover, leading to the next cycle of beetle growth, and so forth.</p>
+<p>Increase R a bit more to 3.5, and repeat the calculation. The result is a period 4 limit cycle with four values of approximately 0.5009, 0.8750, 0.3828, and 0.8269. If you keep increasing R by ever smaller amounts, the period of the limit cycle doubles repeatedly, finally reaching chaotic behavior (an infinite period) at about R = 3.5699456. This value is sometimes called the Feigenbaum point, after Mitchell J. Feigenbaum, a contemporary mathamatician who discovered many of the interesting properties of one-dimensional maps.</p>
+<p>When chaos occurs, the successive iterates fluctuate in an apparently random and irreproducible manner. The chaotic behavior persists up to R = 4 except for an infinite number of small periodic windows. For R greater than 4, the solution is unbounded, and the iterates attract rapidly to minus infinity.</p>
+<p>The behavior described above can be summarized in a bifurcation diagram, as shown in Figure 1-1, in which the limiting iterated values of the logistic equation, after discarding the first few hundred iterates, are plotted for a range of R from 2 to 4. This plot is called the Feigenbaum diagram, and it resembles a tree on its side. (“Feigenbaum,” appropriately but coincidentally, is German for “fig tree.”) You see the fixed-point solution for R less than 3, the period-doubling route to chaos, and the periodic windows at large <span class="math inline">\(R\)</span>. The chaotic regions toward the right side of the figure are characterized by values of <span class="math inline">\(X\)</span> that span a wide range and eventually fill the region densely with points.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["StrangeAttractors.pdf", "StrangeAttractors.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
