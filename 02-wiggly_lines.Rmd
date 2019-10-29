@@ -66,7 +66,7 @@ $$
 L = \frac{\Sigma\log_2|a_2+2_{a_3}X_n|}{N}
 $$
 
-```{BASIC}
+
 1000 REM ONE-D MAP SEARCH
 1020 DIM XS(499), A(504), V(99)
 1050 NMAX = 11000 'Maximum number of iterations
@@ -121,7 +121,6 @@ GOTO 2320
 3180 WINDOW (XL, YL)-(XH, YH): CLS
 3310 LINE (XL, YL)-(XH, YH), , B
 3460 RETURN
-```
 
 
 Here are six points to note about PROG03:
@@ -142,13 +141,13 @@ The criterion for detecting a strange attractor is somewhat subjective. There wi
 
 Of the 15,625 combinations of coefficients, exactly 364 (2.3%) are chaotic by these criteria. Some of the more visually interesting ones are shown in Figures 2-1 through 2-4, in which the values are plotted versus their fifth previous iterate. For each case, the code and the Lyapunov exponent are shown at the top of the graph.
 
-## One-dimesnsional quadratic map AXBH F = 0.46 L = 0.06
+*One-dimesnsional quadratic map AXBH F = 0.46 L = 0.06*
 
-## One - dimensional quadratic map ABDU f = 0.07 L = 0.44 
+*One - dimensional quadratic map ABDU f = 0.07 L = 0.44 *
 
-## One-dimensional quadratic map ACAV F = 0.80 L = 0.70 
+*One-dimensional quadratic map ACAV F = 0.80 L = 0.70 *
 
-## One-dimensional quadratic map AXDA F = 0.86 L = 0.89
+*One-dimensional quadratic map AXDA F = 0.86 L = 0.89*
 
 
 ## Making Music 

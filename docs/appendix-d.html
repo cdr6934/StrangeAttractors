@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>13 Appendix D | Strange Attractors</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="13 Appendix D | Strange Attractors" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="13 Appendix D | Strange Attractors" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Julien C. Sprott" />
+
+
+<meta name="date" content="2019-10-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="appendix-c.html"/>
+<link rel="next" href="appendix-e.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Order and Chaos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why This Book Is For You</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Order and Chaos</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#predictability-and-uncertainty"><i class="fa fa-check"></i><b>2.1</b> Predictability and Uncertainty</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#bucks-and-bugs"><i class="fa fa-check"></i><b>2.2</b> Bucks and Bugs</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#the-butterfly-effect"><i class="fa fa-check"></i><b>2.3</b> The Butterfly Effect</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#the-computer-artist"><i class="fa fa-check"></i><b>2.4</b> The Computer Artist</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="wiggly-lines.html"><a href="wiggly-lines.html"><i class="fa fa-check"></i><b>3</b> Wiggly Lines</a><ul>
+<li class="chapter" data-level="3.1" data-path="wiggly-lines.html"><a href="wiggly-lines.html#more-knobs-to-twiddle"><i class="fa fa-check"></i><b>3.1</b> More Knobs to Twiddle</a></li>
+<li class="chapter" data-level="3.2" data-path="wiggly-lines.html"><a href="wiggly-lines.html#randomness-and-pseudorandomness"><i class="fa fa-check"></i><b>3.2</b> Randomness and Pseudorandomness</a></li>
+<li class="chapter" data-level="3.3" data-path="wiggly-lines.html"><a href="wiggly-lines.html#whats-in-a-name"><i class="fa fa-check"></i><b>3.3</b> What’s in a Name?</a></li>
+<li class="chapter" data-level="3.4" data-path="wiggly-lines.html"><a href="wiggly-lines.html#the-computer-search"><i class="fa fa-check"></i><b>3.4</b> The Computer Search</a></li>
+<li class="chapter" data-level="3.5" data-path="wiggly-lines.html"><a href="wiggly-lines.html#making-music"><i class="fa fa-check"></i><b>3.5</b> Making Music</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html"><i class="fa fa-check"></i><b>4</b> Pieces of Planes</a><ul>
+<li class="chapter" data-level="4.1" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#quadratic-maps-in-two-dimensions"><i class="fa fa-check"></i><b>4.1</b> Quadratic Maps in Two Dimensions</a></li>
+<li class="chapter" data-level="4.2" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#the-butterfly-effect-revisited"><i class="fa fa-check"></i><b>4.2</b> The Butterfly Effect Revisited</a></li>
+<li class="chapter" data-level="4.3" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#searching-the-plane"><i class="fa fa-check"></i><b>4.3</b> Searching the Plane</a></li>
+<li class="chapter" data-level="4.4" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#the-fractal-dimension"><i class="fa fa-check"></i><b>4.4</b> The Fractal Dimension</a></li>
+<li class="chapter" data-level="4.5" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#higher-order-disorder"><i class="fa fa-check"></i><b>4.5</b> Higher-Order Disorder</a></li>
+<li class="chapter" data-level="4.6" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#strange-attractor-planets"><i class="fa fa-check"></i><b>4.6</b> Strange Attractor Planets</a></li>
+<li class="chapter" data-level="4.7" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#designer-plaids"><i class="fa fa-check"></i><b>4.7</b> Designer Plaids</a></li>
+<li class="chapter" data-level="4.8" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#strange-attractors-that-dont"><i class="fa fa-check"></i><b>4.8</b> Strange Attractors that Don’t</a></li>
+<li class="chapter" data-level="4.9" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#a-new-dimension-in-sound"><i class="fa fa-check"></i><b>4.9</b> A New Dimension in Sound</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html"><i class="fa fa-check"></i><b>5</b> Attractors of Depth</a><ul>
+<li class="chapter" data-level="5.1" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#projections"><i class="fa fa-check"></i><b>5.1</b> Projections</a></li>
+<li class="chapter" data-level="5.2" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#shadows"><i class="fa fa-check"></i><b>5.2</b> Shadows</a></li>
+<li class="chapter" data-level="5.3" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#bands"><i class="fa fa-check"></i><b>5.3</b> Bands</a></li>
+<li class="chapter" data-level="5.4" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#colors"><i class="fa fa-check"></i><b>5.4</b> Colors</a></li>
+<li class="chapter" data-level="5.5" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#characters"><i class="fa fa-check"></i><b>5.5</b> Characters</a></li>
+<li class="chapter" data-level="5.6" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#anaglyphs"><i class="fa fa-check"></i><b>5.6</b> Anaglyphs</a></li>
+<li class="chapter" data-level="5.7" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#stereo-pairs-stereo-pairs"><i class="fa fa-check"></i><b>5.7</b> Stereo Pairs ~ Stereo Pairs</a></li>
+<li class="chapter" data-level="5.8" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#slices"><i class="fa fa-check"></i><b>5.8</b> Slices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html"><i class="fa fa-check"></i><b>6</b> The Fourth Dimension</a><ul>
+<li class="chapter" data-level="6.1" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#hyperspace"><i class="fa fa-check"></i><b>6.1</b> Hyperspace</a></li>
+<li class="chapter" data-level="6.2" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#projections-1"><i class="fa fa-check"></i><b>6.2</b> Projections</a></li>
+<li class="chapter" data-level="6.3" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#other-display-techniques"><i class="fa fa-check"></i><b>6.3</b> Other Display Techniques</a></li>
+<li class="chapter" data-level="6.4" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#writing-on-the-wall"><i class="fa fa-check"></i><b>6.4</b> Writing on the Wall</a></li>
+<li class="chapter" data-level="6.5" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#murals-and-movies"><i class="fa fa-check"></i><b>6.5</b> Murals and Movies</a></li>
+<li class="chapter" data-level="6.6" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#search-and-destroy"><i class="fa fa-check"></i><b>6.6</b> Search and Destroy</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fields-and-flows.html"><a href="fields-and-flows.html"><i class="fa fa-check"></i><b>7</b> Fields and Flows</a><ul>
+<li class="chapter" data-level="7.1" data-path="fields-and-flows.html"><a href="fields-and-flows.html#beam-me-up-scotty"><i class="fa fa-check"></i><b>7.1</b> Beam Me Up Scotty!</a></li>
+<li class="chapter" data-level="7.2" data-path="fields-and-flows.html"><a href="fields-and-flows.html#professor-lorenz-and-dr.rossler"><i class="fa fa-check"></i><b>7.2</b> Professor Lorenz and Dr. Rossler</a></li>
+<li class="chapter" data-level="7.3" data-path="fields-and-flows.html"><a href="fields-and-flows.html#finite-differences"><i class="fa fa-check"></i><b>7.3</b> Finite Differences</a></li>
+<li class="chapter" data-level="7.4" data-path="fields-and-flows.html"><a href="fields-and-flows.html#flows-in-four-dimensions"><i class="fa fa-check"></i><b>7.4</b> Flows in Four Dimensions</a></li>
+<li class="chapter" data-level="7.5" data-path="fields-and-flows.html"><a href="fields-and-flows.html#strange-attractors-that-arent"><i class="fa fa-check"></i><b>7.5</b> Strange Attractors that Aren’t</a></li>
+<li class="chapter" data-level="7.6" data-path="fields-and-flows.html"><a href="fields-and-flows.html#doughnuts-and-coffee-cups"><i class="fa fa-check"></i><b>7.6</b> Doughnuts and Coffee Cups</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html"><i class="fa fa-check"></i><b>8</b> Further Fascinating Functions</a><ul>
+<li class="chapter" data-level="8.1" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#steps-and-tents"><i class="fa fa-check"></i><b>8.1</b> Steps and Tents</a></li>
+<li class="chapter" data-level="8.2" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#ands-and-ors"><i class="fa fa-check"></i><b>8.2</b> ANDs and ORs</a></li>
+<li class="chapter" data-level="8.3" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#roots-and-powers"><i class="fa fa-check"></i><b>8.3</b> Roots and Powers</a></li>
+<li class="chapter" data-level="8.4" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#sines-and-cosines"><i class="fa fa-check"></i><b>8.4</b> Sines and Cosines</a></li>
+<li class="chapter" data-level="8.5" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#webs-and-wreaths"><i class="fa fa-check"></i><b>8.5</b> Webs and Wreaths</a></li>
+<li class="chapter" data-level="8.6" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#swings-and-springs"><i class="fa fa-check"></i><b>8.6</b> Swings and Springs</a></li>
+<li class="chapter" data-level="8.7" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#roll-your-own"><i class="fa fa-check"></i><b>8.7</b> Roll Your Own</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>9</b> Epilogue</a><ul>
+<li class="chapter" data-level="9.1" data-path="epilogue.html"><a href="epilogue.html#how-common-is-chaos"><i class="fa fa-check"></i><b>9.1</b> How Common is Chaos?</a></li>
+<li class="chapter" data-level="9.2" data-path="epilogue.html"><a href="epilogue.html#but-is-it-art"><i class="fa fa-check"></i><b>9.2</b> But is it Art?</a></li>
+<li class="chapter" data-level="9.3" data-path="epilogue.html"><a href="epilogue.html#can-computers-critique-art"><i class="fa fa-check"></i><b>9.3</b> Can Computers Critique Art?</a></li>
+<li class="chapter" data-level="9.4" data-path="epilogue.html"><a href="epilogue.html#whats-left-to-do"><i class="fa fa-check"></i><b>9.4</b> What’s Left to Do?</a></li>
+<li class="chapter" data-level="9.5" data-path="epilogue.html"><a href="epilogue.html#what-good-is-it"><i class="fa fa-check"></i><b>9.5</b> What Good is It?</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>10</b> Appendix A</a></li>
+<li class="chapter" data-level="11" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>11</b> Appendix B</a></li>
+<li class="chapter" data-level="12" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>12</b> Appendix C</a></li>
+<li class="chapter" data-level="13" data-path="appendix-d.html"><a href="appendix-d.html"><i class="fa fa-check"></i><b>13</b> Appendix D</a></li>
+<li class="chapter" data-level="14" data-path="appendix-e.html"><a href="appendix-e.html"><i class="fa fa-check"></i><b>14</b> Appendix E</a></li>
+<li class="chapter" data-level="15" data-path="appendix-f.html"><a href="appendix-f.html"><i class="fa fa-check"></i><b>15</b> Appendix F</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Strange Attractors</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-d" class="section level1">
+<h1><span class="header-section-number">13</span> Appendix D</h1>
+<p>#include &lt;dos.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;graph.h&gt;
+#include &lt;math.h&gt;
+int PREV, OMAX, D, ODE, SND, PJT, TRD, FTH, SAV, T, WID, QM, P, TWOD;
+int M, I, I1, I2, O, I3, I4, I5, J, WH, FREQ, C4, NC, C, RD, CY, BK;
+int COLR[16];
+char CODE[515], Q;
+char FAV[9] = “XDATA.DAT”;
+double NMAX, EPS, TWOPI, SEG, NE, X, Y, Z, W, XE, YE, ZE, WE, LSUM, N, NL;
+double N1, N2, XMIN, XMAX, YMIN, YMAX, ZMIN, ZMAX, WMIN, WMAX, XNEW, YNEW;
+double ZNEW, WNEW, XP, YP, RAN, XSAVE, YSAVE, ZSAVE, WSAVE, DLX, DLY, DLZ;
+double DLW, DL2, DF, RS, L, MX, MY, XL, XH, YL, YH, XA, YA, ZA, TT, PT, TIA;
+double XZ, YZ, DUR, D2MAX, DX, DY, DZ, DW, D2, F, TH, PH, XRT, XLT, HSF, AL;
+double SINAL, COSAL, DUM, SW, SH;
+double XS[500], YS[500], ZS[500], WS[500], A[505], V[100], XY[5], XN[5];
+union REGS regs;
+FILE <em>F1, </em>F2, *F3;</p>
+<p>main() {
+PREV = 5; /* Plot versus fifth previous iterate <em>/
+NMAX = 11000; /</em> Maximum number of iterations <em>/
+OMAX = 5; /</em> Maximum order of polynomial <em>/
+D = 2; /</em> Dimension of system <em>/
+EPS = .1; /</em> Step size for ODE <em>/
+ODE = 0; /</em> System is map <em>/
+SND = 0; /</em> Turn sound off <em>/
+PJT = 0; /</em> Projection is planar <em>/
+TRD = 1; /</em> Display third dimension as shadow <em>/
+FTH = 2; /</em> Display fourth dimension as colors <em>/
+SAV = 0; /</em> Don’t save any data <em>/
+TWOPI = 6.28318530717959; /</em> A useful constant (2 pi) <em>/
+srand(time()); /</em> Reseed random-number generator <em>/
+fun4200(); /</em> Display menu screen <em>/
+T = 1;
+if (Q == ‘X’) T = 0; /</em> Exit immediately on command <em>/
+while (T) {
+switch (T) {
+case 1: fun1300(); /</em> Initialize <em>/
+case 2: fun1500(); /</em> Set parameters <em>/
+case 3: fun1700(); /</em> Iterate equations <em>/
+case 4: fun2100(); /</em> Display results <em>/
+case 5: fun2400(); /</em> Test results */
+}
+}
+_clearscreen(_GCLEARSCREEN); /* Erase screen */
+_setvideomode(_DEFAULTMODE); /* and restore video mode <em>/
+}
+fun1300() /</em> Initialize */
+{
+_setvideomode(_VRES16COLOR); /* Assume VGA graphics <em>/
+WID = 80; /</em> Number of text columns */
+_clearscreen(_GCLEARSCREEN);
+_settextposition(13, WID / 2 - 6);
+printf(“Searching…”);
+fun5600(); /* Set colors */
+if (QM == 2) {
+NE = 0;
+fclose(F1);
+F1 = fopen(“SA.DIC”, “a”);
+fclose(F1);
+F1 = fopen(“SA.DIC”, “r”);
+}
+}</p>
+<p>fun1500() /* Set parameters <em>/
+{
+X = .05; /</em> Initial condition <em>/
+Y = .05;
+Z = .05;
+W = .05;
+XE = X + .000001;
+YE = Y;
+ZE = Z;
+WE = W;
+fun2600(); /</em> Get coefficients */
+T = 3;
+P = 0;
+LSUM = 0;
+N = 0;
+NL = 0;
+N1 = 0;
+N2 = 0;
+XMIN = 1000000;
+XMAX = -XMIN;
+YMIN = XMIN;
+YMAX = XMAX;</p>
+<p>ZMIN = XMIN;
+ZMAX = XMAX;
+WMIN = XMIN;
+WMAX = XMAX;
+TWOD = _rotl(1, D);
+}
+fun1700() /* Iterate equations <em>/
+{
+if (ODE &gt; 1)
+fun6200(); /</em> Special function <em>/
+else {
+M = 1;
+XY[1] = X;
+XY[2] = Y;
+XY[3] = Z;
+XY[4] = W;
+for (I = 1; I &lt;= D; I++) {
+XN[I] = A[M];
+M = M + 1;
+for (I1 = 1; I1 &lt;= D; I1++) {
+XN[I] = XN[I] + A[M] </em> XY[I1];
+M = M + 1;
+for (I2 = I1; I2 &lt;= D; I2++) {
+XN[I] = XN[I] + A[M] * XY[I1] * XY[I2];
+M = M + 1;
+for (I3 = I2; O &gt; 2 &amp;&amp; I3 &lt;= D; I3++) {
+XN[I] = XN[I] + A[M] * XY[I1] * XY[I2] * XY[I3];
+M = M + 1;
+for (I4 = I3; O &gt; 3 &amp;&amp; I4 &lt;= D; I4++) {
+XN[I] = XN[I] + A[M] * XY[I1] * XY[I2] * XY[I3] * XY[I4];
+M = M + 1;
+for (I5 = I4; O &gt; 4 &amp;&amp; I5 &lt;= D; I5++) {
+XN[I] = XN[I] + A[M] * XY[I1] * XY[I2] * XY[I3] * XY[I4] * XY[I5];
+M = M + 1;
+}}}}}
+if (ODE == 1) XN[I] = XY[I] + EPS * XN[I];
+}
+XNEW = XN[1];
+YNEW = XN[2];
+ZNEW = XN[3];
+WNEW = XN[4];
+}
+N = N + 1;
+M = M - 1;
+}</p>
+<p>fun2100() /* Display results <em>/
+{
+if (N &gt;= 100 &amp;&amp; N &lt;= 1000) {
+if (X &lt; XMIN) XMIN = X;
+if (X &gt; XMAX) XMAX = X;
+if (Y &lt; YMIN) YMIN = Y;
+if (Y &gt; YMAX) YMAX = Y;
+if (Z &lt; ZMIN) ZMIN = Z;
+if (Z &gt; ZMAX) ZMAX = Z;
+if (W &lt; WMIN) WMIN = W;
+if (W &gt; WMAX) WMAX = W;
+}
+if ((int)N == 1000) fun3100(); /</em> Resize the screen <em>/
+XS[P] = X;
+YS[P] = Y;
+ZS[P] = Z;
+WS[P] = W;
+P = (P + 1) % 500;
+I = (P + 500 - PREV) % 500;
+if (D == 1) {
+XP = XS[I];
+YP = XNEW;
+}
+else {
+XP = X;
+YP = Y;
+}
+if (N &gt;= 1000 &amp;&amp; XP &gt; XL &amp;&amp; XP &lt; XH &amp;&amp; YP &gt; YL &amp;&amp; YP &lt; YH) {
+if (PJT == 1) fun4100(); /</em> Project onto a sphere <em>/
+if (PJT == 2) fun6700(); /</em> Project onto a horizontal cylinder <em>/
+if (PJT == 3) fun6800(); /</em> Project onto a vertical cylinder <em>/
+if (PJT == 4) fun6900(); /</em> Project onto a torus <em>/
+fun5000(); /</em> Plot point on screen <em>/
+if (SND == 1) fun3500(); /</em> Produce sound <em>/
+}
+}
+fun2400() /</em> Test results <em>/
+{
+if (fabs(XNEW) + fabs(YNEW) + fabs(ZNEW) + fabs(WNEW) &gt; 1000000) T = 2;
+if (QM != 2) { /</em> Speed up evaluation mode <em>/
+fun2900(); /</em> Calculate Lyapunov exponent <em>/
+fun3900(); /</em> Calculate fractal dimension <em>/
+if (QM == 0) { /</em> Skip tests unless in search mode <em>/
+if (N &gt;= NMAX) { /</em> Strange attractor found <em>/
+T = 2;
+fun4900(); /</em> Save attractor to disk file SA.DIC <em>/
+}
+if (fabs(XNEW - X) + fabs(YNEW - Y) + fabs(ZNEW - Z) + fabs(WNEW - W) &lt;
+.000001) T = 2;
+if (N &gt; 100 &amp;&amp; L &lt; .005) T = 2; /</em> Limit cycle <em>/
+}
+}
+if (kbhit()) Q = getch(); else Q = 0;
+if (Q) fun3600(); /</em> Respond to user command <em>/
+if (SAV &gt; 0) if (N &gt; 1000 &amp;&amp; N &lt; 17001) fun7000(); /</em> Save data <em>/
+X = XNEW; /</em> Update value of X <em>/
+Y = YNEW;
+Z = ZNEW;
+W = WNEW;
+}
+fun2600() /</em> Get coefficients <em>/
+{
+if (QM == 2) { /</em> In evaluate mode <em>/
+fgets(CODE, 515, F1);
+if (feof(F1)) {
+QM = 0;
+fun6000(); /</em> Update SA.DIC file */</p>
+<p>}
+else {
+fun4700(); /* Get dimension and order <em>/
+fun5600(); /</em> Set colors <em>/
+}
+}
+if (QM == 0) { /</em> In search mode <em>/
+O = 2 + (int)floor((OMAX - 1) </em> (float)rand() / 32768.0);
+CODE[0] = 59 + 4 * D + O + 8 * ODE;
+if (ODE &gt; 1) CODE[0] = 87 + ODE;
+fun4700(); /* Get value of M <em>/
+for (I = 1; I &lt;= M; I++) { /</em> Construct CODE <em>/
+fun2800(); /</em> Shuffle random numbers <em>/
+CODE[I] = 65 + (int)floor(25 </em> RAN);
+}
+CODE[M + 1] = 0;
+}
+for (I = 1; I &lt;= M; I++) { /* Convert CODE to coefficient values <em>/
+A[I] = (CODE[I] - 77) / 10.0;
+}
+}
+fun2800() /</em> Shuffle random numbers <em>/
+{
+if (V[0] == 0) for (J = 0; J &lt;= 99; J++) {V[J] = (float)rand() / 32768.0;}
+J = (int)floor(100 </em> RAN);
+RAN = V[J];
+V[J] = (float)rand() / 32768.0;
+}
+fun2900() /* Calculate Lyapunov exponent <em>/
+{
+XSAVE = XNEW;
+YSAVE = YNEW;
+ZSAVE = ZNEW;
+WSAVE = WNEW;
+X = XE;
+Y = YE;
+Z = ZE;
+W = WE;
+N = N - 1;
+fun1700(); /</em> Reiterate equations <em>/
+DLX = XNEW - XSAVE;
+DLY = YNEW - YSAVE;
+DLZ = ZNEW - ZSAVE;
+DLW = WNEW - WSAVE;
+DL2 = DLX </em> DLX + DLY * DLY + DLZ * DLZ + DLW * DLW;
+if (DL2 &gt; 0) { /* Check for division by zero <em>/
+DF = 1E12 </em> DL2;
+RS = 1 / sqrt(DF);
+XE = XSAVE + RS * (XNEW - XSAVE);
+YE = YSAVE + RS * (YNEW - YSAVE);
+ZE = ZSAVE + RS * (ZNEW - ZSAVE);
+WE = WSAVE + RS * (WNEW - WSAVE);
+XNEW = XSAVE;
+YNEW = YSAVE;
+ZNEW = ZSAVE;
+WNEW = WSAVE;
+LSUM = LSUM + log(DF);
+NL = NL + 1;
+L = .721347 * LSUM / NL;
+if (ODE == 1 || ODE == 7) L = L / EPS;
+if (N &gt; 1000 &amp;&amp; (int)N % 10 == 0) {
+_settextposition(1, WID - 4);
+printf(“%5.2f”, L);
+}
+}
+}
+fun3100() /* Resize the screen */
+{
+_setcolor(WH);
+if (D == 1) {
+YMIN = XMIN;
+YMAX = XMAX;
+}
+if (XMAX - XMIN &lt; .000001) {
+XMIN = XMIN - .0000005;
+XMAX = XMAX + .0000005;
+}
+if (YMAX - YMIN &lt; .000001) {
+YMIN = YMIN - .0000005;
+YMAX = YMAX + .0000005;
+}
+if (ZMAX - ZMIN &lt; .000001) {
+ZMIN = ZMIN - .0000005;
+ZMAX = ZMAX + .0000005;
+}
+if (WMAX - WMIN &lt; .000001) {
+WMIN = WMIN - .0000005;
+WMAX = WMAX + .0000005;
+}</p>
+<p>MX = .1 * (XMAX - XMIN);
+MY = .1 * (YMAX - YMIN);
+XL = XMIN - MX;
+XH = XMAX + MX;
+YL = YMIN - MY;
+YH = YMAX + 1.5 * MY;
+SW = 640 / (XH - XL);
+SH = 480 / (YL - YH);
+_setvieworg((short)(-SW * XL), (short)(-SH * YH));
+_clearscreen(_GCLEARSCREEN);
+YH = YH - .5 * MY;
+XA = (XL + XH) / 2;
+YA = (YL + YH) / 2;
+if (D &gt; 2) {
+ZA = (ZMAX + ZMIN) / 2;
+if (TRD == 1) {
+_setcolor(COLR[1]);
+_rectangle_w(_GFILLINTERIOR, SW * XL, SH * YL, SW * XH, SH * YH);
+fun5400(); /* Plot background grid */
+}
+if (TRD == 4) {
+_setcolor(WH);
+_rectangle_w(_GFILLINTERIOR, SW * XL, SH * YL, SW * XH, SH * YH);</p>
+<p>}
+if (TRD == 5) {
+_moveto_w(SW * XA, SH * YL);
+_lineto_w(SW * XA, SH * YH);
+}
+if (TRD == 6) {
+for (I = 1; I &lt;= 3; I++) {
+XP = XL + I * (XH - XL) / 4;
+_moveto_w(SW * XP, SH * YL);
+_lineto_w(SW * XP, SH * YH);
+YP = YL + I * (YH - YL) / 4;
+_moveto_w(SW * XL, SH * YP);
+_lineto_w(SW * XH, SH * YP);
+}
+}
+}
+if (PJT != 1) _rectangle_w(_GBORDER, SW * XL + 1, SH * YL - 1, SW * XH - 1, SH
+* YH + 1);
+if (PJT == 1 &amp;&amp; TRD &lt; 5) _ellipse_w(_GBORDER, SW * XL - SH * (YH - YL) / 6, SH
+* YH, SW * XH + SH * (YH - YL) / 6, SH * YL);
+TT = 3.1416 / (XMAX - XMIN);
+PT = 3.1416 / (YMAX - YMIN);
+if (QM == 2) { /* In evaluate mode */
+_settextposition(1, 1);</p>
+<p>printf(“<Space Bar>: Discard <Enter>: Save”);
+if (WID &gt;= 80) {
+_settextposition(1, 49);
+printf(“<Esc>: Exit”);
+_settextposition(1, 69);
+printf(“%d K left”, (int)((filelength(fileno(F1)) - ftell(F1)) /
+1024.0));
+}}
+else {
+_settextposition(1, 1);
+if (strlen(CODE) &lt; WID - 18)
+_outtext(CODE);
+else {
+printf(“%<em>.</em>s…”, WID - 23, WID - 23, CODE);
+}
+_settextposition(1, WID - 17);
+printf(“F =”);
+_settextposition(1, WID - 7);
+printf(“L =”);
+}
+TIA = .05; /* Tangent of illumination angle <em>/
+XZ = -TIA </em> (XMAX - XMIN) / (ZMAX - ZMIN);
+YZ = TIA * (YMAX - YMIN) / (ZMAX - ZMIN);
+}
+fun3500() /* Produce sound <em>/
+{
+FREQ = 220 </em> pow(2, (int)(36 * (XNEW - XL) / (XH - XL)) / 12.0);
+DUR = 1;
+if (D &gt; 1) DUR = pow(2, (int)floor(.5 * (YH - YL) / (YNEW - 9 * YL / 8 + YH / 8)));
+/* A sound statement should be placed here <em>/
+}
+fun3600() /</em> Respond to user command <em>/
+{
+if (Q &gt; 96) Q = Q - 32; /</em> Convert to uppercase <em>/
+if (QM == 2) fun5800(); /</em> Process evaluation command <em>/
+if (strchr(“ACDEHINPRSVX”, Q) == 0) fun4200(); /</em> Display menu screen */
+if (Q == ‘A’) {
+T = 1;
+QM = 0;
+}
+if (ODE &gt; 1) D = ODE + 5;
+if (ODE == 1) D = D + 2;
+if (Q == ‘C’) if (N &gt; 999) N = 999;
+if (Q == ‘D’) {
+D = 1 + D % 12;</p>
+<p>T = 1;
+}
+if (D &gt; 6) {
+ODE = D - 5;
+D = 4;
+}
+else {
+if (D &gt; 4) {
+ODE = 1;
+D = D - 2;
+}
+else ODE = 0;
+}
+if (Q == ‘E’) {
+T = 1;
+QM = 2;
+}
+if (Q == ‘H’) {
+FTH = (FTH + 1) % 3;
+T = 3;
+if (N &gt; 999) {
+N = 999;
+fun5600(); /* Set colors */
+}
+}
+if (Q == ‘I’) {
+if (T != 1) {
+_setvideomode(_TEXTC80);
+_settextcolor(15);
+_setbkcolor(1L);
+_clearscreen(_GCLEARSCREEN);
+printf(“Code?”);
+I = 0;
+CODE[0] = 0;
+do {
+CODE[I] = getche();
+if (CODE[I] == 8 &amp;&amp; I &gt;= 0) I = I - 2;
+if (CODE[I] == 27) {
+I = 0;
+CODE[I] = 13;
+}
+}
+while (CODE[I++] != 13 &amp;&amp; I &lt; 506);
+CODE[I - 1] = 0;
+if (CODE[0] == 0) {
+Q = ‘ ‘;
+_clearscreen(_GCLEARSCREEN);}
+else {
+T = 1;
+QM = 1;
+fun4700();
+}
+}
+}
+if (Q == ‘N’) {
+NMAX = 10 * (NMAX - 1000) + 1000;
+if (NMAX &gt; 1E10) NMAX = 2000;
+}
+if (Q == ‘P’) {
+PJT = (PJT + 1) % 5;
+T = 3;
+if (N &gt; 999) N = 999;
+}
+if (Q == ‘R’) {
+TRD = (TRD + 1) % 7;
+T = 3;
+if (N &gt; 999) {
+N = 999;
+fun5600(); /* Get dimension and order */</p>
+<p>}
+}
+if (Q == ‘S’) {
+SND = (SND + 1) % 2;
+T = 3;
+}
+if (Q == ‘V’) {
+SAV = (SAV + 1) % 5;
+FAV[0] = 87 + SAV % 4;
+T = 3;
+if (N &gt; 999) N = 999;
+}
+if (Q == ‘X’) T = 0;
+}
+fun3900() /* Calculate fractal dimension <em>/
+{
+if (N &gt;= 1000) { /</em> Wait for transient to settle */
+if ((int)N == 1000) {
+D2MAX = pow(XMAX - XMIN, 2);
+D2MAX = D2MAX + pow(YMAX - YMIN, 2);
+D2MAX = D2MAX + pow(ZMAX - ZMIN, 2);
+D2MAX = D2MAX + pow(WMAX - WMIN, 2);</p>
+<p>}
+J = (P + 1 + (int)floor(480 * (float)rand() / 32768.0)) % 500;
+DX = XNEW - XS[J];
+DY = YNEW - YS[J];
+DZ = ZNEW - ZS[J];
+DW = WNEW - WS[J];
+D2 = DX * DX + DY * DY + DZ * DZ + DW * DW;
+if (D2 &lt; .001 * TWOD * D2MAX) N2 = N2 + 1;
+if (D2 &lt;= .00001 * TWOD * D2MAX) {
+N1 = N1 + 1;
+F = .434294 * log(N2 / (N1 - .5));
+_settextposition(1, WID - 14);
+printf(“%5.2f”, F);
+}
+}
+}
+fun4100() /* Project onto a sphere <em>/
+{
+TH = TT </em> (XMAX - XP);
+PH = PT * (YMAX - YP);
+XP = XA + .36 * (XH - XL) * cos(TH) * sin(PH);
+YP = YA + .5 * (YH - YL) * cos(PH);</p>
+<p>}
+fun4200() /* Display menu screen */
+{
+_setvideomode(_TEXTC80);
+_settextcolor(15);
+_setbkcolor(1L);
+regs.h.ah = 1;
+regs.h.ch = 1;
+regs.h.cl = 0;
+int86(16, &amp;regs, &amp;regs); /* Turn cursor off */
+_clearscreen(_GCLEARSCREEN);
+while (Q == 0 || strchr(“AEIX”, Q) == 0) {
+_settextposition(1, 27);
+printf(“STRANGE ATTRACTOR PROGRAM”);
+printf(“%26cIBM PC QuickC Version 2.0”, ‘ ‘);
+printf(“%26c(c) 1993 by J. C. Sprott”, ‘ ‘);
+printf(“”);
+printf(“”);
+printf(“%26cA: Search for attractors”, ‘ ‘);
+printf(“%26cC: Clear screen and restart”, ‘ ‘);
+if (ODE &gt; 1) {
+printf(“%26cD: System is 4-D special map %c ”, ‘ ‘, 87 + ODE);}</p>
+<p>else {
+printf(“%26cD: System is %d-D polynomial”, ‘ ‘, D);
+if (ODE == 1) printf(“ODE”); else printf(“map”);
+}
+printf(“%26cE: Evaluate attractors”, ‘ ‘);
+printf(“%26cH: Fourth dimension is”, ‘ ‘);
+if (FTH == 0) printf(“projection”);
+if (FTH == 1) printf(“bands ”);
+if (FTH == 2) printf(“colors ”);
+printf(“%26cI: Input code from keyboard”, ‘ ‘);
+printf(“%26cN: Number of iterations is 10^%1.0f”, ‘ ‘, log10(NMAX - 1000));
+printf(“%26cP: Projection is”, ‘ ‘);
+if (PJT == 0) printf(“planar ”);
+if (PJT == 1) printf(“spherical”);
+if (PJT == 2) printf(“horiz cyl”);
+if (PJT == 3) printf(“vert cyl ”);
+if (PJT == 4) printf(“toroidal ”);
+printf(“%26cR: Third dimension is”, ‘ ‘);
+if (TRD == 0) printf(“projection”);
+if (TRD == 1) printf(“shadow ”);
+if (TRD == 2) printf(“bands ”);
+if (TRD == 3) printf(“colors ”);
+if (TRD == 4) printf(“anaglyph ”);
+if (TRD == 5) printf(“stereogram”);
+if (TRD == 6) printf(“slices ”);
+printf(“%26cS: Sound is”, ‘ ‘);
+if (SND == 0) printf(“off”);
+if (SND == 1) printf(“on ”);
+printf(“%26cV:”, ‘ ‘);
+if (SAV == 0) printf(“No data will be saved ”);
+if (SAV &gt; 0) printf(“%c will be saved in %cDATA.DAT”, FAV[0], FAV[0]);
+printf(“%26cX: Exit program”, ‘ ‘);
+if (kbhit()) Q = getch(); else Q = 0;
+if (Q) fun3600(); /* Respond to user command <em>/
+}
+}
+fun4700() /</em> Get dimension and order <em>/
+{
+D = 1 + (int)floor((CODE[0] - 65) / 4);
+if (D &gt; 6) {
+ODE = CODE[0] - 87;
+D = 4;
+fun6200(); /</em> Special function */
+}
+else {</p>
+<p>if (D &gt; 4) {
+D = D - 2;
+ODE = 1;
+}
+else ODE = 0;
+O = 2 + (CODE[0] - 65) % 4;
+M = 1;
+for (I = 1; I &lt;= D; I++) {M = M * (O + I);}
+if (D &gt; 2) for (I = 3; I &lt;= D; I++) {M = M / (I - 1);}
+}
+if (strlen(CODE) != M + 1 &amp;&amp; QM == 1) {
+printf(“”); /* Illegal code warning <em>/
+while (strlen(CODE) &lt; M + 1) strcat(CODE, “M”);
+if (strlen(CODE) &gt; M + 1) CODE[M + 1] = 0;
+}
+}
+fun4900() /</em> Save attractor to disk file SA.DIC */
+{
+F1 = fopen(“SA.DIC”, “a”);
+fprintf(F1, “%s%5.2f%5.2f”, CODE, F, L);
+fclose(F1);
+}</p>
+<p>fun5000() /* Plot point on screen <em>/
+{
+C4 = WH;
+if (D &gt; 3) {
+if (FTH == 1) if ((int)floor(30 </em> (W - WMIN) / (WMAX - WMIN)) % 2) return(0);
+if (FTH == 2) C4 = 1 + (int)floor(NC * (W - WMIN) / (WMAX - WMIN) + NC) % NC;
+}
+if (D &lt; 3) { /* Skip 3-D stuff */
+_setpixel_w(SW * XP, SH * YP);
+return(0);
+}
+if (TRD == 0) {
+_setcolor(C4);
+_setpixel_w(SW * XP, SH * YP);
+}
+if (TRD == 1) {
+if (D &gt; 3 &amp;&amp; FTH == 2) {
+_setcolor(C4);
+_setpixel_w(SW * XP, SH * YP);
+}
+else {
+C = _getpixel_w(SW * XP, SH * YP);</p>
+<p>if (C == COLR[2]) {
+_setcolor(COLR[3]);
+_setpixel_w(SW * XP, SH * YP);}
+else {
+if (C != COLR[3]) {
+_setcolor(COLR[2]);
+_setpixel_w(SW * XP, SH * YP);
+}
+}
+}
+XP = XP - XZ * (Z - ZMIN);
+YP = YP - YZ * (Z - ZMIN);
+if (_getpixel_w(SW * XP, SH * YP) == COLR[1]) {
+_setcolor(0);
+_setpixel_w(SW * XP, SH * YP);
+}
+}
+if (TRD == 2) {
+if (D &gt; 3 &amp;&amp; FTH == 2 &amp;&amp; ((int)floor(15 * (Z - ZMIN) / (ZMAX - ZMIN) + 2) %
+2) == 1) {
+_setcolor(C4);}
+else {
+C = COLR[(int)floor(60 * (Z - ZMIN) / (ZMAX - ZMIN) + 4) % 4];
+_setcolor(C);</p>
+<p>}
+_setpixel_w(SW * XP, SH * YP);
+}
+if (TRD == 3) {
+_setcolor(COLR[(int)floor(NC * (Z - ZMIN) / (ZMAX - ZMIN) + NC) % NC]);
+_setpixel_w(SW * XP, SH * YP);
+}
+if (TRD == 4) {
+XRT = XP + XZ * (Z - ZA);
+C = _getpixel_w(SW * XRT, SH * YP);
+if (C == WH) {
+_setcolor(RD);
+_setpixel_w(SW * XRT, SH * YP);
+}
+if (C == CY) {
+_setcolor(BK);
+_setpixel_w(SW * XRT, SH * YP);
+}
+XLT = XP - XZ * (Z - ZA);
+C = _getpixel_w(SW * XLT, SH * YP);
+if (C == WH) {
+_setcolor(CY);
+_setpixel_w(SW * XLT, SH * YP);</p>
+<p>}
+if (C == RD) {
+_setcolor(BK);
+_setpixel_w(SW * XLT, SH * YP);
+}
+}
+if (TRD == 5) {
+HSF = 2; /* Horizontal scale factor <em>/
+XRT = XA + (XP + XZ </em> (Z - ZA) - XL) / HSF;
+_setcolor(C4);
+_setpixel_w(SW * XRT, SH * YP);
+XLT = XA + (XP - XZ * (Z - ZA) - XH) / HSF;
+_setcolor(C4);
+_setpixel_w(SW * XLT, SH * YP);
+}
+if (TRD == 6) {
+DZ = (15 * (Z - ZMIN) / (ZMAX - ZMIN) + .5) / 16;
+XP = (XP - XL + ((int)floor(16 * DZ) % 4) * (XH - XL)) / 4 + XL;
+YP = (YP - YL + (3 - (int)floor(4 * DZ) % 4) * (YH - YL)) / 4 + YL;
+_setcolor(C4);
+_setpixel_w(SW * XP, SH * YP);
+}
+}</p>
+<p>fun5400() /* Plot background grid */
+{
+_setcolor(0);
+for (I = 0; I &lt;= 15; I++) { /* Draw 15 vertical grid lines <em>/
+XP = XMIN + I </em> (XMAX - XMIN) / 15;
+_moveto_w(SW * XP, SH * YMIN);
+_lineto_w(SW * XP, SH * YMAX);
+}
+for (I = 0; I &lt;= 10; I++) { /* Draw 10 horizontal grid lines <em>/
+YP = YMIN + I </em> (YMAX - YMIN) / 10;
+_moveto_w(SW * XMIN, SH * YP);
+_lineto_w(SW * XMAX, SH * YP);
+}
+}
+fun5600() /* Set colors <em>/
+{
+NC = 15; /</em> Number of colors <em>/
+COLR[0] = 0;
+COLR[1] = 8;
+COLR[2] = 7;
+COLR[3] = 15;
+if (TRD == 3 || (D &gt; 3 &amp;&amp; FTH == 2 &amp;&amp; TRD != 1)) {
+for (I = 0; I &lt;= NC; I++) COLR[I] = I + 1;
+}
+WH = 15;
+BK = 8;
+RD = 12;
+CY = 11;
+}
+fun5800() /</em> Process evaluation command */
+{
+if (Q == ‘ ‘) {
+T = 2;
+NE = NE + 1;
+_clearscreen(_GCLEARSCREEN);
+}
+if (Q == 13) {
+T = 2;
+NE = NE + 1;
+_clearscreen(_GCLEARSCREEN);
+fun5900(); /* Save favorite attractors to disk */
+}
+if (Q == 27) {</p>
+<p>_clearscreen(_GCLEARSCREEN);
+fun6000(); /* Update SA.DIC file <em>/
+Q = ‘ ‘;
+QM = 0;
+}
+else {
+if (strchr(“CHNPRVS”, Q) == 0) Q = 0;
+}
+}
+fun5900() /</em> Save favorite attractors to disk file FAVORITE.DIC <em>/
+{
+F2 = fopen(“FAVORITE.DIC”, “a”);
+fprintf(F2, CODE);
+fclose(F2);
+}
+fun6000() /</em> Update SA.DIC file */
+{
+_settextposition(11, 9);
+printf(“Evaluation complete”);
+_settextposition(12, 8);
+printf(&quot; %d cases evaluated&quot;, (int)NE);</p>
+<p>F2 = fopen(“SATEMP.DIC”, “w”);
+if (QM == 2) fprintf(F2, CODE);
+while (feof(F1) == 0) {
+fgets(CODE, 515, F1);
+if (feof(F1) == 0) fprintf(F2, CODE);
+}
+fcloseall();
+remove(“SA.DIC”);
+rename(“SATEMP.DIC”, “SA.DIC”);
+}
+fun6200() /* Special function definitions <em>/
+{
+ZNEW = X </em> X + Y * Y; /* Default 3rd and 4th dimension <em>/
+WNEW = (N - 100) / 900;
+if (N &gt; 1000) WNEW = (N - 1000) / (NMAX - 1000);
+if (ODE == 2) {
+M = 10;
+XNEW = A[1] + A[2] </em> X + A[3] * Y + A[4] * fabs(X) + A[5] * fabs(Y);
+YNEW = A[6] + A[7] * X + A[8] * Y + A[9] * fabs(X) + A[10] * fabs(Y);
+}
+if (ODE == 3) {
+M = 14;</p>
+<p>XNEW = A[1] + A[2] * X + A[3] * Y + ((int)(A[4] * X + .5) &amp; (int)(A[5] * Y
++ .5)) + ((int)(A[6] * X + .5) | (int)(A[7] * Y + .5));
+YNEW = A[8] + A[9] * X + A[10] * Y + ((int)(A[11] * X + .5) &amp; (int)(A[12] <em>
+Y + .5)) + ((int)(A[13] </em> X + .5) | (int)(A[14] * Y + .5));
+}
+if (ODE == 4) {
+M = 14;
+XNEW = A[1] + A[2] * X + A[3] * Y + A[4] * pow(fabs(X), A[5]) + A[6] * pow(fabs(Y),
+A[7]);
+YNEW = A[8] + A[9] * X + A[10] * Y + A[11] * pow(fabs(X), A[12]) + A[13] <em>
+pow(fabs(Y), A[14]);
+}
+if (ODE == 5) {
+M = 18;
+XNEW = A[1] + A[2] </em> X + A[3] * Y + A[4] * sin(A[5] * X + A[6]) + A[7] * sin(A[8]
+* Y + A[9]);
+YNEW = A[10] + A[11] * X + A[12] * Y + A[13] * sin(A[14] * X + A[15]) + A[16]
+* sin(A[17] * Y + A[18]);
+}
+if (ODE == 6) {
+M = 6;
+if (N &lt; 2) {
+AL = TWOPI / (13 + 10 * A[6]);
+SINAL = sin(AL);
+COSAL = cos(AL);
+}
+DUM = X + A[2] * sin(A[3] * Y + A[4]);</p>
+<p>XNEW = 10 * A[1] + DUM * COSAL + Y * SINAL;
+YNEW = 10 * A[5] - DUM * SINAL + Y * COSAL;
+}
+if (ODE == 7) {
+M = 9;
+XNEW = X + EPS * A[1] * Y;
+YNEW = Y + EPS * (A[2] * X + A[3] * X * X * X + A[4] * X * X * Y + A[5] * X
+* Y * Y + A[6] * Y + A[7] * Y * Y * Y + A[8] * sin(Z));
+ZNEW = Z + EPS * (A[9] + 1.3);
+if (ZNEW &gt; TWOPI) ZNEW = ZNEW - TWOPI;
+}
+}
+fun6700() /* Project onto a horizontal cylinder <em>/
+{
+PH = PT </em> (YMAX - YP);
+YP = YA + .5 * (YH - YL) * cos(PH);
+}
+fun6800() /* Project onto a vertical cylinder <em>/
+{
+TH = TT </em> (XMAX - XP);
+XP = XA + .5 * (XH - XL) * cos(TH);
+}</p>
+<p>fun6900() /* Project onto a torus (unity aspect ratio) <em>/
+{
+TH = TT </em> (XMAX - XP);
+PH = 2 * PT * (YMAX - YP);
+XP = XA + .18 * (XH - XL) * (1 + cos(TH)) * sin(PH);
+YP = YA + .25 * (YH - YL) * (1 + cos(TH)) * cos(PH);
+}
+fun7000() /* Save data */
+{
+if ((int)N == 1000) {
+fclose(F3);
+F3 = fopen(FAV, “w”);
+}
+if (SAV == 1) DUM = XNEW;
+if (SAV == 2) DUM = YNEW;
+if (SAV == 3) DUM = ZNEW;
+if (SAV == 4) DUM = WNEW;
+fprintf(F3, “%f”, DUM);
+}</p>
+<p>```</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendix-c.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-e.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["StrangeAttractors.pdf", "StrangeAttractors.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

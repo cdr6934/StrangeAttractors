@@ -156,7 +156,7 @@ Suppose you knew the value of X to within 0.01 for an iterated map with L = 1. A
 It is as if a succession of cartographers each copied maps from one another, but every time one was copied it was only half as accurate as the previous one. If the original map were accurate to 1%, the next copy would be accurate to 2%, and the seventh generation copy would bear no relation to the original. If the Lyapunov exponent were -1, one bit of information would be gained at each iteration. Even a completely unknown initial condition would eventually be perfectly accurate as it approached the known fixed point or limit cycle. Unfortunately, negative Lyapunov exponents are not the rule in cartography; otherwise all our maps would be selfcorrecting!
 
 
-#TODO: Create the lyapunov exponent
+TODO: Create the lyapunov exponent
 ```{r}
 lyap <- function(a,trans=300,num=1000){
     x0 <- runif(1)
@@ -196,7 +196,20 @@ If you are an experienced programmer, you might ridicule some of the quaint prog
 The program listing PROG01 iterates the logistic equation for R = 4 with an initial value of X = 0.05 and makes a graph of each iterate versus its predecessor. The program looks more complicated than it actually is because the various operations have been relegated to subroutines to provide a template for the more versatile cases to follow.
 
 
-```{BASIC eval=FALSE, include=FALSE}
+
+
+```{r}
+data <- seq(-10,10,1)
+
+parabola <- function(x) {4*x*(1-x)}
+
+ly <- sapply(data,parabola)
+
+plot(data, ly,t = "l")
+
+```
+
+
 1000 REM LOGISTIC EQUATION
 1010 DEFDBL A-Z 'Use double precision
 1030 SM% = 12 'Assume VGA graphics
@@ -234,7 +247,7 @@ The program listing PROG01 iterates the logistic equation for R = 4 with an init
 2490 IF LEN(INKEY$) THEN T% = 0 'Respond to user key stroke
 2510 X = XNEW 'Update value of X
 2550 RETURN
-```
+
 
 If, when you first run the program, your computer reports an error, it is probably
 in one of the following lines:
@@ -273,13 +286,13 @@ in Figure 1-3. Try different initial values of X (line 1510) and different value
 ```
 
 
-#TODO: Insert parabola from PROG01
+**TODO: Insert parabola from PROG01**
 
 The logistic parabola comes from a chaotic solution, but it doesn’t look very complicated, and it would hardly qualify as art. With one small change we can make things more interesting and, at the same time, illustrate sensitivity to initial conditions. Instead of plotting each iterate versus its immediate predecessor, we could plot it versus its second or third or fourth predecessor. Let’s save the last 500 iterates and provide the option to plot X versus any one of them
 
 The changes that you need to make in the program PROG01 to accomplish this are shown in the listing PROG02. You can either go through the program and change or add lines as necessary or type the listing and save it in ASCII format and then use the MERGE command supported by many (mostly old) versions of BASIC to update the previous version of the program.
 
-```{BASIC}
+
 1000 REM LOGISTIC EQUATION (5th Previous Iterate)
 1020 DIM XS(499)
 1040 PREV% = 5 'Plot versus fifth previous iterate
@@ -289,7 +302,6 @@ The changes that you need to make in the program PROG01 to accomplish this are s
 2230 I% = (P% + 500 - PREV%) MOD 500
 2300 PSET (XS(I%), XNEW) 'Plot point on screen
 
-```
 
 If you set PREV% = 1 in line 1040, the result is the same as for PROG01. However, if you set PREV% equal to 2, you see the logistic parabola change into a curve with two humps. Each time you increase PREV% by 1, you double the number of humps in the curve. Thus PREV% = 5 results in 16 oscillations, as shown in Figure 1-4.
 
@@ -299,7 +311,7 @@ If you set PREV% = 1 in line 1040, the result is the same as for PROG01. However
 
 ```
 
-# TODO Insert picture here 
+**TODO Insert picture her**
 
 
 Figure 1-4 provides a good graphical illustration of the sensitivity to initial conditions. The horizontal axis represents all possible initial conditions from zero to one. The vertical axis shows the value from zero to one corresponding to each initial condition after five iterations. It’s not hard to see that two nearby points on the horizontal axis usually translate into two very different values along the vertical axis after five iterations. Try using PREV% = 10, and convince yourself that information about the initial condition is almost completely lost after ten iterations.

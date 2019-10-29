@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Wiggly Lines | Strange Attractors</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Wiggly Lines | Strange Attractors" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Wiggly Lines | Strange Attractors" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Julien C. Sprott" />
+
+
+<meta name="date" content="2019-10-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="pieces-of-planes.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Order and Chaos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why This Book Is For You</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Order and Chaos</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#predictability-and-uncertainty"><i class="fa fa-check"></i><b>2.1</b> Predictability and Uncertainty</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#bucks-and-bugs"><i class="fa fa-check"></i><b>2.2</b> Bucks and Bugs</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#the-butterfly-effect"><i class="fa fa-check"></i><b>2.3</b> The Butterfly Effect</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#the-computer-artist"><i class="fa fa-check"></i><b>2.4</b> The Computer Artist</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="wiggly-lines.html"><a href="wiggly-lines.html"><i class="fa fa-check"></i><b>3</b> Wiggly Lines</a><ul>
+<li class="chapter" data-level="3.1" data-path="wiggly-lines.html"><a href="wiggly-lines.html#more-knobs-to-twiddle"><i class="fa fa-check"></i><b>3.1</b> More Knobs to Twiddle</a></li>
+<li class="chapter" data-level="3.2" data-path="wiggly-lines.html"><a href="wiggly-lines.html#randomness-and-pseudorandomness"><i class="fa fa-check"></i><b>3.2</b> Randomness and Pseudorandomness</a></li>
+<li class="chapter" data-level="3.3" data-path="wiggly-lines.html"><a href="wiggly-lines.html#whats-in-a-name"><i class="fa fa-check"></i><b>3.3</b> What’s in a Name?</a></li>
+<li class="chapter" data-level="3.4" data-path="wiggly-lines.html"><a href="wiggly-lines.html#the-computer-search"><i class="fa fa-check"></i><b>3.4</b> The Computer Search</a></li>
+<li class="chapter" data-level="3.5" data-path="wiggly-lines.html"><a href="wiggly-lines.html#making-music"><i class="fa fa-check"></i><b>3.5</b> Making Music</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html"><i class="fa fa-check"></i><b>4</b> Pieces of Planes</a><ul>
+<li class="chapter" data-level="4.1" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#quadratic-maps-in-two-dimensions"><i class="fa fa-check"></i><b>4.1</b> Quadratic Maps in Two Dimensions</a></li>
+<li class="chapter" data-level="4.2" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#the-butterfly-effect-revisited"><i class="fa fa-check"></i><b>4.2</b> The Butterfly Effect Revisited</a></li>
+<li class="chapter" data-level="4.3" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#searching-the-plane"><i class="fa fa-check"></i><b>4.3</b> Searching the Plane</a></li>
+<li class="chapter" data-level="4.4" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#the-fractal-dimension"><i class="fa fa-check"></i><b>4.4</b> The Fractal Dimension</a></li>
+<li class="chapter" data-level="4.5" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#higher-order-disorder"><i class="fa fa-check"></i><b>4.5</b> Higher-Order Disorder</a></li>
+<li class="chapter" data-level="4.6" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#strange-attractor-planets"><i class="fa fa-check"></i><b>4.6</b> Strange Attractor Planets</a></li>
+<li class="chapter" data-level="4.7" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#designer-plaids"><i class="fa fa-check"></i><b>4.7</b> Designer Plaids</a></li>
+<li class="chapter" data-level="4.8" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#strange-attractors-that-dont"><i class="fa fa-check"></i><b>4.8</b> Strange Attractors that Don’t</a></li>
+<li class="chapter" data-level="4.9" data-path="pieces-of-planes.html"><a href="pieces-of-planes.html#a-new-dimension-in-sound"><i class="fa fa-check"></i><b>4.9</b> A New Dimension in Sound</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html"><i class="fa fa-check"></i><b>5</b> Attractors of Depth</a><ul>
+<li class="chapter" data-level="5.1" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#projections"><i class="fa fa-check"></i><b>5.1</b> Projections</a></li>
+<li class="chapter" data-level="5.2" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#shadows"><i class="fa fa-check"></i><b>5.2</b> Shadows</a></li>
+<li class="chapter" data-level="5.3" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#bands"><i class="fa fa-check"></i><b>5.3</b> Bands</a></li>
+<li class="chapter" data-level="5.4" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#colors"><i class="fa fa-check"></i><b>5.4</b> Colors</a></li>
+<li class="chapter" data-level="5.5" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#characters"><i class="fa fa-check"></i><b>5.5</b> Characters</a></li>
+<li class="chapter" data-level="5.6" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#anaglyphs"><i class="fa fa-check"></i><b>5.6</b> Anaglyphs</a></li>
+<li class="chapter" data-level="5.7" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#stereo-pairs-stereo-pairs"><i class="fa fa-check"></i><b>5.7</b> Stereo Pairs ~ Stereo Pairs</a></li>
+<li class="chapter" data-level="5.8" data-path="attractors-of-depth.html"><a href="attractors-of-depth.html#slices"><i class="fa fa-check"></i><b>5.8</b> Slices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html"><i class="fa fa-check"></i><b>6</b> The Fourth Dimension</a><ul>
+<li class="chapter" data-level="6.1" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#hyperspace"><i class="fa fa-check"></i><b>6.1</b> Hyperspace</a></li>
+<li class="chapter" data-level="6.2" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#projections-1"><i class="fa fa-check"></i><b>6.2</b> Projections</a></li>
+<li class="chapter" data-level="6.3" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#other-display-techniques"><i class="fa fa-check"></i><b>6.3</b> Other Display Techniques</a></li>
+<li class="chapter" data-level="6.4" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#writing-on-the-wall"><i class="fa fa-check"></i><b>6.4</b> Writing on the Wall</a></li>
+<li class="chapter" data-level="6.5" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#murals-and-movies"><i class="fa fa-check"></i><b>6.5</b> Murals and Movies</a></li>
+<li class="chapter" data-level="6.6" data-path="the-fourth-dimension.html"><a href="the-fourth-dimension.html#search-and-destroy"><i class="fa fa-check"></i><b>6.6</b> Search and Destroy</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fields-and-flows.html"><a href="fields-and-flows.html"><i class="fa fa-check"></i><b>7</b> Fields and Flows</a><ul>
+<li class="chapter" data-level="7.1" data-path="fields-and-flows.html"><a href="fields-and-flows.html#beam-me-up-scotty"><i class="fa fa-check"></i><b>7.1</b> Beam Me Up Scotty!</a></li>
+<li class="chapter" data-level="7.2" data-path="fields-and-flows.html"><a href="fields-and-flows.html#professor-lorenz-and-dr.rossler"><i class="fa fa-check"></i><b>7.2</b> Professor Lorenz and Dr. Rossler</a></li>
+<li class="chapter" data-level="7.3" data-path="fields-and-flows.html"><a href="fields-and-flows.html#finite-differences"><i class="fa fa-check"></i><b>7.3</b> Finite Differences</a></li>
+<li class="chapter" data-level="7.4" data-path="fields-and-flows.html"><a href="fields-and-flows.html#flows-in-four-dimensions"><i class="fa fa-check"></i><b>7.4</b> Flows in Four Dimensions</a></li>
+<li class="chapter" data-level="7.5" data-path="fields-and-flows.html"><a href="fields-and-flows.html#strange-attractors-that-arent"><i class="fa fa-check"></i><b>7.5</b> Strange Attractors that Aren’t</a></li>
+<li class="chapter" data-level="7.6" data-path="fields-and-flows.html"><a href="fields-and-flows.html#doughnuts-and-coffee-cups"><i class="fa fa-check"></i><b>7.6</b> Doughnuts and Coffee Cups</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html"><i class="fa fa-check"></i><b>8</b> Further Fascinating Functions</a><ul>
+<li class="chapter" data-level="8.1" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#steps-and-tents"><i class="fa fa-check"></i><b>8.1</b> Steps and Tents</a></li>
+<li class="chapter" data-level="8.2" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#ands-and-ors"><i class="fa fa-check"></i><b>8.2</b> ANDs and ORs</a></li>
+<li class="chapter" data-level="8.3" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#roots-and-powers"><i class="fa fa-check"></i><b>8.3</b> Roots and Powers</a></li>
+<li class="chapter" data-level="8.4" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#sines-and-cosines"><i class="fa fa-check"></i><b>8.4</b> Sines and Cosines</a></li>
+<li class="chapter" data-level="8.5" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#webs-and-wreaths"><i class="fa fa-check"></i><b>8.5</b> Webs and Wreaths</a></li>
+<li class="chapter" data-level="8.6" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#swings-and-springs"><i class="fa fa-check"></i><b>8.6</b> Swings and Springs</a></li>
+<li class="chapter" data-level="8.7" data-path="further-fascinating-functions.html"><a href="further-fascinating-functions.html#roll-your-own"><i class="fa fa-check"></i><b>8.7</b> Roll Your Own</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>9</b> Epilogue</a><ul>
+<li class="chapter" data-level="9.1" data-path="epilogue.html"><a href="epilogue.html#how-common-is-chaos"><i class="fa fa-check"></i><b>9.1</b> How Common is Chaos?</a></li>
+<li class="chapter" data-level="9.2" data-path="epilogue.html"><a href="epilogue.html#but-is-it-art"><i class="fa fa-check"></i><b>9.2</b> But is it Art?</a></li>
+<li class="chapter" data-level="9.3" data-path="epilogue.html"><a href="epilogue.html#can-computers-critique-art"><i class="fa fa-check"></i><b>9.3</b> Can Computers Critique Art?</a></li>
+<li class="chapter" data-level="9.4" data-path="epilogue.html"><a href="epilogue.html#whats-left-to-do"><i class="fa fa-check"></i><b>9.4</b> What’s Left to Do?</a></li>
+<li class="chapter" data-level="9.5" data-path="epilogue.html"><a href="epilogue.html#what-good-is-it"><i class="fa fa-check"></i><b>9.5</b> What Good is It?</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>10</b> Appendix A</a></li>
+<li class="chapter" data-level="11" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>11</b> Appendix B</a></li>
+<li class="chapter" data-level="12" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>12</b> Appendix C</a></li>
+<li class="chapter" data-level="13" data-path="appendix-d.html"><a href="appendix-d.html"><i class="fa fa-check"></i><b>13</b> Appendix D</a></li>
+<li class="chapter" data-level="14" data-path="appendix-e.html"><a href="appendix-e.html"><i class="fa fa-check"></i><b>14</b> Appendix E</a></li>
+<li class="chapter" data-level="15" data-path="appendix-f.html"><a href="appendix-f.html"><i class="fa fa-check"></i><b>15</b> Appendix F</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Strange Attractors</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="wiggly-lines" class="section level1">
+<h1><span class="header-section-number">3</span> Wiggly Lines</h1>
+<p>In this chapter we will teach the computer to search for chaotic solutions of simple equations with a single variable. The solutions are segments of lines, but the lines can wiggle in an incredibly complicated manner.</p>
+<div id="more-knobs-to-twiddle" class="section level2">
+<h2><span class="header-section-number">3.1</span> More Knobs to Twiddle</h2>
+<p>The logistic equation (Equation 1C) is an example of a dynamical system. Such systems are described by deterministic initial-value equations. This particular system has a single parameter R whose value determines the solution’s behavior for all initial values of X within the basin of attraction. This parameter is like a knob on a radio or on a stove that you can turn up or down to control the sound emitted by the radio or the convection in a pot of boiling soup.</p>
+<p>You can do a simple experiment to observe the period-doubling route to chaos. Go into your bathroom or kitchen and turn on the tap, only slightly, to produce a regular periodic pattern of drips. Now slowly open the tap until the pattern becomes chaotic. Just before the onset of chaos, if you are sufficiently careful and patient, you should observe one or more period doublings where the sound changes to something like “drip drip—drip drip—drip drip.” The knob that controls the flow rate corresponds to the parameter R in the logistic equation. The dripping faucet has been extensively studied by Robert Shaw and discussed at length in his book The Dripping Faucet as a Model Chaotic System.</p>
+<p>Usually a dynamical system has more than one knob. Your kitchen faucet probably has independent control of the flow rate and the temperature of the water. With more knobs, you might expect to increase the variety of ways the system can behave. Such knobs are called control parameters.</p>
+<p>The formula for the most general one-dimensional quadratic iterated map is</p>
+<p><span class="math display">\[
+X_{n+1}=a_1+a_2x_n+a_3x_{n_2}
+\]</span></p>
+<p>where a1, a2, and a3 are three control parameters. By exploring all combinations of their values, we expect eventually to observe every possible peculiar solution that the equation can have.</p>
+<p>You might think that the initial condition <span class="math inline">\(X_0\)</span> is a fourth knob, but if the system is chaotic, the solution is generally a strange attractor, and all initial conditions within the basin of attraction look the same after many iterations. Of course there is no guarantee that a particular choice of <span class="math inline">\(X_0\)</span> lies within the basin, but values of X close to zero are within the basin about half the time, and there are so many chaotic solutions over the range of the other three parameters that we can well afford to discard half of them.</p>
+<p>The search for strange attractors proceeds as follows. Choose values for <span class="math inline">\(a_1\)</span>, <span class="math inline">\(a_2\)</span>, and <span class="math inline">\(a_3\)</span> arbitrarily. Start with a value of X0 near zero. Iterate Equation 2A repeatedly until the solution either exceeds some large number, in which case it is presumably unbounded, or until the Lyapunov exponent becomes small or negative, in which case the solution is probably a fixed point or limit cycle. In either event, choose a different combination of a1, a2, and a3, and start over. If, after a few thousand iterations, the solution is bounded (X is not enormous) and the Lyapunov exponent is positive, then it is likely that you have found a strange attractor.</p>
+</div>
+<div id="randomness-and-pseudorandomness" class="section level2">
+<h2><span class="header-section-number">3.2</span> Randomness and Pseudorandomness</h2>
+<p>To choose values of a1, a2, and a3 , we can use the random-number generator provided with most computer languages. The random numbers thus produced are usually uniformly distributed between zero and one. You may wonder how a computer, the epitome of determinism, could ever produce a random number. This question deserves a digression because the answer provides yet another example of the very issues we have been discussing.</p>
+<p>One way to produce a random number is to start with a value of X (the seed) between zero and one and iterate the logistic equation with R = 4 a few dozen times. The result is a new number in the range of zero to one that is related to the seed in a complicated and sensitive way. This number is then used as the seed for the next random number, which is produced in the same way. A given seed will produce the same sequence of random numbers, but the sequence may not be the same on different computers or with different languages or even with different versions of the same language because of the way the numbers are rounded.</p>
+<p>However, this method of producing random numbers is not optimal. First, the numbers are not uniformly distributed over the range. They tend to cluster near zero and one as the darkness of the right-hand side of Figure 1-1 suggests. Also, multiplying a non-integer number by itself many times is a relatively slow process on a computer.</p>
+<p>Instead, computers usually get their random numbers using the linear congruential method:</p>
+<p><span class="math display">\[
+X_{n+1}=(aX_n+b)\mod c
+\]</span></p>
+<p>In the mod (modulus) operation, the quantity to the left of the <span class="math inline">\(\mod (aXn + b)\)</span> is divided by the quantity to its right (c), and the remainder is kept rather than the quotient. All the quantities in Equation 2B are integers. The constants a, b, and c are carefully chosen to maximize the number of steps required for the sequence to repeat, which in any case can never exceed c. The numbers are uniformly distributed from zero to c - 1, but they can be transformed to the range zero to one by simply dividing Xn+1 by c. The numbers appear to be random, but since they are produced using a deterministic procedure, they are often called pseudorandom. Equation 2B is another example of a one-dimensional chaotic map, which is related to the shift map.</p>
+<p>Truly random numbers should satisfy infinitely many conditions. Not only must the numbers be uniform over the interval, but there should be no detectable relation between the numbers and any of their predecessors. In particular, the sequence should repeat only after a very large number of steps. Most randomnumber generators are deficient in certain ways. For example, the random numbers produced by Microsoft QBASIC 1.0, QuickBASIC 4.5, and VisualBASIC for DOS 1.0 repeat after 16,777,216 steps, and this number is too small for some of our purposes.</p>
+<p>The situation can be greatly improved by shuffling the numbers. Suppose we maintain a table of a hundred or so random numbers. When we want one, we randomly take an entry from the table and replace it with a new random number. With this simple modification, the pseudorandom numbers generated by the computer are sufficiently random for our purpose</p>
+<p>You should always remember that the sequence of random numbers generated by a digital computer will eventually repeat. You must take care to ensure that over the duration of a calculation, such a repetition does not occur. You must also reseed the random-number generator using a truly random seed, such as one based on the time of day the program is started, if you are to avoid repeating the same sequence each time you run the program.</p>
+</div>
+<div id="whats-in-a-name" class="section level2">
+<h2><span class="header-section-number">3.3</span> What’s in a Name?</h2>
+<p>When we begin to choose random values for the coefficients a1, a2, and a3, we are immediately confronted with two issues. The first is the range of values that the coefficients may have, and the second is the amount by which two values of a coefficient must differ to produce attractors that are visibly different.</p>
+<p>We can address the first issue by referring to the logistic equation (Equation 1C). When the value of R is too small (less than about 3.5), there are no chaotic solutions, and when the value of R is too large (greater than 4), all the solutions are unbounded. A similar situation occurs for the more general one-dimensional quadratic map in Equation 2A. Thus we want to limit the coefficients to values whose magnitudes (positive or negative) are of order unity. That is, 0.1 is probably too small a value and 10 is probably unnecessarily large. This assumption can be verified by numerical experiment.</p>
+<p>The second issue requires a subjective judgment of how dissimilar two attractors must look before we consider them to be different. In practice, a change in one of the coefficients by an amount of order 0.1 generally produces an object that is noticeably different. If we let each coefficient take on values ranging from -1.2 to 1.2 in steps of 0.1, we will have 25 possible values. We can associate each with a letter of the alphabet, A through Y, and have a convenient way to catalog and replicate the attractors. Limiting the coefficients to 25 values may seem excessively restrictive, but since there are three coefficients for one-dimensional quadratic maps, there are 253 or 15,625 different combinations.</p>
+<p>The coefficients that correspond to the logistic equation with R = 4 are a1 = 0, a2 = 4, and a3 = -4, and they fall outside the range of -1.2 to 1.2. Thus for some purposes, it is convenient to take a larger range. A convenient way to extend the range is to use the ASCII (American Standard Code for Information Interchange) character set summarized in Table 2-1.</p>
+<p>ASCII codes from 0 to 31 are reserved for control codes—things like backspace, carriage return, and line feed. Codes from 128 to 255 can also be used, but there is no universal character set associated with them. By making use of all the ASCII characters from 0 to 255, we can accommodate coefficients in the range of -7.7 to 17.8. The characters listed in the table will suffice for most of our needs, however.</p>
+<p>With such a coding scheme, we can represent each attractor by a sequence of characters, with each character corresponding to one of the coefficients. The sequence can be thought of as the name of the attractor. We preface the name with a character that indicates the type of equation. Let’s use the letter A to represent one-dimensional quadratic maps. Thus the logistic equation coded in this way is AMu%. Note that the letters in the name are case sensitive (u and U are different), so you should be careful when typing them. Such names may look strange, which is perhaps appropriate for strange attractors, and you shouldn’t try to pronounce them! However, they do provide a convenient and compact method for saving everything you need to reproduce an attractor.</p>
+</div>
+<div id="the-computer-search" class="section level2">
+<h2><span class="header-section-number">3.4</span> The Computer Search</h2>
+<p>Before embarking on a search for strange attractors, we need to generalize
+the formula given in Equation 1E for the Lyapunov exponent of the logistic equation.
+The generalization is easily obtained using differential calculus, and the result is</p>
+<p><span class="math display">\[
+L = \frac{\Sigma\log_2|a_2+2_{a_3}X_n|}{N}
+\]</span></p>
+<p>1000 REM ONE-D MAP SEARCH
+1020 DIM XS(499), A(504), V(99)
+1050 NMAX = 11000 ’Maximum number of iterations
+1160 RANDOMIZE TIMER ’Reseed random-number generator
+1360 CLS : LOCATE 13, 34: PRINT “Searching…”
+1560 GOSUB 2600 ’Get coefficients
+1580 P% = 0: LSUM = 0: N = 0: NL = 0
+1590 XMIN = 1000000!: XMAX = -XMIN
+1720 XNEW = A(1) + (A(2) + A(3) * X) * X
+2020 N = N + 1
+2110 IF N &lt; 100 OR N &gt; 1000 THEN GOTO 2200
+2120 IF X &lt; XMIN THEN XMIN = X
+2130 IF X &gt; XMAX THEN XMAX = X
+2140 YMIN = XMIN: YMAX = XMAX
+2200 IF N = 1000 THEN GOSUB 3100 ’Resize the screen
+2250 IF N &lt; 1000 OR XS(I%) &lt;= XL OR XS(I%) &gt;= XH OR XNEW &lt;= XL OR XNEW &gt;= XH THEN
+GOTO 2320
+2410 IF ABS(XNEW) &gt; 1000000! THEN T% = 2 ’Unbounded
+2430 GOSUB 2900 ’Calculate Lyapunov exponent
+2460 IF N &gt;= NMAX THEN T% = 2 ’Strange attractor found
+2470 IF ABS(XNEW - X) &lt; .000001 THEN T% = 2 ’Fixed point
+2480 IF N &gt; 100 AND L &lt; .005 THEN T% = 2 ’Limit cycle
+2600 REM Get coefficients
+2660 CODE$ = “A”
+2680 M% = 3
+2690 FOR I% = 1 TO M% ’Construct CODE$
+2700 GOSUB 2800 ’Shuffle random numbers
+2710 CODE$ = CODE$ + CHR<span class="math inline">\((65 + INT(25 * RAN)) 2720 NEXT I% 2730 FOR I% = 1 TO M% &#39;Convert CODE\)</span> to coefficient values
+2740 A(I%) = (ASC(MID<span class="math inline">\((CODE\)</span>, I% + 1, 1)) - 77) / 10
+2750 NEXT I%
+2760 RETURN</p>
+<p>2800 REM Shuffle random numbers
+2810 IF V(0) = 0 THEN FOR J% = 0 TO 99: V(J%) = RND: NEXT J%
+2820 J% = INT(100 * RAN)
+2830 RAN = V(J%)
+2840 V(J%) = RND
+2850 RETURN
+2900 REM Calculate Lyapunov exponent
+2910 DF = ABS(A(2) + 2 * A(3) * X)
+3030 IF DF &gt; 0 THEN LSUM = LSUM + LOG(DF): NL = NL + 1
+3040 L = .721347 * LSUM / NL
+3070 RETURN</p>
+<p>3100 REM Resize the screen
+3120 IF XMAX - XMIN &lt; .000001 THEN XMIN = XMIN - .0000005: XMAX = XMAX + .0000005
+3130 IF YMAX - YMIN &lt; .000001 THEN YMIN = YMIN - .0000005: YMAX = YMAX + .0000005
+3160 MX = .1 * (XMAX - XMIN): MY = .1 * (YMAX - YMIN)
+3170 XL = XMIN - MX: XH = XMAX + MX: YL = YMIN - MY: YH = YMAX + MY
+3180 WINDOW (XL, YL)-(XH, YH): CLS
+3310 LINE (XL, YL)-(XH, YH), , B
+3460 RETURN</p>
+<p>Here are six points to note about PROG03:</p>
+<ol style="list-style-type: decimal">
+<li><p>The maximum number of iterations (NMAX in line 1050) has been set arbitrarily to 11,000. This is the number of iterations after which a strange attractor is assumed to have been found if the magnitude of X never exceeded one million and the Lyapunov exponent is positive (actually greater than 0.005). You can decrease NMAX to speed the rate at which attractors are found, or you can increase NMAX if you have a very fast computer or want to give the displays more time to develop. The number of iterations is a parameter that you can adjust for the most visually appealing result. Most of the figures in this book were made with NMAX set at between about 500,000 and 10 million, and they required between about a minute and an hour to produce.</p></li>
+<li><p>The seed for the random-number generator is taken in line 1160 as the number of seconds lapsed since midnight (TIMER). This choice ensures that a new sequence of random numbers is produced each time the program is run, except in the unlikely event that it is run at exactly the same time each day</p></li>
+<li><p>After 1000 iterations (line 2200), the screen is resized and erased by the subroutine in lines 3100 through 3460 using the minimum and maximum values of X between the 100th and 1000th iteration, allowing a 10% border around the attractor.</p></li>
+<li><p>To save time, the difference between each value of X and its predecessor is evaluated in line 2470, and if the difference is less than one millionth, the solution is assumed to be a fixed point even if the Lyapunov exponent is still positive.</p></li>
+<li><p>The Lyapunov exponent is not used as a criterion until after 100 iterations (line 2480) to ensure that its value is reasonably accurate.</p></li>
+<li><p>The coefficients of the equation are chosen in line 2710 using random numbers that have been shuffled by the subroutine in lines 2800 through 2850 to minimize the chance of repeating the same search sequence.</p></li>
+</ol>
+<p>The criterion for detecting a strange attractor is somewhat subjective. There will always be borderline cases for which no amount of computing will suffice to distinguish between a strange attractor and a periodic solution with a very long period. However, our interest here is in finding visually interesting attractors quickly, and so we can afford to make occasional mistakes. Such mistakes account for only a small fraction of cases.</p>
+<p>Of the 15,625 combinations of coefficients, exactly 364 (2.3%) are chaotic by these criteria. Some of the more visually interesting ones are shown in Figures 2-1 through 2-4, in which the values are plotted versus their fifth previous iterate. For each case, the code and the Lyapunov exponent are shown at the top of the graph.</p>
+<p><em>One-dimesnsional quadratic map AXBH F = 0.46 L = 0.06</em></p>
+<p><em>One - dimensional quadratic map ABDU f = 0.07 L = 0.44 </em></p>
+<p><em>One-dimensional quadratic map ACAV F = 0.80 L = 0.70 </em></p>
+<p><em>One-dimensional quadratic map AXDA F = 0.86 L = 0.89</em></p>
+</div>
+<div id="making-music" class="section level2">
+<h2><span class="header-section-number">3.5</span> Making Music</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pieces-of-planes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["StrangeAttractors.pdf", "StrangeAttractors.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
