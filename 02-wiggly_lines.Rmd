@@ -1,13 +1,155 @@
 # Wiggly Lines 
 
+In this chapter we will teach the computer to search for chaotic solutions of simple equations with a single variable. The solutions are segments of lines, but the lines can wiggle in an incredibly complicated manner.
+
 ## More Knobs to Twiddle
+The logistic equation (Equation 1C) is an example of a dynamical system. Such systems are described by deterministic initial-value equations. This particular system has a single parameter R whose value determines the solution’s behavior for all initial values of X within the basin of attraction. This parameter is like a knob on a radio or on a stove that you can turn up or down to control the sound emitted by the radio or the convection in a pot of boiling soup.
+
+You can do a simple experiment to observe the period-doubling route to chaos. Go into your bathroom or kitchen and turn on the tap, only slightly, to produce a regular periodic pattern of drips. Now slowly open the tap until the pattern becomes chaotic. Just before the onset of chaos, if you are sufficiently careful and patient, you should observe one or more period doublings where the sound changes to something like "drip drip—drip drip—drip drip." The knob that controls the flow rate corresponds to the parameter R in the logistic equation. The dripping faucet has been extensively studied by Robert Shaw and discussed at length in his book The Dripping Faucet as a Model Chaotic System.
+
+Usually a dynamical system has more than one knob. Your kitchen faucet probably has independent control of the flow rate and the temperature of the water. With more knobs, you might expect to increase the variety of ways the system can behave. Such knobs are called control parameters.
+
+The formula for the most general one-dimensional quadratic iterated map is
+
+$$
+X_{n+1}=a_1+a_2x_n+a_3x_{n_2}
+$$
+
+where a1, a2, and a3 are three control parameters. By exploring all combinations of their values, we expect eventually to observe every possible peculiar solution that the equation can have.
+
+You might think that the initial condition $X_0$ is a fourth knob, but if the system is chaotic, the solution is generally a strange attractor, and all initial conditions within the basin of attraction look the same after many iterations. Of course there is no guarantee that a particular choice of $X_0$ lies within the basin, but values of X close to zero are within the basin about half the time, and there are so many chaotic solutions over the range of the other three parameters that we can well afford to discard half of them.
+
+The search for strange attractors proceeds as follows. Choose values for $a_1$, $a_2$, and $a_3$ arbitrarily. Start with a value of X0 near zero. Iterate Equation 2A repeatedly until the solution either exceeds some large number, in which case it is presumably unbounded, or until the Lyapunov exponent becomes small or negative, in which case the solution is probably a fixed point or limit cycle. In either event, choose a different combination of a1, a2, and a3, and start over. If, after a few thousand iterations, the solution is bounded (X is not enormous) and the Lyapunov exponent is positive, then it is likely that you have found a strange attractor.
 
 ## Randomness and Pseudorandomness
+To choose values of a1, a2, and a3 , we can use the random-number generator provided with most computer languages. The random numbers thus produced are usually uniformly distributed between zero and one. You may wonder how a computer, the epitome of determinism, could ever produce a random number. This question deserves a digression because the answer provides yet another example of the very issues we have been discussing.
 
+One way to produce a random number is to start with a value of X (the seed) between zero and one and iterate the logistic equation with R = 4 a few dozen times. The result is a new number in the range of zero to one that is related to the seed in a complicated and sensitive way. This number is then used as the seed for the next random number, which is produced in the same way. A given seed will produce the same sequence of random numbers, but the sequence may not be the same on different computers or with different languages or even with different versions of the same language because of the way the numbers are rounded.
+
+However, this method of producing random numbers is not optimal. First, the numbers are not uniformly distributed over the range. They tend to cluster near zero and one as the darkness of the right-hand side of Figure 1-1 suggests. Also, multiplying a non-integer number by itself many times is a relatively slow process on a computer.
+
+Instead, computers usually get their random numbers using the linear congruential method:
+
+$$
+X_{n+1}=(aX_n+b)\mod c
+$$
+
+In the mod (modulus) operation, the quantity to the left of the $\mod (aXn + b)$ is divided by the quantity to its right (c), and the remainder is kept rather than the quotient. All the quantities in Equation 2B are integers. The constants a, b, and c are carefully chosen to maximize the number of steps required for the sequence to repeat, which in any case can never exceed c. The numbers are uniformly distributed from zero to c - 1, but they can be transformed to the range zero to one by simply dividing Xn+1 by c. The numbers appear to be random, but since they are produced using a deterministic procedure, they are often called pseudorandom. Equation 2B is another example of a one-dimensional chaotic map, which is related to the shift map.
+
+Truly random numbers should satisfy infinitely many conditions. Not only must the numbers be uniform over the interval, but there should be no detectable relation between the numbers and any of their predecessors. In particular, the sequence should repeat only after a very large number of steps. Most randomnumber generators are deficient in certain ways. For example, the random numbers produced by Microsoft QBASIC 1.0, QuickBASIC 4.5, and VisualBASIC for DOS 1.0 repeat after 16,777,216 steps, and this number is too small for some of our purposes.
+
+The situation can be greatly improved by shuffling the numbers. Suppose we maintain a table of a hundred or so random numbers. When we want one, we randomly take an entry from the table and replace it with a new random number. With this simple modification, the pseudorandom numbers generated by the computer are sufficiently random for our purpose
+
+You should always remember that the sequence of random numbers generated by a digital computer will eventually repeat. You must take care to ensure that over the duration of a calculation, such a repetition does not occur. You must also reseed the random-number generator using a truly random seed, such as one based on the time of day the program is started, if you are to avoid repeating the same sequence each time you run the program.
 
 ## What's in a Name? 
 
+When we begin to choose random values for the coefficients a1, a2, and a3, we are immediately confronted with two issues. The first is the range of values that the coefficients may have, and the second is the amount by which two values of a coefficient must differ to produce attractors that are visibly different.
+
+We can address the first issue by referring to the logistic equation (Equation 1C). When the value of R is too small (less than about 3.5), there are no chaotic solutions, and when the value of R is too large (greater than 4), all the solutions are unbounded. A similar situation occurs for the more general one-dimensional quadratic map in Equation 2A. Thus we want to limit the coefficients to values whose magnitudes (positive or negative) are of order unity. That is, 0.1 is probably too small a value and 10 is probably unnecessarily large. This assumption can be verified by numerical experiment.
+
+The second issue requires a subjective judgment of how dissimilar two attractors must look before we consider them to be different. In practice, a change in one of the coefficients by an amount of order 0.1 generally produces an object that is noticeably different. If we let each coefficient take on values ranging from -1.2 to 1.2 in steps of 0.1, we will have 25 possible values. We can associate each with a letter of the alphabet, A through Y, and have a convenient way to catalog and replicate the attractors. Limiting the coefficients to 25 values may seem excessively restrictive, but since there are three coefficients for one-dimensional quadratic maps, there are 253 or 15,625 different combinations.
+
+The coefficients that correspond to the logistic equation with R = 4 are a1 = 0, a2 = 4, and a3 = -4, and they fall outside the range of -1.2 to 1.2. Thus for some purposes, it is convenient to take a larger range. A convenient way to extend the range is to use the ASCII (American Standard Code for Information Interchange) character set summarized in Table 2-1.
+
+ASCII codes from 0 to 31 are reserved for control codes—things like backspace, carriage return, and line feed. Codes from 128 to 255 can also be used, but there is no universal character set associated with them. By making use of all the ASCII characters from 0 to 255, we can accommodate coefficients in the range of -7.7 to 17.8. The characters listed in the table will suffice for most of our needs, however.
+
+With such a coding scheme, we can represent each attractor by a sequence of characters, with each character corresponding to one of the coefficients. The sequence can be thought of as the name of the attractor. We preface the name with a character that indicates the type of equation. Let’s use the letter A to represent one-dimensional quadratic maps. Thus the logistic equation coded in this way is AMu%. Note that the letters in the name are case sensitive (u and U are different), so you should be careful when typing them. Such names may look strange, which is perhaps appropriate for strange attractors, and you shouldn’t try to pronounce them! However, they do provide a convenient and compact method for saving everything you need to reproduce an attractor.
+
 ## The Computer Search
+
+Before embarking on a search for strange attractors, we need to generalize
+the formula given in Equation 1E for the Lyapunov exponent of the logistic equation.
+The generalization is easily obtained using differential calculus, and the result is
+
+$$
+L = \frac{\Sigma\log_2|a_2+2_{a_3}X_n|}{N}
+$$
+
+```{BASIC}
+1000 REM ONE-D MAP SEARCH
+1020 DIM XS(499), A(504), V(99)
+1050 NMAX = 11000 'Maximum number of iterations
+1160 RANDOMIZE TIMER 'Reseed random-number generator
+1360 CLS : LOCATE 13, 34: PRINT "Searching..."
+1560 GOSUB 2600 'Get coefficients
+1580 P% = 0: LSUM = 0: N = 0: NL = 0
+1590 XMIN = 1000000!: XMAX = -XMIN
+1720 XNEW = A(1) + (A(2) + A(3) * X) * X
+2020 N = N + 1
+2110 IF N < 100 OR N > 1000 THEN GOTO 2200
+2120 IF X < XMIN THEN XMIN = X
+2130 IF X > XMAX THEN XMAX = X
+2140 YMIN = XMIN: YMAX = XMAX
+2200 IF N = 1000 THEN GOSUB 3100 'Resize the screen
+2250 IF N < 1000 OR XS(I%) <= XL OR XS(I%) >= XH OR XNEW <= XL OR XNEW >= XH THEN
+GOTO 2320
+2410 IF ABS(XNEW) > 1000000! THEN T% = 2 'Unbounded
+2430 GOSUB 2900 'Calculate Lyapunov exponent
+2460 IF N >= NMAX THEN T% = 2 'Strange attractor found
+2470 IF ABS(XNEW - X) < .000001 THEN T% = 2 'Fixed point
+2480 IF N > 100 AND L < .005 THEN T% = 2 'Limit cycle
+2600 REM Get coefficients
+2660 CODE$ = "A"
+2680 M% = 3
+2690 FOR I% = 1 TO M% 'Construct CODE$
+2700 GOSUB 2800 'Shuffle random numbers
+2710 CODE$ = CODE$ + CHR$(65 + INT(25 * RAN))
+2720 NEXT I%
+2730 FOR I% = 1 TO M% 'Convert CODE$ to coefficient values
+2740 A(I%) = (ASC(MID$(CODE$, I% + 1, 1)) - 77) / 10
+2750 NEXT I%
+2760 RETURN
+
+2800 REM Shuffle random numbers
+2810 IF V(0) = 0 THEN FOR J% = 0 TO 99: V(J%) = RND: NEXT J%
+2820 J% = INT(100 * RAN)
+2830 RAN = V(J%)
+2840 V(J%) = RND
+2850 RETURN
+2900 REM Calculate Lyapunov exponent
+2910 DF = ABS(A(2) + 2 * A(3) * X)
+3030 IF DF > 0 THEN LSUM = LSUM + LOG(DF): NL = NL + 1
+3040 L = .721347 * LSUM / NL
+3070 RETURN
+
+3100 REM Resize the screen
+3120 IF XMAX - XMIN < .000001 THEN XMIN = XMIN - .0000005: XMAX = XMAX + .0000005
+3130 IF YMAX - YMIN < .000001 THEN YMIN = YMIN - .0000005: YMAX = YMAX + .0000005
+3160 MX = .1 * (XMAX - XMIN): MY = .1 * (YMAX - YMIN)
+3170 XL = XMIN - MX: XH = XMAX + MX: YL = YMIN - MY: YH = YMAX + MY
+3180 WINDOW (XL, YL)-(XH, YH): CLS
+3310 LINE (XL, YL)-(XH, YH), , B
+3460 RETURN
+```
+
+
+Here are six points to note about PROG03:
+
+1. The maximum number of iterations (NMAX in line 1050) has been set arbitrarily to 11,000. This is the number of iterations after which a strange attractor is assumed to have been found if the magnitude of X never exceeded one million and the Lyapunov exponent is positive (actually greater than 0.005). You can decrease NMAX to speed the rate at which attractors are found, or you can increase NMAX if you have a very fast computer or want to give the displays more time to develop. The number of iterations is a parameter that you can adjust for the most visually appealing result. Most of the figures in this book were made with NMAX set at between about 500,000 and 10 million, and they required between about a minute and an hour to produce.
+
+2. The seed for the random-number generator is taken in line 1160 as the number of seconds lapsed since midnight (TIMER). This choice ensures that a new sequence of random numbers is produced each time the program is run, except in the unlikely event that it is run at exactly the same time each day
+
+3. After 1000 iterations (line 2200), the screen is resized and erased by the subroutine in lines 3100 through 3460 using the minimum and maximum values of X between the 100th and 1000th iteration, allowing a 10% border around the attractor.
+
+4. To save time, the difference between each value of X and its predecessor is evaluated in line 2470, and if the difference is less than one millionth, the solution is assumed to be a fixed point even if the Lyapunov exponent is still positive.
+
+5. The Lyapunov exponent is not used as a criterion until after 100 iterations (line 2480) to ensure that its value is reasonably accurate.
+
+6. The coefficients of the equation are chosen in line 2710 using random numbers that have been shuffled by the subroutine in lines 2800 through 2850 to minimize the chance of repeating the same search sequence.
+
+The criterion for detecting a strange attractor is somewhat subjective. There will always be borderline cases for which no amount of computing will suffice to distinguish between a strange attractor and a periodic solution with a very long period. However, our interest here is in finding visually interesting attractors quickly, and so we can afford to make occasional mistakes. Such mistakes account for only a small fraction of cases.
+
+Of the 15,625 combinations of coefficients, exactly 364 (2.3%) are chaotic by these criteria. Some of the more visually interesting ones are shown in Figures 2-1 through 2-4, in which the values are plotted versus their fifth previous iterate. For each case, the code and the Lyapunov exponent are shown at the top of the graph.
+
+## One-dimesnsional quadratic map AXBH F = 0.46 L = 0.06
+
+## One - dimensional quadratic map ABDU f = 0.07 L = 0.44 
+
+## One-dimensional quadratic map ACAV F = 0.80 L = 0.70 
+
+## One-dimensional quadratic map AXDA F = 0.86 L = 0.89
+
 
 ## Making Music 
 

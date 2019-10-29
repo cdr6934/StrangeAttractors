@@ -1,6 +1,6 @@
 # Appendix D 
 
-```{c}
+
 #include <dos.h>
 #include <stdio.h>
 #include <graph.h>
