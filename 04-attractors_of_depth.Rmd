@@ -1,17 +1,509 @@
-# Attractors of Depth 
+
+#Attractors of Depth
+A two-dimensional world is a mere shadow of reality. The techniques described in the previous chapters are easily extended to produce attractors embedded in the three-dimensional space in which we live. The challenge is in finding ways to exhibit and visualize such three-dimensional objects within the limitations of the computer screen and printed page. This chapter emphasizes new visualization techniques and provides many new examples of strange attractors that have depth as well as width and height.
+
 
 ## Projections
+	The procedure for seeking attractors in three dimensions (which we might whimsically call strange attractors of the third kind) is just like the two-dimensional case, except that we introduce a third variable Z to accompany X and Y. You can think of Z as representing the position in a direction out of the screen or page on which the attractor is displayed. We assume the direction of positive Z is in front of the page and the direction of negative Z is behind the page, as is customary for a conventional right-handed coordinate system. The term right-handed comes from the convention that if you point the fingers of your right hand in the direction of the X-axis and curl them so that they point along the Y-axis, your thumb points in the Z direction. This choice is purely arbitrary but widely accepted.
+	The simplest system of equations that produces strange attractors embedded in a three-dimensional space is a set of coupled quadratic equations, the most general form of which is given by
+
+	Xn+1 = a1 + a2Xn + a3Xn2 + a4XnYn + a5XnZn + a6Yn 
+		+ a7Yn2 + a8YnZn + a9Zn + a10Zn2
+	Yn+1 = a11 + a12Xn + a13Xn2 + a14XnYn + a15XnZn + a16Yn
+		+ a17Yn2 + a18YnZn + a19Zn + a20Zn2 
+	Zn+1 = a21 + a22Xn + a23Xn2 + a24XnYn + a25XnZn + a26Yn
+		+ a27Yn2 + a28YnZn + a29Zn + a30Zn2 			(Equation 4A)
+
+	These equations have 30 coefficients, which allow an enormous variety of attractors. The extension to equations with orders higher than two is straightforward. Three-dimensional cubic equations have 60 coefficients, quartic equations have 105 coefficients, and quintic equations have 168 coefficients. The number of coefficients for order O is given by (O + 1)(O + 2)(O + 3) / 2. We will code the second-order through fifth-order systems in three dimensions with the initial letters I, J, K, and L, respectively.
+	Note that 168 coefficients allows 25168 or about 10234 combinations. This is a truly astronomical number. Even if only a small fraction of them correspond to distinct strange attractors, their number enormously exceeds the number of electrons, protons, and neutrons in the entire universe—a mere 1079. Thus the number of fifth-order three-dimensional strange attractors is essentially infinite. You can have a large collection of your own, none of which are likely to be reproduced by anyone else unless you give them the code you used to produce them. The code is like a combination lock with 168 settings that all must be entered correctly and in the proper order.
+	Now we must confront the issue of how best to display an object composed of points in a three-dimensional space. Such problems are in the domain of a new specialty called visualization, which we may define as the use of computer imagery to gain insight into complex phenomena. The need for improved visualization techniques has emerged from the rapidly growing use of computers as the primary tool for scientific calculation and modeling. As computers become more powerful, it is increasingly important to devise methods of dealing with large quantities of data. The eye and brain are very efficient at discerning visual patterns, and these patterns permit an intuitive understanding of complicated processes in a way that equations often cannot. Scientists have recently developed impressive visualization techniques, simple versions of which are presented here.
+	The simplest method is to ignore one of the coordinates and to plot the points in the remaining two dimensions. This method is equivalent to looking at the shadow cast by an object when illuminated from directly above by a point-source of light a large distance away. If the light source is on the Z-axis, we say the attractor is projected onto the XY plane. The screen used in conjunction with a slide projector is such a plane. Of course, considerable information about the attractor is lost in such a projection, but the method is a convenient starting point, and it is simple to program.
+	PROG11 provides the changes that must be made in PROG10 to extend the attractor search to three dimensions with order up to five. Since the search slows down considerably in three dimensions with such a large number of coefficients, especially if you don’t have a compiled version of BASIC and a fast computer, the program saves, for each case found, the code, fractal dimension, and Lyapunov exponent in a disk file with the name SA.DIC (Strange Attractor DICtionary). This feature allows you to run the program unattended and to collect the attractors it finds. We will later modify the program to let you examine the cases that you collect.
+
+PROG11. Changes required in PROG10 to search for strange attractors in three dimensions
+1000 REM THREE-D MAP SEARCH
+1020 DIM XS(499), YS(499), ZS(499), A(504), V(99), XY(4), XN(4)
+1070 D% = 3                     'Dimension of system
+1100 SND% = 0                   'Turn sound off
+
+1530 Z = .05
+1550 XE = X + .000001: YE = Y: ZE = Z
+1600 ZMIN = XMIN: ZMAX = XMAX
+
+1720 M% = 1: XY(1) = X: XY(2) = Y: XY(3) = Z
+2010 M% = M% - 1: XNEW = XN(1): YNEW = XN(2): ZNEW = XN(3)
+
+2160    IF Z < ZMIN THEN ZMIN = Z
+2170    IF Z > ZMAX THEN ZMAX = Z
+2210 XS(P%) = X: YS(P%) = Y: ZS(P%) = Z
+
+2410 IF ABS(XNEW) + ABS(YNEW) + ABS(ZNEW) > 1000000! THEN T% = 2
+2460 IF N >= NMAX THEN T% = 2: GOSUB 4900   'Strange attractor found
+2470 IF ABS(XNEW - X) + ABS(YNEW - Y) + ABS(ZNEW - Z) < .000001 THEN T% = 2
+2530 Z = ZNEW
+
+2910 XSAVE = XNEW: YSAVE = YNEW: ZSAVE = ZNEW
+2920 X = XE: Y = YE: Z = ZE: N = N - 1
+2950 DLZ = ZNEW - ZSAVE
+2960 DL2 = DLX * DLX + DLY * DLY + DLZ * DLZ
+3010    ZE = ZSAVE + RS * (ZNEW - ZSAVE)
+3020    XNEW = XSAVE: YNEW = YSAVE: ZNEW = ZSAVE
+
+3140 IF ZMAX - ZMIN < .000001 THEN ZMIN = ZMIN - .0000005: ZMAX = ZMAX + .0000005
+3400 LOCATE 1, 1: IF LEN(CODE$) < 62 THEN PRINT CODE$
+3410 IF LEN(CODE$) >= 62 THEN PRINT LEFT$(CODE$, 57) + "..."
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 3): T% = 1
+
+3920 IF N = 1000 THEN D2MAX = (XMAX - XMIN) ^ 2 + (YMAX - YMIN) ^ 2 + (ZMAX - ZMIN) ^ 2
+3940 DX = XNEW - XS(J%): DY = YNEW - YS(J%): DZ = ZNEW - ZS(J%)
+3950 D2 = DX * DX + DY * DY + DZ * DZ
+
+4760 IF D% = 3 THEN M% = M% / 2
+
+4900 REM Save attractor to disk file SA.DIC
+4910 OPEN "SA.DIC" FOR APPEND AS #1
+4920 PRINT #1, CODE$; : PRINT #1, USING "##.##"; F; L
+4930 CLOSE #1
+4940 RETURN
+
+	Some examples of the attractors produced by PROG11 are shown in Figures 4-1 through 4-16. Note that the fractal dimension shown for each case is the dimension of the actual attractor and not the dimension of its projection. Thus the fractal dimension can be as large as 3 even though the projection has dimension of at most 2. The projection of a point (zero dimensions) onto a surface is a point, the projection of a line (one dimension) is a line, the projection of a surface (two dimensions) is a surface, but the projection of a solid (three dimensions) onto a surface is only a surface (two dimensions).
+
+Figure 4-1. Projection of three-dimensional quadratic map
+
+Figure 4-2. Projection of three-dimensional quadratic map
+
+Figure 4-3. Projection of three-dimensional quadratic map
+
+Figure 4-4. Projection of three-dimensional quadratic map
+
+Figure 4-5. Projection of three-dimensional quadratic map
+
+Figure 4-6. Projection of three-dimensional quadratic map
+
+Figure 4-7. Projection of three-dimensional quadratic map
+
+Figure 4-8. Projection of three-dimensional quadratic map
+
+Figure 4-9. Projection of three-dimensional cubic map
+
+Figure 4-10. Projection of three-dimensional cubic map
+
+Figure 4-11. Projection of three-dimensional cubic map
+
+Figure 4-12. Projection of three-dimensional quartic map
+
+Figure 4-13. Projection of three-dimensional quartic map
+
+Figure 4-14. Projection of three-dimensional quartic map
+
+Figure 4-15. Projection of three-dimensional quintic map
+
+Figure 4-16. Projection of three-dimensional quintic map
+
+	On the whole, attractors in three dimensions projected onto a plane are not particularly different or better than the two-dimensional examples of the previous chapter. Ones with high fractal dimensions (near and above 2) tend to be uninteresting when projected onto two dimensions because they are too filled-in. Note also that all the two-dimensional cases are included as special cases of the three-dimensional ones and that they can be recovered by setting the appropriate coefficients to zero. For example, the Hénon map can be reproduced in three dimensions using the code IWM?M2PM5WM18. You may want to try entering this case into the program using the I command. Be sure to count the number of Ms very carefully and to use capital letters.
+	The attractors displayed in the previous figures are projected onto the XY plane. They could equally well be projected onto the YZ or ZX plane. With a bit more effort it would be possible to project them onto a plane inclined at an arbitrary angle. Attractors are most visually appealing when viewed from a particular direction. The formulas that transform a point with coordinates (X, Y, Z) into a two-dimensional projection (Xp, Yp) with viewing angles (, ) in spherical coordinates are
+
+	Xp = - X sin q + Y cos q
+	Yp = - X sin q cos f - Y sin q cos f + Z sin f		(Equation 4B)
+
+With a sufficiently powerful computer, you could rotate the attractor to produce an animated display. You may want to experiment with these ideas.
+	The program can be modified in a number of ways to change the orientation of the projection. The simplest (though not very practical) way is just to wait until the search turns up the same attractor viewed from a different angle. Note in Equation 4A, for example, that if you interchange the coefficients in an appropriate way, the result is to replace X with Y, Y with Z, and Z with X. If the attractor code were IABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^, the code IKPQRNSTOLMUZ[\X]^YVWAFGHDIJEBC would produce a projection of the same attractor onto the YZ plane, and the code IU]^Y\VWXZ[AIJEHBCDFGKSTORLMNPQ would produce a projection of the attractor onto the ZX plane. Figures 4-17 and 4-18 show the result of applying these transformations to the attractor in Figure 4-4.
+
+Figure 4-17. Attractor in Figure 4-4 projected onto the YZ plane
+
+Figure 4-18. Attractor in Figure 4-4 projected onto the ZX plane
+
 
 ## Shadows
+	In the previous figures, the attractors were projected as if illuminated from directly along the line of sight. Now suppose the point source of illumination is moved slightly off to one side and you observe the attractor against a background screen. Each point making up the attractor appears as a dot of reflected light above the background plane and produces a shadow point opposite the illumination a distance proportional to the position of the point above the plane. For this purpose, we assume the most distant point of the attractor is touching the screen and the nearest point is out of the screen a distance equal to its width. We’ll assume it is illuminated from above your left shoulder so that the shadow is below and to the right, in keeping with the Microsoft style guidelines as exhibited in recent versions of Windows.
+	To produce a shadow, we need a background shade of gray intermediate between the black and white that we have been using so far. If your computer has at least EGA graphics, this poses no difficulty. There are two grays, COLOR 8, which is 25% illuminated, and COLOR 7, which is 75% illuminated. We’ll use COLOR 8, which is the darker of the two. For convenience, Table 4-1 lists the 16 default colors provided with SCREEN modes 7 through 13.
+
+Table 4-1. Default EGA and VGA colors for SCREEN modes 7 to 13
+Number	Color	Number	Color
+0	Black	  8	Gray
+1	Blue	  9	Bright blue
+2	Green	10	Bright green
+3	Cyan	11	Bright cyan
+4	Red	12	Bright red
+5	Magenta	13	Bright magenta
+6	Brown	14	Yellow
+7	White	15	Bright white
+
+	If you have CGA graphics, you might try plotting the points in white (COLOR 3) and their shadow in black (COLOR 0) on a magenta (COLOR 2) background using SCREEN 1 (320 by 200 resolution) and PALETTE 1. In any case, it may help to adjust the intensity control on the monitor for an easily visible shadow.
+	Since we have another shade of gray available, we can use it to control the brightness of the points plotted. The first time a screen pixel is illuminated by a point on the attractor, we will use low-intensity white (COLOR 7), and subsequent times we will use high-intensity white (COLOR 15). If your computer has a monochrome graphics monitor that maps the other colors to various shades of gray, you can extend this technique to provide additional gray levels, producing an attractor whose brightness corresponds to the frequency its various regions are visited. This trick helps to compensate for the limited spatial resolution of the computer screen.
+	It also helps to draw a grid on the background to make it more obvious that the attractor is sitting above the screen. The grid is drawn in black (COLOR 0), the same as the shadow.
+	If your computer has at least EGA capability, PROG12 produces the desired shadow display. It allows you to toggle between projections and shadows by pressing the R key.
+
+PROG12. Changes required in PROG11 to display shadows
+1000 REM THREE-D MAP SEARCH (With Shadow Display)
+1020 DIM XS(499), YS(499), ZS(499), A(504), V(99), XY(4), XN(4), COLR%(15)
+1120 TRD% = 1                   'Display third dimension as shadow
+
+1370 GOSUB 5600                 'Set colors
+
+2300    GOSUB 5000                      'Plot point on screen
+
+3210 IF D% < 3 THEN GOTO 3310
+3230    IF TRD% = 1 THEN LINE (XL, YL)-(XH, YH), COLR%(1), BF: GOSUB 5400
+3430 TIA = .05               'Tangent of illumination angle
+3440 XZ = -TIA * (XMAX - XMIN) / (ZMAX - ZMIN)
+3450 YZ = TIA * (YMAX - YMIN) / (ZMAX - ZMIN)
+
+3630 IF Q$ = "" OR INSTR("ADIPRSX", Q$) = 0 THEN GOSUB 4200
+3760 IF Q$ = "R" THEN TRD% = (TRD% + 1) MOD 2: T% = 3: IF N > 999 THEN N = 999
+
+4460    PRINT TAB(27); "R: Third dimension is ";
+4470        IF TRD% = 0 THEN PRINT "projection"
+4480        IF TRD% = 1 THEN PRINT "shadow    "
+
+5000 REM Plot point on screen
+5060 IF TRD% = 0 THEN PSET (XP, YP)
+5070 IF TRD% <> 1 THEN GOTO 5130
+5090    C% = POINT(XP, YP)
+5100    IF C% = COLR%(2) THEN PSET (XP, YP), COLR%(3) ELSE IF C% <> COLR%(3) THEN PSET (XP, YP), COLR%(2)
+5110    XP = XP - XZ * (Z - ZMIN): YP = YP - YZ * (Z - ZMIN)
+5120    IF POINT(XP, YP) = COLR%(1) THEN PSET (XP, YP), 0
+5130 RETURN
+
+5400 REM Plot background grid
+5410 FOR I% = 0 TO 15           'Draw 15 vertical grid lines
+5420    XP = XMIN + I% * (XMAX - XMIN) / 15
+5430    LINE (XP, YMIN)-(XP, YMAX), 0
+5440 NEXT I%
+5450 FOR I% = 0 TO 10           'Draw 10 horizontal grid lines
+5460    YP = YMIN + I% * (YMAX - YMIN) / 10
+5470    LINE (XMIN, YP)-(XMAX, YP), 0
+5480 NEXT I%
+5490 RETURN
+
+5600 REM Set colors
+5620 COLR%(0) = 0: COLR%(1) = 8: COLR%(2) = 7: COLR%(3) = 15
+5720 RETURN
+
+	The angle of illumination is determined by the .05 in line 3430. You might try different values. The value of .05 is the tangent of both the horizontal and vertical angle that the source of illumination makes with the perpendicular to the plane. The angle is about 3 degrees toward the left and 3 degrees toward the top of the figure. Sample attractors produced by PROG12 are shown in Figures 4-19 through 4-34.
+
+Figure 4-19. Three-dimensional quadratic map with shadows
+
+Figure 4-20. Three-dimensional quadratic map with shadows
+
+Figure 4-21. Three-dimensional quadratic map with shadows
+
+Figure 4-22. Three-dimensional quadratic map with shadows
+
+Figure 4-23. Three-dimensional quadratic map with shadows
+
+Figure 4-24. Three-dimensional quadratic map with shadows
+
+Figure 4-25. Three-dimensional quadratic map with shadows
+
+Figure 4-26. Three-dimensional quadratic map with shadows
+
+Figure 4-27. Three-dimensional quadratic map with shadows
+
+Figure 4-28. Three-dimensional quadratic map with shadows
+
+Figure 4-29. Three-dimensional quadratic map with shadows
+
+Figure 4-30. Three-dimensional cubic map with shadows
+
+Figure 4-31. Three-dimensional quartic map with shadows
+
+Figure 4-32. Three-dimensional quartic map with shadows
+
+Figure 4-33. Three-dimensional quintic map with shadows
+
+Figure 4-34. Three-dimensional quintic map with shadows
+
+	Look closely at the figures with shadows and you can see that it is hard to tell whether one portion of the attractor lies above or below another portion. One reason for this is that we have not allowed the closer portion of the attractor to cast a shadow on the more distant portion. To do so requires a complicated program, which will be left as a challenge for you.
+	If you attempt to improve the shadow display in this way, you must store in an array the largest Z value corresponding to each screen pixel. With VGA (640 by 480), you need 600 kilobytes (K), even if you convert the Z values into integers. Most versions of BASIC limit the size of arrays to 64 K, and the disk operating system usually limits the total program size to about 600 K. Thus you probably need to use a lower screen resolution or devise a more compact coding scheme. For example, if you use only 16 values of Z, you can store two screen pixels per byte, which is four times better than storing the Z value of each pixel as a two-byte integer. Alternately, you might store the Z values of only those pixels that are illuminated, but then you must devise a quick way to locate the proper element in the array corresponding to each pair of screen coordinates.
+	Before each point on the attractor is plotted, you must be sure it doesn’t fall in the shadow of a previously plotted point. If it doesn’t, then it can be plotted, but then you have to determine whether it occludes any previously plotted point. Alternatively, you can first plot all the points and then scan the image starting from the side toward the illumination, blocking out any points that fall in the shadow of another point.
+
 
 ## Bands
+	Another way to display the third dimension is with elevation contours such as those found on topographic maps. With enough points, you could plot only those that have specific values of Z. Of course the chance that a point has any particular exact value of Z is negligibly small, and so the points would accumulate on the screen very slowly. To make the method work, you have to plot all the points that lie within bands centered on the desired values.
+	You have freedom to choose the width of the bands. With narrow bands, the contours resemble distinct lines, but they form very slowly. With wide bands, the gaps between the bands are hard to see. By making the bands half as wide as the spacing between the contours, the bright and dark spaces are equal in width, and they form rapidly and are easy to see.
+	You also need to decide how many contours to use. You need at least several to make the method work, but if you use too many, they begin to run together at modest screen resolution and number of iterations. For the cases shown here, we use 15 bands as a reasonable compromise.
+	Since we used a four-level gray scale to produce the shadows in the previous displays, we will also use it here to give the bands a softer shading. Of course, this requires a computer with at least EGA graphics. If your computer has CGA graphics, you will see only two shades (black and white) with 30 bands in SCREEN mode 2.
+	The changes required in the program to produce contour bands are shown in PROG13.
 
-## Colors 
+PROG13.  Changes required in PROG12 to display contour bands
+1000 REM THREE-D MAP SEARCH (With Contour Bands)
+1120 TRD% = 2                   'Display third dimension as bands
+
+3760 IF Q$ = "R" THEN TRD% = (TRD% + 1) MOD 3: T% = 3: IF N > 999 THEN N = 999
+
+4490        IF TRD% = 2 THEN PRINT "bands     "
+
+5130 IF TRD% = 2 THEN PSET (XP, YP), COLR%(INT(60 * (Z - ZMIN) / (ZMAX - ZMIN) + 4) MOD 4)
+5240 RETURN
+	Some sample attractors with contour bands produced by PROG13 are shown in Figures 4-35 through 4-50.
+
+Figure 4-35. Three-dimensional quadratic map with contour bands
+
+Figure 4-36. Three-dimensional quadratic map with contour bands
+
+Figure 4-37. Three-dimensional quadratic map with contour bands
+
+Figure 4-38. Three-dimensional quadratic map with contour bands
+
+Figure 4-39. Three-dimensional quadratic map with contour bands
+
+Figure 4-40. Three-dimensional quadratic map with contour bands
+
+Figure 4-41. Three-dimensional quadratic map with contour bands
+
+Figure 4-42. Three-dimensional cubic map with contour bands
+
+Figure 4-43. Three-dimensional cubic map with contour bands
+
+Figure 4-44. Three-dimensional cubic map with contour bands
+
+Figure 4-45. Three-dimensional quartic map with contour bands
+
+Figure 4-46. Three-dimensional quartic map with contour bands
+
+Figure 4-47. Three-dimensional quartic map with contour bands
+
+Figure 4-48. Three-dimensional quintic map with contour bands
+
+Figure 4-49. Three-dimensional quintic map with contour bands
+
+Figure 4-50. Three-dimensional quintic map with contour bands
+
+
+## Colors
+	It’s not hard to guess that the next logical step is to use the full array of colors available on a computer with a color monitor. In SCREEN mode 9 (EGA) and SCREEN mode 12 (VGA), 16 colors can be displayed simultaneously from a palette of 64 (EGA) or 262,144 (VGA). SCREEN mode 13 (VGA), which is supported by some BASIC versions, allows 256 colors, but the screen resolution of 320 by 200 is inadequate for our purposes, and thus it will not be used. In SCREEN mode 1 (CGA) only four colors can be displayed from one of two palettes. We assume your computer has EGA or VGA capabilities, but the program also works with CGA if you use SM% = 1 in line 1030. The program is written to simplify extending the technique to future new graphics modes with more colors and higher resolution, provided they are supported by your BASIC compiler.
+	We will convert the Z values into 15 different colors (COLOR 1 through COLOR 15). The 16th (COLOR 0) is the background color and will not be used. The default values of the colors are given in Table 4-1. The changes required to the program are shown in PROG14.
+
+PROG14. Changes required in PROG13 to display colors
+1000 REM THREE-D MAP SEARCH (With Color Display)
+1120 TRD% = 3                   'Display third dimension in color
+
+3760 IF Q$ = "R" THEN TRD% = (TRD% + 1) MOD 4: T% = 3: IF N > 999 THEN N = 999: GOSUB 5600
+
+4500        IF TRD% = 3 THEN PRINT "colors    "
+
+5160 IF TRD% = 3 THEN PSET (XP, YP), COLR%(INT(NC% * (Z - ZMIN) / (ZMAX - ZMIN) + NC%) MOD NC%)
+
+5610 NC% = 15                   'Number of colors
+5630 IF TRD% = 3 THEN FOR I% = 0 TO NC%: COLR%(I%) = I% + 1: NEXT I%
+
+	Some sample color attractors produced by PROG14 are shown in Plates 1 through 8. Some of these examples are projected onto a sphere. Note that the interposition of dots of different colors in some of the figures gives the impression that there are many more than 16 colors. The addition of color usually enhances the appearance of the attractors. More such cases could have been included in this book, but then its cost would have been considerably higher. Henceforth you will probably want to view your three-dimensional attractors in color.
+	Notice that, where one part of the attractor lies behind another, you can see the more distant portion through the closer portion. Thus the attractor appears transparent, which enables you to see its interior but tends to diminish the perception of depth. You might want to modify the program so that the closer portion occludes the region behind it. It is relatively easy to do so using the BASIC POINT function to test the existing color of the pixel before plotting the new point and plotting it only if its color is higher in the sequence than the existing one. Thus each pixel eventually is colored according to the closest part of the attractor. This effect can be accomplished by changing line 5160 of PROG14 to
+
+5160 IF TRD% = 3 THEN C% = INT(NC% * (Z - ZMIN) / (ZMAX - ZMIN) + NC%) MOD NC%: IF POINT(XP, YP) < C% THEN PSET (XP, YP), C%
+
+	You can also alter the sequence of colors by changing the values stored in the array COLR% in line 5630. For example, a sequence that mimics the rainbow would advance from red (12) through yellow (14), green (10), cyan (11), and blue (9) to magenta (13). With aerial perspective, brilliant, warm colors such as red appear closer to the viewer than lighter, less brilliant, cool colors such as blue, which we associate with the distant sky. Thus assigning red to the large Z values and blue to the small Z values enhances the illusion of depth.
+	Most dialects of BASIC include a PALETTE command that allows you to change the screen colors without replotting the data, but this command works differently with different versions of BASIC and in different graphics modes, so we will not try to provide a program that takes advantage of it. However, a challenging programming exercise is to add the capability of rotating the color palette by pressing a key while a color attractor is being displayed to produce a psychedelic animated display. You might use the + key to rotate in one direction and the - key to rotate in the opposite direction. For most of the figures in this book, the PALETTE command was used to interchange black and white before printing them to save ink and to improve the appearance of the attractors when they are displayed on a white background.
+	You may also want to experiment with combining the various display techniques. Clearly there is nothing to preclude displaying a color attractor with shadows and contour bands. Such combinations offer interesting possibilities that are exploited for the four-dimensional cases in the next chapter.
+
 
 ## Characters
+	Many computer monitors and printers lack color capabilities. However, it is often possible to produce a similar effect using a gray scale. In some cases, the various colors are mapped automatically into a shade of gray. Another technique that works on almost any computer and offers interesting display possibilities is to map the Z values into different ASCII characters and print them as a block of text. Such text files are easily manipulated by word processors, transported to different computers, displayed on almost any monitor, and printed with any printer on paper of various sizes.
+	Perhaps the simplest method is to map the Z values into consecutive ASCII characters, thereby producing a type of gray scale with bands whose darkness depends on the density of the character. A more reasonable approach is to order the characters so that the more dense ones correspond to larger values of Z. The ordering depends on the font, typeface, and size of the characters. For example, 10-point Letter Gothic bold can be ordered as shown in Table 4-2. The table uses 32 characters, which is about the maximum for this technique because many of the characters have the same density. The eye can distinguish about 500 levels of gray. This sequence is only one of many that are equally good. To see the gray scale, you should view the table from at least six feet away. Squinting and removing your glasses, if you wear them, might also help.
+Table 4-2.  Gray scale produced by ordering 10-point Letter Gothic bold characters
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
+	.:,;”=>!/+?icl7IjvJL64VOASUDXEBM
 
-## Anaglyphs
+	The character densities for this table were determined by writing each of the ASCII characters from 33 to 127 (see Table 2-1) to the screen of a Macintosh computer and then counting the illuminated pixels using the POINT command in BASIC. Bold characters are chosen for their increased density. Avoid lowercase characters whenever possible because they often don’t extend the full height and thus leave a wide blank band between their top and the bottom of the row above. Be sure to use a monospaced font rather than a proportional one. For the default font on most IBM computers in VGA SCREEN mode 12, a better sequence is
 
-## Stereo Pairs ~ Stereo Pairs
+.-,;=+>i%lI?v7zuCjTFSVGAEUDHBWQ
 
-## Slices 
+	We will not develop a computer program for implementing this technique because the resolution is too poor for useful display on a computer screen or page of a book. Furthermore, the program would be dependent on the fonts available and the capabilities of the printer. The programming is not difficult and closely parallels the example in PROG14.
+	However, Table 4-3 provides an indication of what is possible using 5-point Letter Gothic bold characters with 78 lines of 103 characters each. The character sequence ordered by density for this case is given in Table 4-2. This case is a three-dimensional quadratic map with a code of ILRRHAEYWNTPWFLHTCSLYLFAKQITQTW.
+	At such a low resolution, much of the detail is lost. However, if you have a printer or plotter capable of printing small fonts on a large piece of paper, you can recover the resolution and produce figures of considerable artistic quality. You can divide the text into many segments on separate pages and tape them together, or print them on a paper roll or fanfold paper to make a very skinny attractor many feet long. With ordinary objects such as the text in this book, extreme stretching in one dimension just produces sticklike figures. However, strange attractors are fractals, and they have detail on all scales, which ensures that they look interesting however much they are stretched.
+
+Table 4-3. Three-dimensional quadratic map with character scale
+
+
+##  Anaglyphs
+	An alternative approach for displaying objects in three dimensions is the binocular stereogram in which the parallax produced by separate images in each eye creates the illusion of depth. The idea dates back to Socrates in the fourth century BC, and the earliest stereograms were produced in the mid-1800s by Sir Charles Wheatstone and Sir David Brewster. The inception of motion pictures in the early 1900s was accompanied by 3-D movies using overlapping red-green images that were viewed through red-green glasses to produce a black-and-white image in what is called the anaglyphic process. Anaglyphs have also been widely used in comic books. Color 3-D movies using cross-Polaroid glasses were briefly popular in the 1950s. They require a special screen to reflect the polarized light from the projectors without allowing it to depolarize.
+	The anaglyphic process offers distinct advantages in computer visualization. The hardware requirements are minimal (a color monitor and a pair of 50-cent glasses), the programming is surprisingly simple, and the results can be impressive. The main drawback is that the images produced are usually monochromatic, although a gray scale and some limited coloration are possible.
+	Our perception of depth arises from a number of psychological and physiological processes. Many of these processes are induced by visual cues that don’t depend on binocular vision, such as the relative size and motion of objects, interposition, illumination, shadows, and focal accommodation. Others require the parallax attendant to stereoscopic vision. When some of the usual visual cues are absent or contradictory, a rivalry ensues that demands time and mental effort for our brains to resolve. It is remarkable that, with just the single cue of binocular stereopsis, most people can quickly perceive a vivid three-dimensional image.
+	Consider a point at a distance D from the midpoint of your eyes whose separation we take to be e (typically 6.5 cm), as shown in Figure 4-51(a). Assume the point is a single illuminated pixel on the computer screen. Each eye must swivel inward through an angle  in order for the two images to fuse into a single point, where  is the angle whose tangent is e / 2D. It is this muscular response of the eyes that provides the brain with the relevant depth information.
+
+Figure 4-51. Line of sight of each eye when viewing anaglyphs
+
+	Now suppose you are to perceive the point to be at a distance D - Z from your eyes (a distance Z in front of the computer screen) as shown in Figure 4-51 (b). We must then plot two points on the computer screen separated horizontally by a distance d. From the similarity of the two triangles, we calculate 
+
+	d = eZ / (D-Z)          				(Equation 4C)
+
+The formula works also for negative Z.
+	To achieve the proper linear perspective, we should plot the closer points a little farther apart than the more distant points, but with unfamiliar objects such as strange attractors, there is little reason to do so. Usually D is much greater that Z, and we can approximate the right-hand side of Equation 4C by e Z / D. This approximation causes some expansion of the image for negative Z (behind the screen) and compression of the image for positive Z (in front of the screen). This compression can be desirable to keep the image always in front of your face rather than to let it pass behind your head.
+	The length of most people’s arms is almost exactly ten times the distance between their eyes. Therefore, a value of D / e = 10 is appropriate for a computer screen viewed at arm’s length. In practice, the viewing distance is not very critical. The perceived depth of the image is enhanced by viewing from a greater distance, but it usually takes longer for the brain to accommodate, so it is often best to view first from close up. It sometimes speeds the adjustment to move your head from side to side.
+	A computer display optimized for viewing at arm’s length is very effective when projected on a large screen and viewed in an auditorium. Were this not the case, three-dimensional movies could not be shown to theater audiences. In such a case, the brain perceives a scaled version of the image at a closer distance. The same effect occurs when viewing 2-D movies. The characters on the screen are not perceived as giants a large distance from the viewer. Similarly, the brain is able to compensate almost without limit to other distortions if the objects are familiar. A movie viewed from the rightmost seat in the front row appears normal after a short period of adjustment.
+	It is important to maintain a somewhat limited depth and field of view. Leonardo da Vinci recommended that a painting be optimally viewed from a distance equal to three times its width. Most computer screens approximately satisfy this criterion when viewed at arm’s length. An object as deep as it is wide thus requires that the two images be separated by up to about an inch, requiring that the eyes toe-in by about three degrees.
+	The computational task, therefore, is to plot each point that makes up the attractor twice, with a horizontal separation proportional to the distance the point is to appear in front of or behind the screen, and to arrange that one set of points be visible only to the left eye and the other only to the right eye. In the anaglyphic process, this is done by plotting one set of points in red and the other in the complementary cyan (blue-green) and viewing through appropriate color-filtered glasses. By convention, the left eye should only respond to the red and the right eye only to the cyan.
+	Note that individuals who are color blind should experience no difficulty because it is unnecessary (and indeed undesirable) to perceive the individual colors; it is only necessary that the eyes be sensitive to them. Certain other eye defects, particularly those resulting in ocular asymmetry, are more problematic.
+	You can plot the points on either a black or a white background. With a black background, the images fuse into white (additive process), and with a white background, the images fuse into black (subtractive process). The sense of Z is reversed with the choice of background. With a black background, the red is seen through the red filter on the left eye, while for a white background, red is seen through the cyan filter on the right eye. In practice the white background is usually more satisfactory, but you may want to try it both ways to see which works best for you. Wherever a red and cyan point overlap, they should be plotted as a single black point if the background is white or as a single white point if the background is black. The changes required to the program to produce such anaglyphs are shown in PROG15.
+
+PROG15. Changes required in PROG14 to produce anaglyphs
+1000 REM THREE-D MAP SEARCH (With Anaglyphic Display)
+1120 TRD% = 4                  'Display third dimension as anaglyph
+
+3220    ZA = (ZMAX + ZMIN) / 2
+3240    IF TRD% = 4 THEN LINE (XL, YL)-(XH, YH), WH%, BF
+
+3760 IF Q$ = "R" THEN TRD% = (TRD% + 1) MOD 5: T% = 3: IF N > 999 THEN N = 999: GOSUB 5600
+
+4510        IF TRD% = 4 THEN PRINT "anaglyph  "
+
+5170 IF TRD% <> 4 THEN GOTO 5240
+5180    XRT = XP + XZ * (Z - ZA): C% = POINT(XRT, YP)
+5190    IF C% = WH% THEN PSET (XRT, YP), RD%
+5200    IF C% = CY% THEN PSET (XRT, YP), BK%
+5210    XLT = XP - XZ * (Z - ZA): C% = POINT(XLT, YP)
+5220    IF C% = WH% THEN PSET (XLT, YP), CY%
+5230    IF C% = RD% THEN PSET (XLT, YP), BK%
+
+5640 WH% = 15: BK% = 8: RD% = 12: CY% = 11
+
+	PROG15 assumes EGA or VGA graphics and a color monitor. If you have CGA graphics, you can obtain satisfactory results in SCREEN mode 1, PALETTE 1 by changing the colors in line 5640 to WH% = 3: BK% = 0: RD% = 2: CY% = 1.
+	Some sample anaglyphs are shown in Plates 9 through 16. Use the special glasses included with the book. If these glasses are missing, you can probably find a suitable pair at a comic book store. If you have difficulty acclimating to the anaglyphs, try viewing them from close-up and then back away once you see the effect. You may need some practice, especially because the attractors you are viewing are unfamiliar objects and they lack other depth clues. You might also try reversing the glasses (red over right eye), which reverses in and out.
+	Because of the large variation of computer monitor colors and spectacle filters, ghost images are common. Manipulation of the computer color palette is of limited use because the monitor ultimately constructs its colors from three distinct phosphors (red, green, and blue). The usual problem is inadequate rejection of the green by the red filter, resulting in a red ghost image when viewed against a white background. Suppression of the green by using only red and blue on a magenta background eliminates this problem but yields poor contrast of the resulting image. In some cases, the ghost images can be suppressed by viewing through multiple pairs of glasses. You may want to adjust the intensity of the red, green, and blue, so the images seen by each eye through the glasses have similar intensities.
+
+
+##  Stereo Pairs  |  Stereo Pairs
+	Believe it or not, with a bit of practice, you can learn to view attractors in stereoscopic 3-D without special glasses. For this purpose, we print the two images side-by-side in the same color instead of superimposed on one another in different colors as we did with the anaglyphs. This technique permits full-color displays, and we will exploit this capability in the next chapter. For the moment, let’s consider only monochrome images.
+	First we develop the computer program necessary to produce the images. The images should not be separated more than the distance between your eyes, which for most people is about 6.5 cm. If the images are separated by a larger distance, the eyes have to rotate outward beyond the normal parallel position, which at best is uncomfortable and at worst impossible. Such images are described as being walleyed. However, if we reduce the images to a sufficiently small size on the computer screen, the resolution is poor. Therefore, we will plot the images as large as possible and rely on the printer to reduce the size for comfortable viewing. If you prefer to sacrifice the resolution and view the attractors directly on the screen, the program is written to make it easy for you to do so. Alternately, your monitor may have an adjustment that allows you to shrink the width of the image.
+	PROG16 shows the changes required to produce such stereo pairs.
+
+PROG16. Changes required in PROG15 to produce stereo pairs
+1000 REM THREE-D MAP SEARCH (With Stereo Display)
+1120 TRD% = 5                'Display third dimension as stereogram
+
+3250    IF TRD% = 5 THEN LINE (XA, YL)-(XA, YH)
+3320 IF PJT% = 1 AND TRD% < 5 THEN CIRCLE (XA, YA), .36 * (XH - XL)
+
+3760 IF Q$ = "R" THEN TRD% = (TRD% + 1) MOD 6: T% = 3: IF N > 999 THEN N = 999: GOSUB 5600
+
+4520        IF TRD% = 5 THEN PRINT "stereogram"
+
+5240 IF TRD% <> 5 THEN GOTO 5280
+5250    HSF = 2                 'Horizontal scale factor
+5260    XRT = XA + (XP + XZ * (Z - ZA) - XL) / HSF: PSET (XRT, YP)
+5270    XLT = XA + (XP - XZ * (Z - ZA) - XH) / HSF: PSET (XLT, YP)
+5280 RETURN
+
+	If you want to shrink the image for direct viewing from the computer screen, change the horizontal scale factor (HSF) in line 5250 from 2 to a larger value that separates the images by about 6.5 centimeters, or less if you are having trouble adapting to them.
+	Sample stereo pairs produced by this technique are shown in Figures 4-52 through 4-67. You should hold them exactly horizontally, directly in front of your face at a normal reading distance, and gaze into the distance until you see three images. The one in the middle should appear in 3-D, and the ones on each side, which you must train yourself to ignore, should be in 2-D.
+
+Figure 4-52. Stereo pair of three-dimensional quadratic map
+
+Figure 4-53. Stereo pair of three-dimensional quadratic map
+
+Figure 4-54. Stereo pair of three-dimensional quadratic map
+
+Figure 4-55. Stereo pair of three-dimensional quadratic map
+
+Figure 4-56. Stereo pair of three-dimensional quadratic map
+
+Figure 4-57. Stereo pair of three-dimensional quadratic map
+
+Figure 4-58. Stereo pair of three-dimensional quadratic map
+
+Figure 4-59. Stereo pair of three-dimensional quadratic map
+
+Figure 4-60. Stereo pair of three-dimensional quadratic map
+
+Figure 4-61. Stereo pair of three-dimensional quadratic map
+
+Figure 4-62. Stereo pair of three-dimensional quadratic map
+
+Figure 4-63. Stereo pair of three-dimensional cubic map
+
+Figure 4-64. Stereo pair of three-dimensional cubic map
+
+Figure 4-65. Stereo pair of three-dimensional quartic map
+
+Figure 4-66. Stereo pair of three-dimensional quartic map
+
+Figure 4-67. Stereo pair of three-dimensional quintic map
+
+	You may find it difficult to adjust to the images at first, but with practice you should be able to see them almost instantly. Viewing them should be relaxing, with a sensation resembling a blank stare. Effort is required to return to normal viewing, much like returning to the words on this page after gazing into the distance.
+	It might help to close your eyes momentarily and then reopen them if you are having trouble adapting. You can also buy an inexpensive hand stereoscope containing prisms that separate and magnify the images so that you can view them from a closer distance. Such viewing forces the side images out of your field of view and eases the adjustment to the middle image.
+	In the 1950s, the View-Master stereo viewer was very popular for home use, and many stereoscopic photographs were produced. Their popularity has waned, and the View-Master is no longer made, but similar inexpensive models can still be found in toy stores, often with images of cartoon characters. Stereo images are usually photographed with a dual camera whose separation can be increased beyond the normal eye separation to enhance the depth sensation in what is called hyperstereo.
+	Stereoscopic images are used extensively by geologists and cartographers to determine terrain elevation from aerial photographs. As an airplane or satellite travels across the Earth, photographs are taken at two positions separated by a distance much greater than the distance between the eyes. When viewed through a stereoscope, the Earth appears as a scaled model viewed from just a foot or so above, and it is easy to discern the elevation changes.
+	The preceding technique is called free viewing. An alternate and more difficult technique, called short-focus viewing, can also be used to view the stereo pairs. Here the procedure is to place the figure at arm’s length but to look at a point about halfway to the figure. It may help to hold your finger at the halfway point and to cross your eyes until you see a single image of your finger. You should then see the three images of the figure float up off the page in the plane of your finger. The middle image should be three-dimensional. It may be difficult to keep the image from wavering and returning to the plane of the page. Squinting sometimes helps.
+	Some people find short-focus viewing easier than free viewing. If you are instinctively short-foucus viewing, you will find that the right side of Figure 4-67 is farther from you than the left side. With free viewing, it will be closer.
+	An advantage of short-focus viewing is that the images can be separated by a much larger distance, and so it works for projection on a large screen in a classroom or auditorium. However, note that the image is in-out reversed from what it is with free viewing. This reversal is called pseudostereo. With anaglyphs, pseudostereo can be obtained by reversing the glasses. Pseudostereo images usually would be very undesirable and would lead to all kinds of visual contradictions, but with our strange attractors, which have no other visual depth cues, it makes little difference. It can even be an advantage to be able to view the objects in either of these ways. Can you guess what you will see if you turn the figures upside down? Think about it, and then give it a try.
+	Note that with free viewing, the left image disappears when you close your right eye and the right image disappears when you close your left eye. With short-focus viewing, the opposite occurs. However, it is incorrect to assume that each eye sees only one of the images. Both eyes see both images, and the images fuse into one when your eyes are aimed in the proper direction.
+
+
+## Slices
+	We will discuss one final way to view attractors resulting from three-dimensional maps. Low-dimensional attractors are like loosely wound balls of string, whereas high-dimensional ones are more like loaves of bread filled with holes. Anaglyphs and stereo pairs are effective for cases of low dimension, but as the dimension increases, the attractor becomes too opaque, and the illusion of depth is lost.
+	Carrying the loaf-of-bread analogy a bit further, you could imagine slicing the loaf into a large number of very thin slices. The result is to decrease the dimension of the object by one. For example, an object with a fractal dimension of 2.5 would become an object of dimension of 1.5 in each slice. This is an example of what is called a Poincaré section (as in “cross section”).
+	Perhaps it’s easier to consider a specific case. Suppose the attractor were a loosely wound ball of very thin string. The attractor would then be essentially one-dimensional. The string would cross the slices at a number of points. Thus the slices would contain dots wherever the string pierced them. A set of a finite number of dots is an object of zero dimension.
+	If the attractor were a loosely crumpled piece of paper, its dimension would be close to two. If you were to cut a thin slice through the crumpled paper, you would be left with a handful of wormlike paper strings, which are one-dimensional objects. You should now set the book down, get a piece of paper and a pair of scissors, and try it for yourself. Be sure to make the slice as thin as possible.
+	With our maps, which contain only a finite number of points, we cannot make the slices too thin, lest they contain so few points as to be invisible. Furthermore, it is impractical to look at all the slices if they are very thin because there are too many of them. As always, we have to compromise. We’ll use 16 slices and lay them out in a 4 by 4 array so that we can see them all at once. On the computer screen, this method entails a serious sacrifice in resolution, but it does illustrate the principle. You might want to experiment with using a larger number of slices but displaying only a fraction of them. For example, try using 64 slices, and display every fourth one.
+	The modifications that are required to make the program produce a sliced display are shown in PROG17.
+
+PROG17. Changes required in PROG16 to produce slices
+1000 REM THREE-D MAP SEARCH (With Sliced Display)
+1120 TRD% = 6                   'Display third dimension as slices
+
+3260    IF TRD% <> 6 THEN GOTO 3310
+3270      FOR I% = 1 TO 3
+3280          XP = XL + I% * (XH - XL) / 4: LINE (XP, YL)-(XP, YH)
+3290          YP = YL + I% * (YH - YL) / 4: LINE (XL, YP)-(XH, YP)
+3300        NEXT I%
+
+3760 IF Q$ = "R" THEN TRD% = (TRD% + 1) MOD 7: T% = 3: IF N > 999 THEN N = 999: GOSUB 5600
+
+4530        IF TRD% = 6 THEN PRINT "slices    "
+
+5280 IF TRD% <> 6 THEN GOTO 5330
+5290    DZ = (15 * (Z - ZMIN) / (ZMAX - ZMIN) + .5) / 16
+5300    XP = (XP - XL + (INT(16 * DZ) MOD 4) * (XH - XL)) / 4 + XL
+5310    YP = (YP - YL + (3 - INT(4 * DZ) MOD 4) * (YH - YL)) / 4 + YL
+5320    PSET (XP, YP)
+5330 RETURN
+
+	Figures 4-68 through 4-83 show some sample attractors displayed as a succession of slices. The succession is from left to right and top to bottom in the same way you read (in most Western languages, at least). In these cases attractors with  dimensions greater than two have been chosen; otherwise, the dimension of the slices would be too small to be interesting.
+
+Figure 4-68. Slices of a three-dimensional quadratic map
+
+Figure 4-69. Slices of a three-dimensional quadratic map
+
+Figure 4-70. Slices of a three-dimensional quadratic map
+
+Figure 4-71. Slices of a three-dimensional quadratic map
+
+Figure 4-72. Slices of a three-dimensional cubic map
+
+Figure 4-73. Slices of a three-dimensional cubic map
+
+Figure 4-74. Slices of a three-dimensional cubic map
+
+Figure 4-75. Slices of a three-dimensional cubic map
+
+Figure 4-76. Slices of a three-dimensional quartic map
+
+Figure 4-77. Slices of a three-dimensional quartic map
+
+Figure 4-78. Slices of a three-dimensional quartic map
+
+Figure 4-79. Slices of a three-dimensional quartic map
+
+Figure 4-80. Slices of a three-dimensional quintic map
+
+Figure 4-81. Slices of a three-dimensional quintic map
+
+Figure 4-82. Slices of a three-dimensional quintic map
+
+Figure 4-83. Slices of a three-dimensional quintic map
+
+	In this chapter we have described a number of techniques whereby three-dimensional information can be exhibited on a computer screen or printed page. However, none of these displays is truly three-dimensional. You have seen the term “3-D” used loosely in advertisements for computer graphics, often meaning little more than a perspective drawing or a view from an oblique angle. In a true three-dimensional display, the viewer must be able to see behind an object by moving his or her head from side to side. A holographic display allows this, but most so-called 3-D displays do not. Anaglyphs and stereo pairs are probably better described as stereoscopic displays. They merely provide the illusion of 3-D, as do shadows. Techniques using bands, colors, and slices deserve even less to be called 3-D, however useful they are for conveying information about the third dimension. You should be appropriately discerning when confronted with graphics claimed to be 3-D.

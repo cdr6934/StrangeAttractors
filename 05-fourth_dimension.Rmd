@@ -1,14 +1,328 @@
-# The Fourth Dimension 
+# The Fourth Dimension
+Although we normally think of space as three-dimensional, mathematics is not so constrained. Strange attractors can be embedded in  space of four and even higher dimensions. Their calculation is a straightforward extension of what we have done before. The challenge is to find ways to visualize such high-dimensional objects. This chapter exploits a number of appropriate visualization techniques after a digression to explain why dimensions higher than three are useful for describing the world in which we live.
+
 
 ## Hyperspace
+	Ordinary space is three-dimensional. The position of any point relative to an arbitrary origin can be characterized by a set of three numbers—the distance forward or back, right or left, up or down. An object, such as a solid ball, in this space may itself be three-dimensional, or perhaps, like an eggshell of negligible thickness, it may be two-dimensional. You can also imagine an infinitely fine thread, which is one-dimensional, or the period at the end of this sentence, which is essentially zero-dimensional. Although we can easily visualize objects with dimensions less than or equal to three, it is hard to envision objects of higher dimension.
+	Before discussing the fourth dimension, it is useful to clarify and refine some familiar terms. Perhaps the best example of a one-dimensional object is a straight line. The line may stretch to infinity in both directions, or it may have ends. A line remains one-dimensional even if it bends, in which case we call it a curve.
+	When we say that a curve is one-dimensional, we are referring to its topological dimension. By contrast the Euclidean dimension is the dimension of the space in which the curve is embedded. If the line is straight, both dimensions are one, but if it curves, the Euclidean dimension must be higher than the topological dimension in order for it to fit into the space. Both dimensions are integers. One definition of a fractal is an object whose Hausdorff-Besicovitch (fractal) dimension exceeds its topological dimension. For example a coastline on a flat map has a topological dimension of one, a Euclidean dimension of two, and a fractal dimension between one and two. It is an infinitely long line. On a globe, its Euclidean dimension would be three.
+	A special and important example of a curve is a circle—a curve of finite length but without ends, every segment of which lies at a constant distance from a point at the center. Every circle lies in a plane, which is a flat, two-dimensional entity. Like a line, the plane may stretch to infinity in all directions, or it may have edges. If a plane has an edge, we call it a disk. Note the distinction between a circle, which is a one-dimensional object that does not include its interior, and a circular disk, which is a two-dimensional object that includes the interior.
+	Just as not all lines are straight, not all two-dimensional objects are flat. A sheet of paper of negligible thickness remains two-dimensional if it is curled or even crumpled up, in which case it is no longer a plane but is still a surface. A curved surface has a Euclidean dimension of at least three. A surface can be finite but without edges. An example is a sphere, every segment of which is at a constant distance from its center.
+	Note that just as a circle doesn’t include its interior, neither does a sphere. When we want to refer to the three-dimensional region bounded by a sphere, we call it a ball. This terminology is universal among mathematicians, but not among physicists, who sometimes consider the dimension of circles and spheres to be the minimum Euclidean dimension of the space in which they can be embedded (two and three, respectively).
+	Another example of a finite surface without edges is a torus, most familiar as the surface of a doughnut or inner tube. Such curved spaces without edges are useful whenever one of the variables is periodic. Spaces of arbitrary dimensions, whether flat or curved, are called manifolds. The branch of mathematics that deals with these shapes is called topology.
+	If we could describe the world purely by specifying the position of objects, three dimensions would suffice. However, if you consider the motion of a baseball, you are interested not only in where it is, but in how fast it is moving and in what direction. Six numbers are needed to specify both its position and its velocity. This six-dimensional space is called phase space. Furthermore, if the ball is spinning, six more dimensions are needed, one to specify the angle and another to specify the angular velocity about each of three perpendicular axes through the ball.
+	If you have two spinning balls that move independently, you need a phase space with twice as many (24) dimensions, and so forth. Contemplate the phase-space dimension required to specify the motion of more than 1025 molecules in every cubic meter of air! Sometimes physicists even find it useful to perform calculations in an infinite-dimensional space, called Hilbert space.
+	You might also be interested in other properties of the balls, such as their temperature, color, or radius. Thus the state of the balls as time advances can be described by a curve, or trajectory, in some high-dimensional space called state space, in which the various perpendicular directions correspond to the quantities that describe the balls. The trajectory is a curve connecting temporally successive points in state space.
+	You have probably heard of time referred to as the fourth dimension and associate the idea with the theory of relativity. Long before Einstein, it was obvious that to specify an event, as opposed to a location, it is necessary to specify not only where the event occurred (X, Y, and Z) but also when (T). We can consider events to be points in this four-dimensional space.
+	Note that the spatial coordinates of a point are not unique. An object four feet in front of one observer might be six feet to the right of a second and two feet above a third. The values of X, Y, and Z of the position depend on where the coordinate system is located and how it is oriented. However, we would expect the various observers to agree on the separation between any two locations. Similarly we expect all observers to agree on the time interval between two events.
+	The special theory of relativity asserts that observers usually do not agree on either the separation or the time interval between two events. Events that are simultaneous for one observer will not be simultaneous for a second moving relative to the first. Similarly, two successive events at the same position as seen by one observer will be seen at different positions by the other.
+	You have probably heard that, according to the special theory of relativity, moving clocks run slow and moving meter sticks are shortened. (It is also true that the effective mass of an object increases when it moves, leading to the famous E = mc2, but that’s another story.)  These discrepancies remain even after the observers correct for their motion and for the time required for the information about the events to reach them traveling at the speed of light. It is important to understand that these facts have nothing to do with the properties of clocks and meter sticks and that they are not illusions; they are properties of space and time, neither of which possess the absolute qualities we normally ascribe to them.
+	What is remarkable is that all observers agree on the separation between the events in four-dimensional space-time. This separation is called the proper length, and it is calculated from the Pythagorean theorem by taking the square root of the sum of the squares of the four components after converting the time interval (T) to a distance by multiplying it by the speed of light (c). The only subtlety is that the square of the time enters as a negative quantity:
+
+	Proper length = [DX2 + DY2 + DZ2 - c2DT2]1/2          	(Equation 5A)
+
+	Because of the minus sign in Equation 5A, time is considered to be an imaginary dimension; an imaginary number is one whose square is negative. Note, however, that the word “imaginary” does not mean it is any less real than the other dimensions, only that its square combines with the others through subtraction rather than addition. If you are unfamiliar with imaginary numbers, don’t be put off by the name. They aren’t really imaginary; they are just the other part of certain quantities that require a pair of numbers rather than a single number to specify them.
+	The minus sign also means that proper length, unlike ordinary length, may be imaginary. If the proper length is imaginary, we say the events are separated in a timelike, as opposed to a spacelike, manner. Timelike events can be causally related (one event can influence the other), but spacelike events cannot, because information about one would have to travel faster than the speed of light to reach the other, which is impossible. Events separated in a timelike manner are more conveniently characterized by a proper time:
+
+	Proper time = [DT2 - DX2/c2 - DY2/c2 - DZ2/c2]1/2	(Equation 5B)
+
+In this case, time is real, but space is imaginary. Proper length is the length of an object as measured by an observer moving with the same velocity as the object, and proper time is the time measured by a clock moving with the same velocity as the observer.
+	Quantities such as proper length and proper time on which all observers agree, independent of their motion, are called invariants. The speed of light itself is an invariant. There are many others, and they all involve four components that combine by the Pythagorean theorem.
+	Thus the theory of relativity ties space and time together in a very fundamental way. One person’s space is another person’s time. Since space and time can be traded back and forth, there is no reason to call time the fourth dimension any more than we call width the second dimension. It is better just to say that space-time is four-dimensional, with each dimension on an equal footing. The apparent asymmetry between space and time comes from the large value of c (3 x 108 meters per second, or about a billion miles per hour) and the fact that time moves in only one direction (past to future). It is also important to understand that, although special relativity is called a “theory,” it has been extensively verified to high accuracy by many experiments, most of which involve particle accelerators.
+	The foregoing discussion explains why it might be useful to consider  four-dimensional space and four-dimensional objects, but it is probably fruitless to waste too much time trying to visualize them. However, we can describe them mathematically as extensions of familiar objects in lower dimensions.
+	For example, a hypercube is the four-dimensional extension of the three-dimensional cube and the two-dimensional square. It has 16 corners, 32 edges, 24 faces, and contains 8 cubes. Its hypervolume is the fourth power of the length of each edge, just as the volume of a cube is the cube of the length of an edge and the area of a square is the square of the length of an edge.
+	A hypersphere consists of all points at a given distance from its center in four-dimensional space. Its hypersurface is three-dimensional and consists of an infinite family of spheres, just as the surface of an ordinary sphere is two-dimensional and consists of an infinite family of circles. We have reason to believe that our Universe might be a hypersurface of a very large hypersphere, in which case we could see ourselves if we peered far enough into space, except for the fact that we are also looking backward to a time before Earth existed. We would also need an incredibly powerful telescope to see Earth in this way. Thus our perception that space is three-dimensional could be analogous to the ancient view that Earth was flat, a consequence of experience limited to a small portion of its surface.
 
 
 ## Projections
+	The previous section was intended to motivate your consideration of strange attractors embedded in four-dimensional space, but most of the discussion is not essential to what follows. We will now describe the computer program necessary to produce attractors in four dimensions and then develop methods to visualize them.
+	The mathematical generalization from three to four dimensions is straightforward. Whereas before we had three variables—X, Y, and Z—we now have a fourth. Having used up the three letters at the end of the alphabet, we must back up and use W for the fourth dimension, but remember that all the dimensions are on an equal footing. We use the first letters M, N, O, and P to code 4-D attractors of second through fifth orders, respectively. The number of coefficients for these cases is 60, 140, 280, and 504, respectively. The number of coefficients for order O is (O + 1)(O + 2)(O + 3)(O + 4) / 6. The number of four-dimensional fifth-order codes is 25504, a number too large to compare to anything meaningful; it might as well be infinite.
+	The program modifications required to add a fourth dimension are shown in PROG18. 
 
-## Other Display Techniques 
+PROG18. Changes required in PROG17 to add a fourth dimension
+1000 REM FOUR-D MAP SEARCH
+1020 DIM XS(499), YS(499), ZS(499), WS(499), A(504), V(99), XY(4), XN(4), COLR%(15)
+1070 D% = 4                  'Dimension of system
+1120 TRD% = 0                'Display third dimension as projection
 
-## Writing on the Wall 
+1540 W = .05
+1550 XE = X + .000001: YE = Y: ZE = Z: WE = W
+1610 WMIN = XMIN: WMAX = XMAX
 
-## Murals and Movies 
+1720 M% = 1: XY(1) = X: XY(2) = Y: XY(3) = Z: XY(4) = W
+2010 M% = M% - 1: XNEW = XN(1): YNEW = XN(2): ZNEW = XN(3): WNEW = XN(4)
 
-## Search and Destroy 
+2180    IF W < WMIN THEN WMIN = W
+2190    IF W > WMAX THEN WMAX = W
+2210 XS(P%) = X: YS(P%) = Y: ZS(P%) = Z: WS(P%) = W
+
+2410 IF ABS(XNEW) + ABS(YNEW) + ABS(ZNEW) + ABS(WNEW) > 1000000! THEN T% = 2
+2470 IF ABS(XNEW - X) + ABS(YNEW - Y) + ABS(ZNEW - Z) + ABS(WNEW - W) < .000001 THEN T% = 2
+2540 W = WNEW
+
+2910 XSAVE = XNEW: YSAVE = YNEW: ZSAVE = ZNEW: WSAVE = WNEW
+2920 X = XE: Y = YE: Z = ZE: W = WE: N = N - 1
+2950 DLZ = ZNEW - ZSAVE: DLW = WNEW - WSAVE
+2960 DL2 = DLX * DLX + DLY * DLY + DLZ * DLZ + DLW * DLW
+3010    ZE = ZSAVE + RS * (ZNEW - ZSAVE): WE = WSAVE + RS * (WNEW - WSAVE)
+3020    XNEW = XSAVE: YNEW = YSAVE: ZNEW = ZSAVE: WNEW = WSAVE
+
+3150 IF WMAX - WMIN < .000001 THEN WMIN = WMIN - .0000005: WMAX = WMAX + .0000005
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 4): T% = 1
+
+3920 IF N = 1000 THEN D2MAX = (XMAX - XMIN) ^ 2 + (YMAX - YMIN) ^ 2 + (ZMAX - ZMIN) ^ 2 + (WMAX - WMIN) ^ 2
+3940 DX = XNEW - XS(J%): DY = YNEW - YS(J%): DZ = ZNEW - ZS(J%): DW = WNEW - WS(J%)
+3950 D2 = DX * DX + DY * DY + DZ * DZ + DW * DW
+
+4760 IF D% > 2 THEN FOR I% = 3 TO D%: M% = M% / (I% - 1): NEXT I%
+	If you run PROG18 under certain old versions of BASIC, such as BASICA and GW-BASIC, you are likely to get an error in line 2710 when the program attempts to construct a code for the fourth-order and fifth-order maps as a result of the string-length limit of 255 characters. In such a case, you may need to restrict the search to second and third orders by setting OMAX% = 3 in line 1060. Alternatively, it’s not difficult to modify the program to store the code in a pair of strings or to replace the string with a one-dimensional array of integers containing the numeric equivalents of each character in the string, perhaps with a terminating zero to signify the end of the string. For example, after dimensioning CODE%(504) in line 1020, line 2710 would become
+
+2710        CODE%(I%) = 65 + INT(25 * RAN)
+
+and line 2740 would become
+
+2740    A(I%) = (CODE%(I%) - 77) / 10
+
+	Also notice that the search for attractors is painfully slow unless you have a very fast computer and a good compiler. Refer back to Table 2-2, which lists some options for increasing the speed. The search can be made faster by limiting it to second order by setting OMAX% = 2 in line 1060.
+	We have another trick we can use to increase dramatically the rate at which four-dimensional strange attractors are found without sacrificing variety. It turns out that most of these attractors have their constant terms near zero. The reason presumably has to do with the fact that the origin (X = Y = Z = W = 0) is then a fixed point, and the initial condition is chosen near the origin (X0 = Y0 = Z0 = W0 = 0.05). If the fixed point is unstable, then we have one of the conditions necessary for chaos. It is easy to accomplish this by adding after line 2730 a statement such as 
+
+2735    IF I% MOD M% / D% = 1 THEN MID$(CODE$, I% + 1, 1) = "M"
+
+This increases the rate of finding attractors by about a factor of 50. Many of the attractors illustrated in this chapter were produced in this way. This change also increases the rate for lower-dimensional maps, but by a much smaller factor. This improvement suggests that there is yet room to optimize the search routine by a more intelligent choice of the values of the other coefficients.
+	Note that PROG18 does not attempt to display the fourth dimension but projects it onto the other three, for which all the visualization techniques of the last chapter are available. Don’t waste too much time trying to understand what it means to project a four-dimensional object onto a three-dimensional space. It is just a generalization of projecting a three-dimensional object onto a two-dimensional surface. In the program, it simply involves plotting X, Y, and Z and ignoring the variable W.
+	Some examples of four-dimensional attractors projected onto the two-dimensional XY plane are shown in Figures 5-1 through 5-20. They don’t look particularly different from those obtained by projecting three-dimensional attractors onto the plane or, indeed, by just plotting two-dimensional attractors directly. Note that most of these attractors have fractal dimensions less than or about 2.0, so perhaps it is not too surprising that their projections resemble those produced by equations of lower dimension. It is rare to find attractors with fractal dimensions greater than 3.0 produced by four-dimensional polynomial maps, as will be shown in Section 8.1.
+
+Figure 5-1. Projection of four-dimensional quadratic map
+
+Figure 5-2. Projection of four-dimensional quadratic map
+
+Figure 5-3. Projection of four-dimensional quadratic map
+
+Figure 5-4. Projection of four-dimensional quadratic map
+
+Figure 5-5. Projection of four-dimensional quadratic map
+
+Figure 5-6. Projection of four-dimensional quadratic map
+
+Figure 5-7. Projection of four-dimensional quadratic map
+
+Figure 5-8. Projection of four-dimensional quadratic map
+
+Figure 5-9. Projection of four-dimensional quadratic map
+
+Figure 5-10. Projection of four-dimensional quadratic map
+
+Figure 5-11. Projection of four-dimensional quadratic map
+
+Figure 5-12. Projection of four-dimensional quadratic map
+
+Figure 5-13. Projection of four-dimensional quadratic map
+
+Figure 5-14. Projection of four-dimensional quadratic map
+
+Figure 5-15. Projection of four-dimensional quadratic map
+
+Figure 5-16. Projection of four-dimensional quadratic map
+
+Figure 5-17. Projection of four-dimensional quadratic map
+
+Figure 5-18. Projection of four-dimensional cubic map
+
+Figure 5-19. Projection of four-dimensional cubic map
+
+Figure 5-20. Projection of four-dimensional quartic map
+
+
+## Other Display Techniques
+	Projecting two of the four dimensions onto the remaining two is akin to buying a Ferrari to make trips to the grocery store. Much of our effort is wasted. We need to use the techniques developed in the last chapter to display three dimensions and devise additional methods to display simultaneously the fourth dimension.
+	Since we have several methods for displaying three dimensions, we should be able to use some of them in combination to visualize all four dimensions. Table 5-1 summarizes the display techniques we have used and indicates the number of dimensions that can be visualized with various combinations of them. In the table, a dash indicates that the combination is not possible, and a question mark indicates that the combination is possible but leads to contradictory visual information.
+
+Table 5-1. Combinations of display techniques and the number of dimensions that can be visualized with each
+			Third Dimension
+	Project	Shadow	Bands	Color	Anaglyph	Stereo	Slices
+Fourth 
+Dimension
+Project	2D	3D	3D	3D	3D	3D	3D
+Shadow	3D	-	4D	4D	?	?	4D
+Bands	3D	4D	?	4D	4D	4D	4D
+Color	3D	4D	4D	-	-	4D	4D
+Anaglyph	3D	?	4D	-	-	?	4D
+Stereo	3D	?	4D	4D	?	-	4D
+Slices	3D	4D	4D	4D	4D	4D	-
+
+	In Table 5-1, the entries in boldface are the ones we will implement in the program. They were chosen because of their visual effectiveness, ease of programming, and lack of redundancy with other combinations. Cases below and to the left of the diagonal duplicate those above and to the right. The changes needed in the program to produce such four-dimensional displays are shown in PROG19.
+
+PROG19. Changes required in PROG18 to display the fourth dimension
+1000 REM FOUR-D MAP SEARCH (With 4-D Display Modes)
+1040 PREV% = 5                  'Plot versus fifth previous iterate
+1120 TRD% = 1                   'Display third dimension as shadow
+1130 FTH% = 2                   'Display fourth dimension as colors
+
+3630 IF Q$ = "" OR INSTR("ADHIPRSX", Q$) = 0 THEN GOSUB 4200
+3720 IF Q$ = "H" THEN FTH% = (FTH% + 1) MOD 3: T% = 3: IF N > 999 THEN N = 999: GOSUB 5600
+
+4330    PRINT TAB(27); "H: Fourth dimension is ";
+4340        IF FTH% = 0 THEN PRINT "projection"
+4350        IF FTH% = 1 THEN PRINT "bands     "
+4360        IF FTH% = 2 THEN PRINT "colors    "
+
+5010 C4% = WH%
+5020 IF D% < 4 THEN GOTO 5050
+5030    IF FTH% = 1 THEN IF INT(30 * (W - WMIN) / (WMAX - WMIN)) MOD 2 THEN GOTO 5330
+5040    IF FTH% = 2 THEN C4% = 1 + INT(NC% * (W - WMIN) / (WMAX - WMIN) + NC%) MOD NC%
+5050 IF D% < 3 THEN PSET (XP, YP): GOTO 5330    'Skip 3-D stuff
+5060 IF TRD% = 0 THEN PSET (XP, YP), C4%
+5080    IF D% > 3 AND FTH% = 2 THEN PSET (XP, YP), C4%: GOTO 5110
+5130 IF TRD% <> 2 THEN GOTO 5160
+5140    IF D% > 3 AND FTH% = 2 AND (INT(15 * (Z - ZMIN) / (ZMAX - ZMIN) + 2) MOD 2) = 1 THEN PSET (XP, YP), C4%
+5150    IF D% < 4 OR FTH% <> 2 THEN C% = COLR%(INT(60 * (Z - ZMIN) / (ZMAX - ZMIN) + 4) MOD 4): PSET (XP, YP), C%
+5260    XRT = XA + (XP + XZ * (Z - ZA) - XL) / HSF: PSET (XRT, YP), C4%
+5270    XLT = XA + (XP - XZ * (Z - ZA) - XH) / HSF: PSET (XLT, YP), C4%
+5320    PSET (XP, YP), C4%
+
+5630 IF TRD% = 3 OR (D% > 3 AND FTH% = 2 AND TRD% <> 1) THEN FOR I% = 0 TO NC%: COLR%(I%) = I% + 1: NEXT I%
+
+	In presenting sample displays from PROG19, we ignore those that convey only three-dimensional information and concentrate on the new combinations that permit full four-dimensional displays. They fall into two groups—those that require the use of color and those that do not. Examples of the three 4-D monochrome combinations are shown in Figures 5-21 through 5-44, and examples of the six color combinations are shown in Plates 17 through 22.
+
+Figure 5-21. Four-dimensional quadratic map with shadow bands
+
+Figure 5-22. Four-dimensional quadratic map with shadow bands
+
+Figure 5-23. Four-dimensional quadratic map with shadow bands
+
+Figure 5-24. Four-dimensional quadratic map with shadow bands
+
+Figure 5-25. Four-dimensional quadratic map with shadow bands
+
+Figure 5-26. Four-dimensional quadratic map with shadow bands
+
+Figure 5-27. Four-dimensional quadratic map with shadow bands
+
+Figure 5-28. Four-dimensional cubic map with shadow bands
+
+Figure 5-29. Four-dimensional quadratic map with stereo bands
+
+Figure 5-30. Four-dimensional quadratic map with stereo bands
+
+Figure 5-31. Four-dimensional quadratic map with stereo bands
+
+Figure 5-32. Four-dimensional cubic map with stereo bands
+
+Figure 5-33. Four-dimensional cubic map with stereo bands
+
+Figure 5-34. Four-dimensional cubic map with stereo bands
+
+Figure 5-35. Four-dimensional quartic map with stereo bands
+
+Figure 5-36. Four-dimensional quartic map with stereo bands
+
+Figure 5-37. Four-dimensional quadratic map with sliced bands
+
+Figure 5-38. Four-dimensional quadratic map with sliced bands
+
+Figure 5-39. Four-dimensional quadratic map with sliced bands
+
+Figure 5-40. Four-dimensional quadratic map with sliced bands
+
+Figure 5-41. Four-dimensional cubic map with sliced bands
+
+Figure 5-42. Four-dimensional quartic map with sliced bands
+
+Figure 5-43. Four-dimensional quartic map with sliced bands
+
+Figure 5-44. Four-dimensional quintic map with sliced bands
+
+	You might be interested in the challenge of producing attractors embedded in dimensions higher than four. In five dimensions, you need to define a new variable, say V, and modify the program as was done for four dimensions in PROG18. The program has been written to make it relatively easy to extend it to five or even higher dimensions. Be forewarned that the calculation will be very slow. You will almost certainly want to set the coefficients of the constant terms to zero and probably restrict your search to quadratic maps. The number of fifth-dimension polynomial coefficients for order O is (O + 1)(O + 2)(O + 3)(O + 4)(O + 5) / 24. With O = 5, the number is 1260.
+	The simplest display technique is to project the fifth dimension onto the other four. This is what the program does automatically if you don’t do anything special. Several combinations of techniques, which we have already developed, are capable of displaying five dimensions. You might try combining shadows, bands, and color, for example. Table 5-2 lists the seven possible combinations of five-dimensional display techniques that don’t lead to visual contradictions.
+
+Table 5-2. Combinations of display techniques that can be used in five dimensions
+Shadow		Bands		Color
+Shadow		Bands		Slices
+Shadow		Color		Slices
+Bands		Color		Stereo
+Bands		Anaglyph		Slices
+Bands		Stereo		Slices
+Color		Stereo		Slices
+
+	For a heroic exercise in programming, visualization, and patience, you can try to extend the calculation to six dimensions. A six-dimensional, fifth-order system of polynomials has 2772 coefficients. There are only two appropriate combinations of display techniques suitable for six dimensions: shadow-bands-color-slices and bands-color-stereo-slices. If you decide to try seven dimensions, you must invent a new display technique.
+
+
+##  Writing on the Wall
+	Since four-dimensional attractors have the greatest complexity and variety of all the cases described in this book, they offer the greatest potential as display art. For such purposes, you will probably want to print them on a large sheet of paper. With an appropriate printer or plotter, any of the visualization techniques previously described can be used to produce such large prints.
+	An alternate technique that has proved very successful is an extension of the character-based method described in Section 4.5. In this technique, the third dimension is coded as an ASCII character with a density related to the Z value, and the fourth dimension is coded in color. Color pen and pencil plotters and ink-jet plotters, as well as more expensive but high-quality electrostatic and thermal plotters, normally used for engineering and architectural drawings, can print text on sheets up to 36 inches wide. Ink-jet plotters are growing in popularity over the more traditional pen plotters because they are faster and quieter and don’t require special paper. They can also print gray scales. With care, you can piece together smaller segments printed by more conventional means.
+	When the attractors are reduced to sequences of text, resolutions of 640 by 480 (VGA) or 800 by 600 (Super VGA) produce large figures whose individual characters can be read when examined closely but that blend into continuous contours when viewed from a distance. Artists often use this technique in which the viewer is provided with a different visual experience on different scales. You should use the largest and boldest characters available to maximize the contrast, provided they remain readable. There should be little or no space between rows and columns of characters. With a pen plotter, the pen size can be chosen for the best compromise of contrast and readability. A pen that makes a line width of 0.35 mm (fine) is a reasonable choice.
+	Inks are available in only a limited number of colors, and pen plotters are usually capable of accommodating only a small number of pens. The pens can be sequenced to place compatible colors next to one another. With eight pens and commonly available inks, a good sequence is magenta, red, orange (or yellow), brown, black, green, turquoise, and blue. The closest color sequence for viewing on the computer screen from Table 4-1 is 13, 12, 4 (or 14), 6, 8, 2, 3, and 9, with a white (15) background. With upwards of 20 characters producing different color intensities, the limitation of eight colors of ink is not a serious one. With eight colors and ASCII codes from 32 to 255, you can have 28 different intensities for each color. The inks can be mixed to produce different shades of the colors. Pencils are less expensive and don’t clog or dry out as pens often do, but pencil plots have a tendency to smudge. Ink, of course, also smudges until it is thoroughly dry. Plotters are relatively slow, and attractors produced by this method typically require a few hours to a full day to produce.
+	Paper commonly used for engineering drawings comes in at least five standard sizes—A (8 1/2 by 11 inches), B (12 by 18 inches), C (18 by 24 inches), D (24 by 36 inches), and E (36 by 48 inches). English sizes and architectural sizes are slightly different, and thus a sheet may vary somewhat from these dimensions. Also, 36-inch-wide paper is available on long rolls.
+	Common paper types are tracing bond, which is the most economical, vellum, which is smooth and translucent, and polyester film, which is highly translucent, dimensionally stable, and relatively expensive. The translucent papers offer the interesting possibility of backing the print with a monochrome or color copy of itself to enhance the contrast or to produce a shadow effect if the two are displaced slightly. Other interesting effects can be achieved by backing one translucent attractor with a print of another or by back-lighting the print. Some papers stretch slightly and thus have a tendency to wrinkle. Paper with significant acid content should be avoided because it turns yellow and becomes brittle with age.
+	Some of the most artistic examples of strange attractors have been produced by these techniques, but they cannot be adequately illustrated in this book. No computer program is offered, since it is so dependent on your hardware. You will want to experiment to find the technique that works best for you and that makes the most effective use of your printer or plotter.
+
+
+##  Murals and Movies
+	The technique of making large-scale attractors for display can be carried to its logical extreme by making a mural. Special techniques using some type of stencil are required to transform the computer output to paint on the wall. Silk screen is useful for transferring the image to fabrics. Fractal tee-shirts employing this technique have recently become popular.
+	To produce a mural, you need to start with a large number of plots, each showing a small section of the attractor. A property of fractals is that they have detail on all scales, and thus a large mural should look interesting when viewed either from a distance or close up.
+	You might also photograph the computer screen or a high-quality print and produce slides that can be projected onto a large surface or screen with a slide projector. Equipment is available commercially for producing slides directly from digital computer output. A sequence of such slides makes a very compelling presentation or visual accompaniment to a lecture or musical production.
+	The color slices shown in Plate 22 suggest the possibility of making color movies by extending the technique to a very large number of slices and using each one as a frame of a movie. The effect is to cause the attractor to emerge at a point in an empty field and to grow slowly, bending and wiggling until fully developed, and then to disappear slowly into a different point. If the technology for doing this is not available to you, try printing a large number of attractor slices on small cards and fanning through them to produce a semblance of animation. This technique, using the attractors described in Section 7.6, was used to produce the animation in the upper-right corner of the odd pages of this book.
+	If the idea of making strange-attractor movies appeals to you, another technique is to take one of your favorite attractors and slowly change one or more of the coefficients in successive frames of the movie. A good way to start is to multiply all the coefficients by a factor that varies from slightly less than 1.0 to slightly greater than 1.0. You must determine the range over which the coefficients can be changed without the solutions becoming unbounded or nonchaotic. The ends of this range then become the beginning and end of the movie.
+	Sometimes the attractor slowly and continuously alters its shape. The changes can involve bifurcations, such as the period-doubling sequence in the logistic equation described in Chapter 1. Such bifurcations are called subtle. At other times, the attractor and its basin abruptly disappear at a critical value of the control parameter. Such discontinuous bifurcations are called catastrophes.
+	If the control parameter is changed in the opposite direction, the result may be different from simply running the movie backward. This is an example of hysteresis, which is a form of memory in a dynamical system. It serves to limit the occurrence of catastrophes. The thermostat that controls your heat probably uses hysteresis to keep the furnace from cycling on and off too frequently. Catastrophic bifurcations usually exhibit hysteresis, whereas subtle bifurcations do not.
+	These four-dimensional maps are also well suited for color holographic display or for experimentation with virtual reality, in which the view is controlled by the motion of your head and hands to give the sensation of moving through the object. The technology is complicated, but the results are visually and mentally stimulating.
+
+
+##  Search and Destroy
+	If you have worked carefully through the text, your program has created a disk file SA.DIC containing the codes of all the attractors generated since you ran the PROG11 program. We now develop the capability to examine these attractors and save the interesting ones in a file FAVORITE.DIC, while discarding the others. This feature allows you to run the program overnight and collect attractors for rapid viewing the next day. This capability is especially useful if you have a slow computer. The required program changes are shown in PROG20. 
+
+PROG20. Changes required in PROG19 to evaluate the attractors in SA.DIC and save the best of them in FAVORITE.DIC
+1000 REM FOUR-D MAP SEARCH (With Search and Destroy)
+
+1380 IF QM% <> 2 THEN GOTO 1420
+1390    NE = 0: CLOSE
+1400    OPEN "SA.DIC" FOR APPEND AS #1: CLOSE
+1410    OPEN "SA.DIC" FOR INPUT AS #1
+
+2420 IF QM% = 2 THEN GOTO 2490  'Speed up evaluation mode
+
+2610 IF QM% <> 2 THEN GOTO 2640 'Not in evaluate mode
+2620    IF EOF(1) THEN QM% = 0: GOSUB 6000: GOTO 2640
+2630    IF EOF(1) = 0 THEN LINE INPUT #1, CODE$: GOSUB 4700: GOSUB 5600
+
+3340 IF QM% <> 2 THEN GOTO 3400         'Not in evaluate mode
+3350    LOCATE 1, 1: PRINT "<Space Bar>: Discard       <Enter>: Save";
+3370    LOCATE 1, 49: PRINT "<Esc>: Exit";
+3380    LOCATE 1, 69: PRINT CINT((LOF(1) - 128 * LOC(1)) / 1024); "K left";
+3390    GOTO 3430
+
+3620 IF QM% = 2 THEN GOSUB 5800                 'Process evaluation command
+3630 IF INSTR("ADEHIPRSX", Q$) = 0 THEN GOSUB 4200
+3710 IF Q$ = "E" THEN T% = 1: QM% = 2
+
+4220 WHILE Q$ = "" OR INSTR("AEIX", Q$) = 0
+4320    PRINT TAB(27); "E: Evaluate attractors"
+
+5800 REM Process evaluation command
+5810 IF Q$ = " " THEN T% = 2: NE = NE + 1: CLS
+5820 IF Q$ = CHR$(13) THEN T% = 2: NE = NE + 1: CLS : GOSUB 5900
+5830 IF Q$ = CHR$(27) THEN CLS : GOSUB 6000: Q$ = " ": QM% = 0: GOTO 5850
+5840 IF Q$ <> CHR$(27) AND INSTR("HPRS", Q$) = 0 THEN Q$ = ""
+5850 RETURN
+
+5900 REM Save favorite attractors to disk file FAVORITE.DIC
+5910 OPEN "FAVORITE.DIC" FOR APPEND AS #2
+5920 PRINT #2, CODE$
+5930 CLOSE #2
+5940 RETURN
+
+6000 REM Update SA.DIC file
+6010 LOCATE 11, 9: PRINT "Evaluation complete"
+6020 LOCATE 12, 8: PRINT NE; "cases evaluated"
+6030 OPEN "SATEMP.DIC" FOR OUTPUT AS #2
+6040 IF QM% = 2 THEN PRINT #2, CODE$
+6050 WHILE NOT EOF(1): LINE INPUT #1, CODE$: PRINT #2, CODE$: WEND
+6060 CLOSE
+6070 KILL "SA.DIC"
+6080 NAME "SATEMP.DIC" AS "SA.DIC"
+6090 RETURN
+
+	The program uses the E key to enter the evaluation mode. When in this mode, the attractors in SA.DIC are displayed one by one. Each case remains on the screen and continues to iterate until you press the spacebar, which deletes it, the Enter key, which saves it in the file FAVORITE.DIC, the Esc key, which exits the evaluation mode, or, in rare cases, until the solution becomes unbounded, whereupon it is deleted. While an attractor is being displayed, you can press the H, R, P, and S keys to change the way it is displayed without returning to the menu screen. The upper-right corner of the screen shows the number of kilobytes left to be evaluated in the SA.DIC file. When in the evaluation mode, the program bypasses the calculation of the fractal dimension and Lyapunov exponent so that each case is displayed more quickly.
+	
+	As you begin to accumulate a collection of favorite attractors, you will probably want to go back and find your favorites of the favorites. You merely need to rename the FAVORITE.DIC file to SA.DIC and evaluate them a second time. The attractors exhibited in this book were selected by this method after looking at about 100,000 cases. Since the FAVORITE.DIC file is in ordinary ASCII text, you can share your favorites with a friend who may have a different computer or operating system. You can easily e-mail the file to someone or upload it to a computer bulletin board or mainframe computer. Remember, however, that the programs in this book are copyrighted and are for your personal use. It is a violation of the copyright to share the programs with anyone else. You can now begin your own private collection of strange attractors artwork!

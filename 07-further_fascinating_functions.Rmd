@@ -1,17 +1,337 @@
-# Further Fascinating Functions 
-
-## Steps and Tents 
-
-## ANDs and ORs 
-
-## Roots and Powers 
-
-## Sines and Cosines 
-
-## Webs and Wreaths 
+# Further Fascinating Functions
+For a system of equations to exhibit chaos, the equations must contain at least one nonlinear term, that is, a term that is not simply proportional to one of the variables. In all the preceding examples, the nonlinearity involved simple polynomials. Such polynomials are capable of modeling an enormous variety of physical phenomena. Virtually all nonlinear functions can be approximated by polynomials with sufficiently many terms. However, by limiting the polynomials to fifth order, we have missed many interesting possibilities. In this chapter we examine a few of these possibilities and suggest others that you might want to explore on your own.
 
 
-## Swings and Springs 
+##  Steps and Tents
+	Perhaps the simplest nonlinear function is the absolute value, which is denoted by |X| and programmed in BASIC with the command ABS(X). The absolute value of X is the magnitude of X without regard to its sign. For example, if X is -6 then |X| is 6. It is a nonlinear function because a graph of |X| versus X is a V-shaped curve with its notch at the origin rather than a straight line as would result if |X| were proportional to X. By adding linear terms, the V can be rotated to resemble an L or a staircase step. Computers can evaluate ABS(X) very quickly, since they only need to discard the sign.
+	An example of a one-dimensional chaotic map that involves |X| is the tent map, so called because its graph is an inverted V. A tent map that maps the interval -1 to 1 back onto itself is
+
+$$	
+Xn+1 = 1 - 2|Xn|     
+$$     			
+
+The behavior of Equation 7A is very similar to the behavior of the logistic equation (Equation 1C) with R = 4, which maps the interval 0 to 1 back onto itself. A mapping that returns a set onto itself is called an endomorphism.
+	Since one-dimensional maps tend not to be very interesting visually, we can generalize Equation 7A to two dimensions as follows:
+$$
+	Xn+1 = a1 + a2Xn + a3Yn + a4|Xn| + a5|Yn|
+	$$
+	$$
+	Yn+1 = a6 + a7Xn + a8Yn + a9|Xn| + a10|Yn|		
+$$
+This form is analogous to the general two-dimensional quadratic map in Equation 3B.
+	To make things a little more interesting, we can add two more dimensions (Z and W) to take advantage of the visualization techniques that we have previously developed. However, to keep things simple, we will demand that X and Y not depend on Z or W. They are just along for the ride, so to speak. The dynamical behavior is determined only by X and Y. We can choose any convenient equation for Z and for W. One possibility is to evaluate Z from X and Y according to
+
+$$
+	Zn+1 = Xn2 + Yn2          		
+$$
 
 
-## Roll Your Own 
+Thus Z is the square of the distance of the previous iterate from the origin. You might want to experiment with other forms.
+	For the fourth dimension (W), we will do something completely different. We will arrange for W to increase linearly with the iteration number. Thus W becomes the time coordinate in four-dimensional space-time.
+	The program modifications required to extend the computer search to such cases are shown in PROG22. Codes for this case begin with the letter Y.
+
+PROG22. Changes required in PROG21 to search for special functions of the Y type
+1000 REM SPECIAL FUNCTION SEARCH (Steps and Tents)
+1090 ODE% = 2                   'System is special function Y
+
+1710 IF ODE% > 1 THEN GOSUB 6200: GOTO 2020     'Special function
+
+2670    IF ODE% > 1 THEN CODE$ = CHR$(87 + ODE%)
+
+3650 IF ODE% > 1 THEN D% = ODE% + 5
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 7): T% = 1
+3690 IF D% > 6 THEN ODE% = D% - 5: D% = 4: GOTO 3710
+
+4290    IF ODE% > 1 THEN PRINT TAB(27); "D: System is 4-D special map "; CHR$(87 + ODE%); " ": GOTO 4320
+
+4720 IF D% > 6 THEN ODE% = ASC(LEFT$(CODE$, 1)) - 87: D% = 4: GOSUB 6200: GOTO 4770
+
+6200 REM Special function definitions
+6210 ZNEW = X * X + Y * Y       'Default 3rd and 4th dimension
+6220 WNEW = (N - 100) / 900: IF N > 1000 THEN WNEW = (N - 1000) / (NMAX - 1000)
+6230 IF ODE% <> 2 THEN GOTO 6270
+6240    M% = 10
+6250    XNEW = A(1) + A(2) * X + A(3) * Y + A(4) * ABS(X) + A(5) * ABS(Y)
+6260    YNEW = A(6) + A(7) * X + A(8) * Y + A(9) * ABS(X) + A(10) * ABS(Y)
+6270 RETURN
+
+	Examples of attractors produced by PROG22 are shown in Figures 7-1 through 7-8. They are displayed as projections onto the XY plane to let you observe the higher dimensional representations for the first time on your computer screen. Note that these attractors differ from the cases produced by polynomials in that they tend to have sharp angular corners. The one in Figure 7-3 is not an attractor but is an example of an area-preserving system sometimes called the gingerbread man because of its shape.
+Figure 7-1. Four-dimensional special map Y
+
+Figure 7-2. Four-dimensional special map Y
+
+Figure 7-3. Four-dimensional special map Y (gingerbread man)
+
+Figure 7-4. Four-dimensional special map Y
+
+Figure 7-5. Four-dimensional special map Y
+
+Figure 7-6. Four-dimensional special map Y
+
+Figure 7-7. Four-dimensional special map Y
+
+Figure 7-8. Four-dimensional special map Y
+
+
+## ANDs and ORs
+	A very different type of nonlinear map can be produced using logical (Boolean) operations to manipulate the individual bits of the binary numbers that represent the variables. This is best done after rounding the variables to the nearest integer using the BASIC CINT function. As a variation, you could use the FIX or INT function, both of which truncate rather than round. Most versions of BASIC automatically apply the CINT function before performing logical operations on numbers that are not integers. The conversion of a noninteger to an integer is itself a nonlinear operation, because the graph of CINT(X) versus X resembles a staircase.
+	The basic logical operators are AND and OR. If you are not sure what these operations mean, your BASIC manual is a good reference. The operation X AND Y produces a new number whose bits are 1 if the corresponding bits of X and Y are both 1, and 0 otherwise. The operation X OR Y produces a new number whose bits are 1 if either (or both) of the corresponding bits of X or Y are 1, and 0 otherwise. This is also called the inclusive OR to distinguish it from the exclusive OR (XOR), which produces a number whose bits are 1 if either (but not both) of the corresponding bits of X or Y are 1, and 0 otherwise.
+	The following is a general two-dimensional system of equations that includes the AND and OR operators:
+
+	Xn+1 = a1 + a2Xn + a3Yn + a4Xn AND a5Yn + a6Xn OR a7Yn
+	Yn+1 = a8 + a9Xn + a10Yn + a11Xn AND a12Yn + a13Xn OR a14 Yn 		(Equation 7D)
+
+The third and fourth dimensions are determined in the same way as in the previous section.
+	The program modifications required to extend the computer search to such cases are shown in PROG23. Codes for this case begin with the letter Z.
+
+PROG23. Changes required in PROG22 to search for special functions of the Z type
+1000 REM SPECIAL FUNCTION SEARCH (ANDs and ORs)
+1090 ODE% = 3                   'System is special function Z
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 8): T% = 1
+
+6270 IF ODE% <> 3 THEN GOTO 6310
+6280    M% = 14
+6290    XNEW = A(1) + A(2) * X + A(3) * Y + (CINT(A(4) * X) AND CINT(A(5) * Y)) + (CINT(A(6) * X) OR CINT(A(7) * Y))
+6300    YNEW = A(8) + A(9) * X + A(10) * Y + (CINT(A(11) * X) AND CINT(A(12) * Y)) + (CINT(A(13) * X) OR CINT(A(14) * Y))
+6310 RETURN
+
+	Examples of attractors produced by PROG23 are shown in Figures 7-9 through 7-16. Most of the attractors produced in this way have a streaked or checkered appearance, arising presumably from rounding the variables to integers before performing the logical operations. The ones shown in the figures tend to be the exceptions.
+
+Figure 7-9. Four-dimensional special map Z
+
+Figure 7-10. Four-dimensional special map Z
+
+Figure 7-11. Four-dimensional special map Z
+
+Figure 7-12. Four-dimensional special map Z
+
+Figure 7-13. Four-dimensional special map Z
+
+Figure 7-14. Four-dimensional special map Z
+
+Figure 7-15. Four-dimensional special map Z
+
+Figure 7-16. Four-dimensional special map Z
+
+
+##  Roots and Powers
+	Polynomial maps involve powers of the variables that are small positive integers, such as the square (2) and the cube (3). Polynomials exclude such nonlinearities as the square root or the reciprocal of the variables. Roots and powers are mathematically equivalent except for the value of the exponent. The square root of X can be written as X0.5, and the reciprocal of X can be written as 1/X or as X-1. It is interesting to examine strange attractors that involve fractional and negative powers.
+	The following is a general two-dimensional system of equations that involves arbitrary powers:
+
+	Xn+1 = a1 + a2Xn + a3Yn + a4|Xn|a5 + a6|Yn|a7
+	Yn+1 = a8 + a9Xn + a10Yn + a11|Xn|a12 + a13|Yn|a14	(Equation 7E)
+
+The absolute values are needed because BASIC cannot take a root of a negative number. The result would have an imaginary component. Note that if all the exponents happen to be +1, Equation 7E is equivalent to Equation 7B. The third and fourth dimensions are determined in the same way as in Section 7.1.
+	The program modifications required to extend the computer search to such cases are shown in PROG24. Since we have exhausted the capital letter codes, we must invent some new ones. We will continue using the standard ASCII characters beyond Z, as shown in Table 2-1. Thus the codes for this case begin with the left bracket ([), which is ASCII 91.
+
+PROG24. Changes required in PROG23 to search for special functions of the [ type
+1000 REM SPECIAL FUNCTION SEARCH (Roots and Powers)
+1090 ODE% = 4                   'System is special function [
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 9): T% = 1
+
+6310 IF ODE% <> 4 THEN GOTO 6350
+6320    M% = 14
+6330    XNEW = A(1) + A(2) * X + A(3) * Y + A(4) * ABS(X) ^ A(5) + A(6) * ABS(Y) ^ A(7)
+6340    YNEW = A(8) + A(9) * X + A(10) * Y + A(11) * ABS(X) ^ A(12) + A(13) * ABS(Y) ^ A(14)
+6350 RETURN
+
+	Examples of attractors produced by PROG24 are shown in Figures 7-17 through 7-24. These attractors are localized mostly to a small region of the XY plane with tentacles that stretch out to large distances. If any of the exponents are negative and the attractor intersects the line along which the respective variable is zero, a point on the line maps to infinity. However, large values are visited infrequently by the orbit, so many iterations are required to determine that the orbit is unbounded. For this reason most of the attractors in the figures have holes in their interiors where their orbits are precluded from coming too close to their origins (X = Y = 0).
+
+Figure 7-17. Four-dimensional special map [
+
+Figure 7-18. Four-dimensional special map [
+
+Figure 7-19. Four-dimensional special map [
+
+Figure 7-20. Four-dimensional special map [
+
+Figure 7-21. Four-dimensional special map [
+
+Figure 7-22. Four-dimensional special map [
+
+Figure 7-23. Four-dimensional special map [
+
+Figure 7-24. Four-dimensional special map [
+
+	You may become frustrated seeing a beautiful attractor develop for thousands of iterations and then having the orbit escape. Such behavior is called a crisis or transient chaos, not to be confused with a catastrophe. For example, the logistic equation with R slightly greater than 4.0 is chaotic for many iterations until an iterate happens to exceed 1.0, whereupon the orbit abruptly moves off toward infinity.  By contrast, a catastrophe occurs when the solution undergoes a qualitative change at some critical value of a control parameter.
+	Related to a crisis is another phenomenon called intermittency. At certain values of the control parameters, a system exhibits periodic behavior for many cycles and then suddenly becomes chaotic for a while before settling back into periodic behavior. Classic examples of intermittency occur in the logistic equation at about R = 3.82812 and in the Lorenz equations at about r = 166.2. Intermittency has been observed in many natural systems, and it is a bane to those who try to make predictions. It is possible that the solar system is intermittently chaotic or even that a crisis can occur leading to a complete loss of its stability, perhaps precipitated by a rare conjunction of a planet with a large asteroid or comet.
+	Those solutions of Equation 7E that remain bounded tend to have a wispy appearance and to go beyond the frame of the figure because of the occasional large excursions. Artistically, this feature gives the attractors a sense of being connected to the surrounding world rather than being isolated objects suspended in a void. If you frame these cases, a surrounding mat is desirable to provide the illusion that they are being viewed through a window.
+
+
+##  Sines and Cosines
+	Two of the most common nonlinear functions are the sine and its complement, the cosine. The sine and cosine can be approximated by polynomials as follows:
+
+	sin X = X - X3/6 + X5 /120 - X7/5040 + ...
+	cos X = 1 - X2/2 + X4/24 - X6/720 + ...			(Equation 7F)
+
+When the argument X is small, the approximations are very accurate using only a few terms in the expansion. The denominator of each term is the factorial of the exponent of that term. For example, the factorial of five (written 5!) is equal to 5 x 4 x 3 x 2 x 1 = 120. When X is large, many terms are required. In such a case, we would expect to observe dynamics different from those produced by the fifth-order polynomials previously examined.
+	A general two-dimensional system of equations whose nonlinearity is restricted to the sine function is the following:
+
+	Xn+1 = a1 + a2Xn + a3Yn + a4sin(a5Xn + a6) + a7sin(a8Yn + a9)
+	Yn+1 = a10 + a11Xn + a12Yn + a13sin(a14Xn + a15) + a16sin(a17Yn + a18)		(Equation 7G)
+
+It is not necessary to consider the cosine separately; the phase terms (a6, a9, a15, and a18) have the same effect because cos X is equal to sin(X + /2). The third and fourth dimensions are determined in the same way as in Section 7.1.
+	The program modifications required to extend the computer search to such cases are shown in PROG25. These cases are coded with the backslash (\), which is ASCII 92.
+
+PROG25 Changes Required in PROG24 to Search for Special Functions of the \ Type
+1000 REM SPECIAL FUNCTION SEARCH (Sines and Cosines)
+1090 ODE% = 5                   'System is special function \
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 10): T% = 1
+
+6350 IF ODE% <> 5 THEN GOTO 6390
+6360    M% = 18
+6370    XNEW = A(1) + A(2) * X + A(3) * Y + A(4) * SIN(A(5) * X + A(6)) + A(7) * SIN(A(8) * Y + A(9))
+6380    YNEW = A(10) + A(11) * X + A(12) * Y + A(13) * SIN(A(14) * X + A(15)) + A(16) * SIN(A(17) * Y + A(18))
+6390 RETURN
+
+	Examples of attractors produced by PROG25 are shown in Figures 7-25 through 7-32.
+
+Figure 7-25. Four-dimensional special map \
+
+Figure 7-26. Four-dimensional special map \
+
+Figure 7-27. Four-dimensional special map \
+
+Figure 7-28. Four-dimensional special map \
+
+Figure 7-29. Four-dimensional special map \
+
+Figure 7-30. Four-dimensional special map \
+
+Figure 7-31. Four-dimensional special map \
+
+Figure 7-32. Four-dimensional special map \
+
+
+##  Webs and Wreaths
+	In this section, we consider a special type of map that involves sines and cosines. The solutions are chaotic, but they are not attractors. The systems they describe are Hamiltonian. Such Hamiltonian systems obey the Liouville theorem, which states that the phase-space volume occupied by a set of points is conserved as the system evolves in time. Thus the orbit eventually returns arbitrarily close to any initial condition. Contrast this to dissipative systems in which the phase-space volume decreases in time, eventually collapsing all initial conditions within the basin of attraction onto the attractor. In dissipative systems, the basin of attraction is usually much larger than the attractor. The equations are as follows:
+
+	Xn+1 = 10a1 + [Xn + a2sin(a3Yn + a4)]cos a + Yn sin a
+	Yn+1 = 10a5 - [Xn + a2sin(a3Yn + a4)]sin a + Yn cos a	(Equation 7H)
+
+where  = 2 / (13 + 10a6). The third and fourth dimensions are determined in the same way as in Section 7.1.
+	The special form of Equation 7H guarantees that the solution is not only area-preserving but also has circular symmetry. Furthermore, an inherent periodicity arises from the fact that  is 2 divided by an integer that ranges from 1 to 25. The periodicity is indicated by the last letter of the code (a6): A for period-1, B for period-2, and so forth. Because of the circular symmetry and infinite extent, it is interesting to project these cases onto a sphere using the P command.
+	The program modifications required to extend the computer search to such cases are shown in PROG26. These cases are coded with the right bracket (]), which is ASCII 93.
+
+PROG26. Changes required in PROG25 to search for special functions of the ] type
+1000 REM SPECIAL FUNCTION SEARCH (Webs and Wreaths)
+1090 ODE% = 6                   'System is special function ]
+1150 TWOPI = 6.28318530717959#  'A useful constant (2 pi)
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 11): T% = 1
+
+6390 IF ODE% <> 6 THEN GOTO 6450
+6400    M% = 6
+6410    IF N < 2 THEN AL = TWOPI / (13 + 10 * A(6)): SINAL = SIN(AL): COSAL = COS(AL)
+6420    DUM = X + A(2) * SIN(A(3) * Y + A(4))
+6430    XNEW = 10 * A(1) + DUM * COSAL + Y * SINAL
+6440    YNEW = 10 * A(5) - DUM * SINAL + Y * COSAL
+6450 RETURN
+
+	As you watch the patterns develop, you can see the orbit wander throughout the XY plane along a network of channels. The network is infinite in extent and is called a stochastic web. The global wandering is evidence of minimal chaos, and it causes the orbit eventually to leave the boundary of the computer screen. If you interrupt the calculation at some point, the resulting structure resembles a wreath or a snowflake. The infinite structure is a tiling, but its symmetry is slightly spoiled by the finite thickness of the web. This breaking of the symmetry eliminates the monotony and contributes to the aesthetic appeal of the patterns.
+	The slow wandering of the orbit throughout the web is an example of Arnol’d diffusion, which is named after the Russian mathematician Vladimir Arnol’d. Normally we associate diffusion with a random process in which, for example, the molecules of a gas move slowly from one region to another by countless collisions with other molecules. The presence of diffusion in such simple deterministic systems has many practical consequences such as providing a means for heating a gas of electrically charged particles (a plasma) in a magnetic field using electromagnetic waves.
+	These stochastic webs contain circular chains of islands, or beads on a necklace, if you prefer a different analogy, whose interiors contain periodic orbits. Surrounding the islands is a stochastic sea in which the orbits are chaotic and connected to all other points in the sea. You will also note that the Lyapunov exponents are small. Since the orbits diffuse slowly in the sea, nearby orbits remain close together for many iterations. For a similar reason, the calculated fractal dimension is lower than it should be. Recall that the dimension calculation is based on the previous 500 iterates, whose values tend to be nearly equal in this case.
+	Examples of stochastic webs produced by PROG26 are shown in Figures 7-33 through 7-40. Because of the slow diffusion of the orbit, these cases provide a good opportunity to exhibit the time variation with colors as shown in Plates 31 and 32. You may want to try different values of NMAX% in line 1050 to control the rate at which the colors change. Web maps provide a perfect illustration of how chaos and determinism coexist. The underlying symmetry of the equations is evident in the figures, but the orbit exhibits apparently random motion within the chaotic region.
+
+Figure 7-33. Four-dimensional web map (period-4)
+
+Figure 7-34. Four-dimensional web map (period-13)
+
+Figure 7-35. Four-dimensional web map (period-5)
+
+Figure 7-36. Four-dimensional web map (period-12)
+
+Figure 7-37. Four-dimensional web map (period-12)
+
+Figure 7-38. Four-dimensional web map (period-7)
+
+Figure 7-39. Four-dimensional web map (period-23)
+
+Figure 7-40. Four-dimensional web map (period-9)
+
+
+## Swings and Springs
+	All the previous examples of maps and differential equations in this book share the property that the right-hand sides of the equations are independent of the iteration number (N) or time (t). Such equations are called autonomous. For a given set of initial conditions, they produce the same solution for whatever time or iteration number they are started.
+	Some important physical processes are most conveniently expressed by nonautonomous equations. An example is a driven (forced), damped, linear, harmonic oscillator, which is described by the following equations:
+
+	X’ = Y
+	Y’ = -X - bY + A sin wt				(Equation 7I)
+
+In Equation 7I, b is the damping constant (friction), A is the amplitude of the drive (forcing) function, and  is the angular frequency (radians per second) of the drive. The friction force is assumed to be proportional and opposite to the velocity (-Y), although other forms give qualitatively similar results. This type of friction is called linear damping.
+	The usual trick for dealing with nonautonomous equations is to introduce an additional variable (say Z) and rewrite Equation 7I, for example, as
+
+	X’ = Y
+	Y’ = -X - bY + A sin Z
+	Z’ = w							(Equation 7J)
+
+Equation 7J contains a nonlinearity (sin Z), but it does not have chaotic solutions. The solution (for positive b) is a limit cycle with frequency . The limit cycle is largest when the damping is small (b positive but much less than 1) and  is 1, corresponding to resonance.
+	To obtain interesting chaotic solutions, we need additional nonlinear terms. We will restrict these nonlinearities to odd polynomials (X, X3, X2Y, and so forth) in the Y’ equation to preserve the symmetry of the oscillation. A general form with odd polynomials up to third order is as follows:
+
+	X’ = a1Y
+	Y’ = a2X + a3X3 + a4X2Y + a5XY2 + a6Y + a7Y3 + a8sin Z
+	Z’ = a9 + 1.3						(Equation 7K)
+
+If the product a1a2 is negative, these equations represent the motion of a mass oscillating on a nonlinear spring or a pendulum swinging through a large angle (but not going over the top). If a3/a2 is positive, the spring gets stiffer when stretched or compressed (hard spring). If a3/a2 is negative, the spring gets weaker when stretched or compressed (soft spring). If a3/a2 is -1/6, the solution approximates a vigorously swinging pendulum. If the product a1a2 is positive and a3/a2 is negative, the system models a buckled beam and is called the Duffing two-well oscillator. The final combination (a1a2 and a3/a2 both positive) is unstable and has an unbounded solution.
+	In Equation 7K, we can exploit the fact that Z enters only through the term sin Z; thus it is periodic with period 2. Whenever Z exceeds 2, we can subtract 2 from it without changing the result. This trick keeps Z bounded in the range 0 to 2 rather than letting it march off to infinity as it would otherwise do. The Z-coordinate then becomes the phase angle of the drive function. Note that the MOD function in most versions of BASIC works correctly only on integer variables, so it should not be used for the above purpose. The +1.3 term in the Z equation ensures that the phase angle always increases in time for -1.2 ≤ a9 ≤ 1.2. The fourth variable (W) is proportional to time as in the previous examples.
+	The program modifications required to extend the computer search to such cases are shown in PROG27. These cases are coded with the circumflex (^), which is ASCII 94.
+
+PROG27. Changes required in PROG26 to search for special functions of the ^ type
+1000 REM SPECIAL FUNCTION SEARCH (Swings and Springs)
+1090 ODE% = 7                   'System is special function ^
+
+3050    IF ODE% = 1 OR ODE% = 7 THEN L = L / EPS
+
+3680 IF Q$ = "D" THEN D% = 1 + (D% MOD 12): T% = 1
+
+6450 IF ODE% <> 7 THEN GOTO 6500
+6460    M% = 9
+6470    XNEW = X + EPS * A(1) * Y
+6480    YNEW = Y + EPS * (A(2) * X + A(3) * X * X * X + A(4) * X * X * Y + A(5) * X * Y * Y + A(6) * Y + A(7) * Y * Y * Y + A(8) * SIN(Z))
+6490    ZNEW = Z + EPS * (A(9) + 1.3): IF ZNEW > TWOPI THEN ZNEW = ZNEW - TWOPI
+6500 RETURN
+
+	Examples of attractors produced by PROG27 are shown in Figures 7-41 through 7-48. These cases are displayed as slices that show the orbit at 16 different drive phases. As you scan across them left to right and top to bottom, you can see the stretching and folding that are characteristics of strange attractors and that account for their fractal microstructure and for the sensitivity to initial conditions.
+
+Figure 7-41. Slices of a four-dimensional special map ^
+
+Figure 7-42. Slices of a four-dimensional special map ^
+
+Figure 7-43. Slices of a four-dimensional special map ^
+
+Figure 7-44. Slices of a four-dimensional special map ^
+
+Figure 7-45. Slices of a four-dimensional special map ^
+
+Figure 7-46. Slices of a four-dimensional special map ^
+
+Figure 7-47. Slices of a four-dimensional special map ^
+
+Figure 7-48. Slices of a four-dimensional special map ^
+
+	These cases provide an ideal opportunity to animate the third dimension (drive phase). If you have not fanned through the figures in the upper-right-hand corner of the odd pages of the book, do so now. Be sure to fan in the forward direction (low to high page numbers). These figures were produced using 64 phase slices of the attractor ^VYGJBPIJN with 10 million iterations.
+	
+	You can see several cycles of stretching and folding. Note that there are three diagonal bands that run from the lower left to the upper right of the attractor. The three bands are stretched and compressed into a single band, while two additional bands enter first from the upper left and then from the lower right. Thus one of the three bands consists of three smaller bands, one of which consists of three even smaller bands, and so forth. Such an infinitely layered band is called a thick line or a Cantor one-manifold. Viewed in three dimensions, the thick line would appear as a thick surface or a Cantor two-manifold. There is perhaps no clearer illustration anywhere in this book of the way strange attractors are formed and acquire their fractal microstructure.
+
+
+## Roll Your Own
+	Perhaps this is a good place to leave you with this brief taste of the immense variety of nonlinear functions and equations, nearly all of which admit strange attractors that can be identified and examined using the technique described in this book. The possibilities are limited only by your imagination, and you can be assured that nearly every strange attractor that you discover has never been seen before. There surely exist classes of objects yet to be discovered that are of mathematical and artistic interest.
+	If you decide to pursue such an exploration, you might start with some of the other nonlinear functions and operators that are built into the BASIC language. Table 7-1 lists a number of interesting possibilities. They are divided into mathematical functions, which should be independent of the machine or programming language; machine functions, which are dependent on the machine or language; nonlinear operators, which are supported by nearly all versions of BASIC; and advanced functions, which are supported by VisualBASIC for MS-DOS. You may use them in combinations to invent complicated forms that belong to you alone!
+
+Table 7-1. Nonlinear functions and operators supported by most versions of BASIC
+Mathematical	Machine	Nonlinear	Advanced
+Functions	Functions	Operators	Functions
+ABS	FRE	^	DAY
+ATN	INP	*	HOUR
+CINT	PEEK	/	MINUTE
+COS	PLAY	\	MONTH
+EXP	POINT	MOD	NOW
+FIX	RND	NOT	QBCOLOR
+INT	TIMER	AND	RGB
+LOG		OR	SECOND
+SGN		XOR	WEEKDAY
+SIN		EQV	YEAR
+SQR		IMP
+TAN
