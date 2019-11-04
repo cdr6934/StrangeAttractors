@@ -34,7 +34,7 @@ $$
 X_{n+1}=(aX_n+b)\mod c
 $$
 
-In the mod (modulus) operation, the quantity to the left of the $\mod (aXn + b)$ is divided by the quantity to its right (c), and the remainder is kept rather than the quotient. All the quantities in Equation 2B are integers. The constants a, b, and c are carefully chosen to maximize the number of steps required for the sequence to repeat, which in any case can never exceed c. The numbers are uniformly distributed from zero to c - 1, but they can be transformed to the range zero to one by simply dividing Xn+1 by c. The numbers appear to be random, but since they are produced using a deterministic procedure, they are often called pseudorandom. Equation 2B is another example of a one-dimensional chaotic map, which is related to the shift map.
+In the mod (modulus) operation, the quantity to the left of the $\mod (aXn + b)$ is divided by the quantity to its right (c), and the remainder is kept rather than the quotient. All the quantities in Equation 2B are integers. The constants a, b, and c are carefully chosen to maximize the number of steps required for the sequence to repeat, which in any case can never exceed c. The numbers are uniformly distributed from zero to c - 1, but they can be transformed to the range zero to one by simply dividing $X_n+1$ by c. The numbers appear to be random, but since they are produced using a deterministic procedure, they are often called pseudorandom. Equation 2B is another example of a one-dimensional chaotic map, which is related to the shift map.
 
 Truly random numbers should satisfy infinitely many conditions. Not only must the numbers be uniform over the interval, but there should be no detectable relation between the numbers and any of their predecessors. In particular, the sequence should repeat only after a very large number of steps. Most randomnumber generators are deficient in certain ways. For example, the random numbers produced by Microsoft QBASIC 1.0, QuickBASIC 4.5, and VisualBASIC for DOS 1.0 repeat after 16,777,216 steps, and this number is too small for some of our purposes.
 
@@ -150,8 +150,7 @@ Of the 15,625 combinations of coefficients, exactly 364 (2.3%) are chaotic by th
 *One-dimensional quadratic map AXDA F = 0.86 L = 0.89*
 
 
-The search for strange attractors is potentially time-consuming if you have an old computer without a math coprocessor or if you are using a BASIC interpreter rather than a compiler. Even if the search is reasonably fast on your computer, be forewarned that it will slow down considerably as you advance to the more
-complicated equations later in the book. Perhaps this is a good time to summarize some of your options for making the program run faster.
+The search for strange attractors is potentially time-consuming if you have an old computer without a math coprocessor or if you are using a BASIC interpreter rather than a compiler. Even if the search is reasonably fast on your computer, be forewarned that it will slow down considerably as you advance to the more complicated equations later in the book. Perhaps this is a good time to summarize some of your options for making the program run faster.
 
 When comparing calculation speeds of various computers and compilers,
 you must do the comparison with the actual program or a benchmark that
@@ -221,6 +220,20 @@ Figure 2-8:   One dimensional DBOGIZI F = 0.77 L = 0.9
 Figure 2-9:   One dimensional DFBIEVV F = 0.87 L = 0.87
 Figure 2-10:  One dimensional DOOYRIL F = 0.93, L = 0.72
 
+$$
+\begin{equation} 
+\begin{split}
+\mathrm{Var}(\hat{\beta}) & =\mathrm{Var}((X'X)^{-1}X'y)\\
+ & =(X'X)^{-1}X'\mathrm{Var}(y)((X'X)^{-1}X')'\\
+ & =(X'X)^{-1}X'\mathrm{Var}(y)X(X'X)^{-1}\\
+ & =(X'X)^{-1}X'\sigma^{2}IX(X'X)^{-1}\\
+ & =(X'X)^{-1}\sigma^{2}
+\end{split}
+(\#eq:var-beta)
+\end{equation} 
+$$
+
+
 
 ## Making Music 
 If the preceding figures don’t qualify as art, perhaps they qualify as music. Since the quantity X behaves in a deterministic yet unpredictable way, it may be that a sequence of musical notes determined by X will mimic the order and unpredictability that characterize music. It’s easy to test.
@@ -241,6 +254,16 @@ Suppose we allow the notes to span three octaves from A-220 to A-1760. The lette
 3630 IF ASC(Q$) > 96 THEN Q$ = CHR$(ASC(Q$) - 32)
 3770 IF Q$ = "S" THEN SND% = (SND% + 1) MOD 2: T% = 3
 3800 RETURN
+
+```{r}
+# One-D Map Search w/ Sound 
+snd <- 1 
+if (snd == 1)
+{
+ # freq <- 220*2^(36*(XNEW-XL)/(XH-XL))/12)
+}
+```
+
 
 The program allows you to toggle the sound on and off by pressing the S key. Pressing any other key exits the program. You might wish to experiment with the duration DUR of the SOUND statement in line 3520. Increasing its value from 1 (corresponding to approximately 0.055 seconds) makes the sounds more musical, but then the calculation takes longer.
 
