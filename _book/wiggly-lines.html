@@ -24,7 +24,7 @@
 <meta name="author" content="Julien C. Sprott" />
 
 
-<meta name="date" content="2019-11-03" />
+<meta name="date" content="2019-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -234,7 +234,7 @@ X_{n+1}=a_1+a_2x_n+a_3x_{n_2}
 </div>
 <div id="randomness-and-pseudorandomness" class="section level2">
 <h2><span class="header-section-number">3.2</span> Randomness and Pseudorandomness</h2>
-<p>To choose values of a1, a2, and a3 , we can use the random-number generator provided with most computer languages. The random numbers thus produced are usually uniformly distributed between zero and one. You may wonder how a computer, the epitome of determinism, could ever produce a random number. This question deserves a digression because the answer provides yet another example of the very issues we have been discussing.</p>
+<p>To choose values of <span class="math inline">\(a1\)</span>, <span class="math inline">\(a2\)</span>, and <span class="math inline">\(a3\)</span> , we can use the random-number generator provided with most computer languages. The random numbers thus produced are usually uniformly distributed between zero and one. You may wonder how a computer, the epitome of determinism, could ever produce a random number. This question deserves a digression because the answer provides yet another example of the very issues we have been discussing.</p>
 <p>One way to produce a random number is to start with a value of X (the seed) between zero and one and iterate the logistic equation with R = 4 a few dozen times. The result is a new number in the range of zero to one that is related to the seed in a complicated and sensitive way. This number is then used as the seed for the next random number, which is produced in the same way. A given seed will produce the same sequence of random numbers, but the sequence may not be the same on different computers or with different languages or even with different versions of the same language because of the way the numbers are rounded.</p>
 <p>However, this method of producing random numbers is not optimal. First, the numbers are not uniformly distributed over the range. They tend to cluster near zero and one as the darkness of the right-hand side of Figure 1-1 suggests. Also, multiplying a non-integer number by itself many times is a relatively slow process on a computer.</p>
 <p>Instead, computers usually get their random numbers using the linear congruential method:</p>
