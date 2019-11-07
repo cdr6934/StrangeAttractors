@@ -256,17 +256,17 @@ Figure 7-40. Four-dimensional web map (period-9)
 ## Swings and Springs
 	All the previous examples of maps and differential equations in this book share the property that the right-hand sides of the equations are independent of the iteration number (N) or time (t). Such equations are called autonomous. For a given set of initial conditions, they produce the same solution for whatever time or iteration number they are started.
 	Some important physical processes are most conveniently expressed by nonautonomous equations. An example is a driven (forced), damped, linear, harmonic oscillator, which is described by the following equations:
-
+$$
 	X’ = Y
 	Y’ = -X - bY + A sin wt				(Equation 7I)
-
+$$
 In Equation 7I, b is the damping constant (friction), A is the amplitude of the drive (forcing) function, and  is the angular frequency (radians per second) of the drive. The friction force is assumed to be proportional and opposite to the velocity (-Y), although other forms give qualitatively similar results. This type of friction is called linear damping.
 	The usual trick for dealing with nonautonomous equations is to introduce an additional variable (say Z) and rewrite Equation 7I, for example, as
-
+$$
 	X’ = Y
 	Y’ = -X - bY + A sin Z
 	Z’ = w							(Equation 7J)
-
+$$
 Equation 7J contains a nonlinearity (sin Z), but it does not have chaotic solutions. The solution (for positive b) is a limit cycle with frequency . The limit cycle is largest when the damping is small (b positive but much less than 1) and  is 1, corresponding to resonance.
 	To obtain interesting chaotic solutions, we need additional nonlinear terms. We will restrict these nonlinearities to odd polynomials (X, X3, X2Y, and so forth) in the Y’ equation to preserve the symmetry of the oscillation. A general form with odd polynomials up to third order is as follows:
 

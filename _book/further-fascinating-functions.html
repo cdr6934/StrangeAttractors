@@ -24,7 +24,7 @@
 <meta name="author" content="Julien C. Sprott" />
 
 
-<meta name="date" content="2019-11-01" />
+<meta name="date" content="2019-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -345,16 +345,19 @@ Examples of stochastic webs produced by PROG26 are shown in Figures 7-33 through
 <div id="swings-and-springs" class="section level2">
 <h2><span class="header-section-number">6.6</span> Swings and Springs</h2>
 <pre><code>All the previous examples of maps and differential equations in this book share the property that the right-hand sides of the equations are independent of the iteration number (N) or time (t). Such equations are called autonomous. For a given set of initial conditions, they produce the same solution for whatever time or iteration number they are started.
-Some important physical processes are most conveniently expressed by nonautonomous equations. An example is a driven (forced), damped, linear, harmonic oscillator, which is described by the following equations:
-
-X’ = Y
-Y’ = -X - bY + A sin wt             (Equation 7I)</code></pre>
-<p>In Equation 7I, b is the damping constant (friction), A is the amplitude of the drive (forcing) function, and  is the angular frequency (radians per second) of the drive. The friction force is assumed to be proportional and opposite to the velocity (-Y), although other forms give qualitatively similar results. This type of friction is called linear damping.
-The usual trick for dealing with nonautonomous equations is to introduce an additional variable (say Z) and rewrite Equation 7I, for example, as</p>
-<pre><code>X’ = Y
-Y’ = -X - bY + A sin Z
-Z’ = w                          (Equation 7J)</code></pre>
-<p>Equation 7J contains a nonlinearity (sin Z), but it does not have chaotic solutions. The solution (for positive b) is a limit cycle with frequency . The limit cycle is largest when the damping is small (b positive but much less than 1) and  is 1, corresponding to resonance.
+Some important physical processes are most conveniently expressed by nonautonomous equations. An example is a driven (forced), damped, linear, harmonic oscillator, which is described by the following equations:</code></pre>
+<p><span class="math display">\[
+    X’ = Y
+    Y’ = -X - bY + A sin wt             (Equation 7I)
+\]</span>
+In Equation 7I, b is the damping constant (friction), A is the amplitude of the drive (forcing) function, and  is the angular frequency (radians per second) of the drive. The friction force is assumed to be proportional and opposite to the velocity (-Y), although other forms give qualitatively similar results. This type of friction is called linear damping.
+The usual trick for dealing with nonautonomous equations is to introduce an additional variable (say Z) and rewrite Equation 7I, for example, as
+<span class="math display">\[
+    X’ = Y
+    Y’ = -X - bY + A sin Z
+    Z’ = w                          (Equation 7J)
+\]</span>
+Equation 7J contains a nonlinearity (sin Z), but it does not have chaotic solutions. The solution (for positive b) is a limit cycle with frequency . The limit cycle is largest when the damping is small (b positive but much less than 1) and  is 1, corresponding to resonance.
 To obtain interesting chaotic solutions, we need additional nonlinear terms. We will restrict these nonlinearities to odd polynomials (X, X3, X2Y, and so forth) in the Y’ equation to preserve the symmetry of the oscillation. A general form with odd polynomials up to third order is as follows:</p>
 <pre><code>X’ = a1Y
 Y’ = a2X + a3X3 + a4X2Y + a5XY2 + a6Y + a7Y3 + a8sin Z
