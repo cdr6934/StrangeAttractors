@@ -24,7 +24,7 @@
 <meta name="author" content="Julien C. Sprott" />
 
 
-<meta name="date" content="2019-11-07" />
+<meta name="date" content="2019-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -310,11 +310,14 @@ The program modifications required to extend the computer search to such cases a
 </div>
 <div id="webs-and-wreaths" class="section level2">
 <h2><span class="header-section-number">6.5</span> Webs and Wreaths</h2>
-<pre><code>In this section, we consider a special type of map that involves sines and cosines. The solutions are chaotic, but they are not attractors. The systems they describe are Hamiltonian. Such Hamiltonian systems obey the Liouville theorem, which states that the phase-space volume occupied by a set of points is conserved as the system evolves in time. Thus the orbit eventually returns arbitrarily close to any initial condition. Contrast this to dissipative systems in which the phase-space volume decreases in time, eventually collapsing all initial conditions within the basin of attraction onto the attractor. In dissipative systems, the basin of attraction is usually much larger than the attractor. The equations are as follows:
-
-Xn+1 = 10a1 + [Xn + a2sin(a3Yn + a4)]cos a + Yn sin a
-Yn+1 = 10a5 - [Xn + a2sin(a3Yn + a4)]sin a + Yn cos a   (Equation 7H)</code></pre>
-<p>where  = 2 / (13 + 10a6). The third and fourth dimensions are determined in the same way as in Section 7.1.
+<pre><code>In this section, we consider a special type of map that involves sines and cosines. The solutions are chaotic, but they are not attractors. The systems they describe are Hamiltonian. Such Hamiltonian systems obey the Liouville theorem, which states that the phase-space volume occupied by a set of points is conserved as the system evolves in time. Thus the orbit eventually returns arbitrarily close to any initial condition. Contrast this to dissipative systems in which the phase-space volume decreases in time, eventually collapsing all initial conditions within the basin of attraction onto the attractor. In dissipative systems, the basin of attraction is usually much larger than the attractor. The equations are as follows:</code></pre>
+<p><span class="math display">\[
+    X_n+1 = 10a1 + [X_n + a_2\sin(a_3Y_n + a_4)]\cos a + Yn \sin a
+\]</span>
+<span class="math display">\[
+Y_{n+1} = 10_{a_5} - [X_n + a2|sin(a3Yn + a4)]\sin(a) + Yn \cos(a)  
+\]</span>
+where  = 2 / (13 + 10a6). The third and fourth dimensions are determined in the same way as in Section 7.1.
 The special form of Equation 7H guarantees that the solution is not only area-preserving but also has circular symmetry. Furthermore, an inherent periodicity arises from the fact that  is 2 divided by an integer that ranges from 1 to 25. The periodicity is indicated by the last letter of the code (a6): A for period-1, B for period-2, and so forth. Because of the circular symmetry and infinite extent, it is interesting to project these cases onto a sphere using the P command.
 The program modifications required to extend the computer search to such cases are shown in PROG26. These cases are coded with the right bracket (]), which is ASCII 93.</p>
 <p>PROG26. Changes required in PROG25 to search for special functions of the ] type

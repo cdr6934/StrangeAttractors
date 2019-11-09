@@ -10,7 +10,7 @@ The situation is more interesting when you consider iterated maps that involve t
 
 Such two-dimensional maps might arise, for example, from an ecological model only slightly more complicated than the logistic equation. A classic example is the predator-prey problem in which X represents the prey and Y the predator. In a simple linear model, the solution is a fixed point (a unique number of both predators and prey) or a limit cycle (both the number of predators and the number of prey oscillate, reaching their maximum values at different times, but eventually repeating). When nonlinear terms are introduced into the model, the population of each species can behave chaotically. You can think of each point that makes up such an attractor as the population of predators and prey in successive years. Since such complexity arises from these very simple models, it’s easy to understand why ecologists might have trouble predicting the fate of biological species!
 
-Perhaps the best known chaotic two-dimensional map is the Hénon map (proposed by the French astronomer _Michel Hénon_ in 1976), whose equations are
+Perhaps the best known chaotic two-dimensional map is the _Hénon map_ (proposed by the French astronomer Michel Hénon in 1976), whose equations are
 
 $$
 X_{n+1}=1+aX_n^2+bY_n
@@ -158,7 +158,10 @@ If you are an experienced programmer, you might consider writing a screensaver p
 	One method is to draw a small circle somewhere on the plane that surrounds at least one of the points. We then draw a second circle with the same center but with twice the radius. Now we count the number of points inside each circle. Let’s say the smaller circle encloses N1 points and the larger circle encloses N2 points. Obviously N2 is greater than or equal to N1 because all the points inside the inner circle are also inside the outer circle.
 	If the points are widely separated, then N2 equals N1. If the points are part of a straight line, the larger circle on average encloses twice as many points as the smaller circle, but if the points are part of a plane, the larger circle on average encloses four times as many points as the smaller circle, because the area of a circle is proportional to the square of its radius. Thus for these simple cases the dimension is given by
 
-	F = log2 (N2 / N1)          			(Equation 3D)
+
+$$
+F = \log_2 (\frac{N_2}{N_1})
+$$
 
 It is hardly surprising that if you do this operation for the cases shown in the figures, the quantity F is neither 0 nor 1 nor 2 but rather a fraction.
 	With real data, a number of practical considerations determine the accuracy of the result and the amount of computation required to obtain it:
